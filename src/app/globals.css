@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-inter: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  color: #0F172A;
+  background-color: #FAFAF9;
+  font-family: var(--font-inter);
+}
+
+/* Custom Cricket Badges & Utilities */
+.cricket-gradient {
+  background: linear-gradient(135deg, #063328 0%, #0B4D3C 60%, #126B54 100%);
+}
+
+.gold-gradient {
+  background: linear-gradient(135deg, #D97706 0%, #F59E0B 100%);
+}
+
+.leather-gradient {
+  background: linear-gradient(135deg, #991B1B 0%, #DC2626 100%);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
