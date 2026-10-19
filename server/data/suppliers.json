@@ -1,0 +1,159 @@
+[
+  {
+    "totalPurchases": 0,
+    "balanceOwed": 0,
+    "createdAt": "2026-10-19T12:59:29.042Z",
+    "id": "sup-9042",
+    "name": "Sialkot Master Bats Ltd",
+    "contactPerson": "Zahid Mahmood",
+    "phone": "+923001234567",
+    "email": "sales@sialkotmasterbats.com",
+    "address": "Kashmir Road, Sialkot, Pakistan",
+    "categoriesSupplied": [
+      "Cricket Equipment"
+    ],
+    "notes": ""
+  },
+  {
+    "totalPurchases": 0,
+    "balanceOwed": 0,
+    "createdAt": "2026-10-19T12:58:23.952Z",
+    "id": "sup-3952",
+    "name": "Sialkot Master Bats Ltd",
+    "contactPerson": "Zahid Mahmood",
+    "phone": "+923001234567",
+    "email": "sales@sialkotmasterbats.com",
+    "address": "Kashmir Road, Sialkot, Pakistan",
+    "categoriesSupplied": [
+      "Cricket Equipment"
+    ],
+    "notes": ""
+  },
+  {
+    "totalPurchases": 0,
+    "balanceOwed": 0,
+    "createdAt": "2026-10-19T12:43:57.464Z",
+    "id": "sup-7464",
+    "name": "Sialkot Master Bats Ltd",
+    "contactPerson": "Zahid Mahmood",
+    "phone": "+923001234567",
+    "email": "sales@sialkotmasterbats.com",
+    "address": "Kashmir Road, Sialkot, Pakistan",
+    "categoriesSupplied": [
+      "Cricket Equipment"
+    ],
+    "notes": ""
+  },
+  {
+    "totalPurchases": 0,
+    "balanceOwed": 0,
+    "createdAt": "2026-10-19T10:06:18.051Z",
+    "id": "sup-8051",
+    "name": "Sialkot Master Bats Ltd",
+    "contactPerson": "Zahid Mahmood",
+    "phone": "+923001234567",
+    "email": "sales@sialkotmasterbats.com",
+    "address": "Kashmir Road, Sialkot, Pakistan",
+    "categoriesSupplied": [
+      "Cricket Equipment"
+    ],
+    "notes": ""
+  },
+  {
+    "totalPurchases": 0,
+    "balanceOwed": 0,
+    "createdAt": "2026-10-19T10:05:39.614Z",
+    "id": "sup-9614",
+    "name": "Sialkot Master Bats Ltd",
+    "contactPerson": "Zahid Mahmood",
+    "phone": "+923001234567",
+    "email": "sales@sialkotmasterbats.com",
+    "address": "Kashmir Road, Sialkot, Pakistan",
+    "categoriesSupplied": [
+      "Cricket Equipment"
+    ],
+    "notes": ""
+  },
+  {
+    "totalPurchases": 0,
+    "balanceOwed": 0,
+    "createdAt": "2026-10-19T10:01:31.427Z",
+    "id": "sup-1427",
+    "name": "Sialkot Master Bats Ltd",
+    "contactPerson": "Zahid Mahmood",
+    "phone": "+923001234567",
+    "email": "sales@sialkotmasterbats.com",
+    "address": "Kashmir Road, Sialkot, Pakistan",
+    "categoriesSupplied": [
+      "Cricket Equipment"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "sup-001",
+    "name": "Unicorn Products Ltd (Gunn & Moore)",
+    "contactPerson": "David Roberts",
+    "phone": "+44 115 985 7777",
+    "email": "sales@unicornsports.co.uk",
+    "address": "Trent Bridge, Nottingham, United Kingdom",
+    "categoriesSupplied": [
+      "Cricket Bats",
+      "Batting Equipment",
+      "Cricket Luggage"
+    ],
+    "totalPurchases": 2850000,
+    "balanceOwed": 320000,
+    "notes": "Official UK master distributor for Ben Stokes Diamond Series & English Willow clefts.",
+    "createdAt": "2026-01-10T10:00:00.000Z"
+  },
+  {
+    "id": "sup-002",
+    "name": "Delux Sports Company (DSC)",
+    "contactPerson": "Sanjiv Sanan",
+    "phone": "+91 181 260 2261",
+    "email": "exports@dsc-cricket.com",
+    "address": "Sports Goods Complex, Jalandhar, Punjab, India",
+    "categoriesSupplied": [
+      "Cricket Bats",
+      "Batting Equipment",
+      "Cricket Protection"
+    ],
+    "totalPurchases": 1450000,
+    "balanceOwed": 0,
+    "notes": "Top tier English & Kashmir willow manufacturer, Pearla & Krunch ranges.",
+    "createdAt": "2026-01-15T10:00:00.000Z"
+  },
+  {
+    "id": "sup-003",
+    "name": "Pro:Direct Global Direct Wholesale",
+    "contactPerson": "Mark Harrison",
+    "phone": "+44 1626 363232",
+    "email": "b2b-trade@prodirectsport.com",
+    "address": "Torquay, Devon, United Kingdom",
+    "categoriesSupplied": [
+      "Cricket Footwear",
+      "Cricket Clothing",
+      "Cricket Protection"
+    ],
+    "totalPurchases": 3200000,
+    "balanceOwed": 180000,
+    "notes": "Primary supplier for Castore England Kits, adidas 22YDS & Payntr spikes.",
+    "createdAt": "2026-01-20T10:00:00.000Z"
+  },
+  {
+    "id": "sup-004",
+    "name": "Kookaburra Sport Pty Ltd",
+    "contactPerson": "Liam Murphy",
+    "phone": "+61 3 8552 1111",
+    "email": "asia-trade@kookaburra.com.au",
+    "address": "Moorabbin, Victoria, Australia",
+    "categoriesSupplied": [
+      "Batting Equipment",
+      "Cricket Balls & Accessories"
+    ],
+    "totalPurchases": 980000,
+    "balanceOwed": 50000,
+    "notes": "Official manufacturer of Kookaburra Turf balls and T20 protective gear.",
+    "createdAt": "2026-02-01T10:00:00.000Z"
+  }
+]

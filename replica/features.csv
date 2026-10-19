@@ -1,0 +1,28 @@
+feature,area,priority,original,clone,notes
+Sports Switcher Bar,header,must,yes,yes,Purged non-cricket sports and focused exclusively on cricket
+Multi-Currency Display (GBP USD EUR),header,should,yes,yes,Instant client-side currency switching
+Predictive Search with Live Dropdown,search,must,yes,yes,Searches across categories brands and player specs
+Mega-Menu Brand & Discipline Navigation,navigation,must,yes,yes,Fast access to bats footwear gear protection
+Promo Announcement Ticker Marquee,marketing,should,yes,yes,Marquee rotating banner with coupon code promo
+Hero Editorial Carousel (3 Slides),home,must,yes,yes,Authentic KNYX Helmets DSC Willow and Footwear slides
+Cricket Essentials 4-Portrait Content Tiles,home,must,yes,yes,Bats Pads Gloves Helmets curated tiles
+Get the Ben Stokes Look Editorial Showcase,home,must,yes,yes,4 signature GM Diamond products spotlighted
+Shop by Department Photographic Grid,catalog,must,yes,yes,Visual discipline tiles with item counters
+Product Catalog Multi-Facet Filtering,catalog,must,yes,yes,Real-time filter by Department Brand Price In-Stock
+Product Sorting Engine,catalog,must,yes,yes,Sort by Featured Price Low-High Price High-Low Top Rated
+Dual-Angle Card Image Hover Swap,product card,must,yes,yes,Smooth alternate angle image swap on mouseover
+Quick Size Picker Chips on Card,product card,must,yes,yes,One-click size selection and cart trigger
+Wishlist Slide-Out Drawer & Persistence,wishlist,should,yes,yes,Saved items stored in localStorage with Move-to-Cart
+Cart Slide-Out Drawer,cart,must,yes,yes,Free delivery goal bar item counts size switch coupon engine
+Product Deep-Dive Quick View Modal,product details,must,yes,yes,Multi-image gallery willow specs and size guide
+E-Commerce Authority Trust Footer,footer,must,yes,yes,4 pillars authorized retailer payment badges newsletter
+Bangladesh Taka (BDT) Monetary Engine,localization,must,no,yes,Authentic BDT price scale with Bengali numeral formatting
+8 Administrative Divisions & 64 Districts,checkout,must,no,yes,Full geographical dropdown coverage of Bangladesh
+Bangladeshi Phone Validation & Normalization,checkout,must,no,yes,Rigorous regex for GP Robi BL Teletalk +880 formats
+Doorstep Cash on Delivery (COD) Payment,payments,must,no,yes,Zero-risk payment upon physical parcel inspection
+Zonal Domestic Logistics & Free Delivery,shipping,must,no,yes,Inside Dhaka (৳70) Outside Dhaka (৳130) Free over ৳5000
+Real-Time Concurrency-Safe Inventory Ledger,inventory,must,no,yes,Atomic checkout deductions damage write-offs reconciliation
+Enterprise ERP Admin Dashboard,admin,must,no,yes,RBAC secure login product inventory orders suppliers P&L
+Weighted Average Cost (WAC) Inventory Valuation,finance,must,no,yes,Automated stock-in cost recalculation on PO receipt
+P&L Financial Reporting & CSV Export,reporting,must,no,yes,Gross sales COGS discounts expenses net profit with CSV
+Security Audit Trail & Activity Logging,security,must,no,yes,Immutable log of all administrative actions and logins

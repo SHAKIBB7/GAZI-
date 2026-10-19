@@ -1,0 +1,30 @@
+[
+  {
+    "id": "adm-001",
+    "username": "admin",
+    "email": "admin@gazisports.com",
+    "name": "Chief Cricket Administrator",
+    "role": "super_admin",
+    "permissions": [
+      "*"
+    ],
+    "passwordHash": "a16bc772b3026d9a87d5a2fd5fe3d809944dc775f3af604e56f20d81a1dd14ba3d1d8623406f1b4b74d02989a1d7bb373e640a8595ca8ab39cd20b3f1473ca9a",
+    "salt": "34bcc9da9d2cf45e2d3cf0896af5e3cd",
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "adm-002",
+    "username": "inventory",
+    "email": "inventory@gazisports.com",
+    "name": "Dhaka Warehouse Manager",
+    "role": "inventory_manager",
+    "permissions": [
+      "inventory:*",
+      "products:read",
+      "orders:read"
+    ],
+    "passwordHash": "a16bc772b3026d9a87d5a2fd5fe3d809944dc775f3af604e56f20d81a1dd14ba3d1d8623406f1b4b74d02989a1d7bb373e640a8595ca8ab39cd20b3f1473ca9a",
+    "salt": "34bcc9da9d2cf45e2d3cf0896af5e3cd",
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  }
+]

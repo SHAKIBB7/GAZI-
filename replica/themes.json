@@ -1,0 +1,187 @@
+{
+  "_about": "Themes reviews.py sorts feedback into. Tailored for cricket and sports e-commerce (returns fees, shipping delays, sizing errors, faulty willow/gear, inventory overselling, knocking services).",
+  "request_patterns": [
+    "\\bi wish\\b",
+    "\\bplease add\\b",
+    "\\bwould be (nice|great|good|helpful)\\b",
+    "\\bwould love\\b",
+    "\\bneeds? (a|an|the|to|more)\\b",
+    "\\bno way to\\b",
+    "\\bthere'?s no (way|option)\\b",
+    "\\b(can'?t|cannot|unable to) (even )?(add|change|edit|set|choose|export|import|customi[sz]e|connect|undo|delete|turn off|track|return|exchange)\\b",
+    "\\b(missing|lacks|lacking)\\b",
+    "\\bdoesn'?t (have|support|let|allow)\\b",
+    "\\bif only\\b",
+    "\\bfeature request\\b",
+    "\\bwhy (can'?t|isn'?t|doesn'?t)\\b",
+    "\\bshould (offer|have|include|provide)\\b"
+  ],
+  "themes": [
+    {
+      "id": "returns_fees",
+      "label": "Exorbitant return fees and painful returns",
+      "kind": "complaint",
+      "patterns": [
+        "\\breturn\\b",
+        "\\breturns\\b",
+        "\\bcost to return\\b",
+        "\\bcharged for return\\b",
+        "\\bpay for return\\b",
+        "\\bpaying for return\\b",
+        "\\b15\\.50\\b",
+        "\\bdisgrace\\b",
+        "\\bpostage for return\\b",
+        "\\breturn label\\b",
+        "\\bsend back\\b",
+        "\\brefund\\b",
+        "\\brefund process\\b"
+      ]
+    },
+    {
+      "id": "delivery_delays",
+      "label": "Delivery delays, lost parcels and untracked courier",
+      "kind": "complaint",
+      "patterns": [
+        "\\bnever arrived\\b",
+        "\\bnot arrived\\b",
+        "\\bhasn't arrived\\b",
+        "\\bhas not arrived\\b",
+        "\\bdelay(ed|s)?\\b",
+        "\\bwaited\\b",
+        "\\bweeks?\\b",
+        "\\blost parcel\\b",
+        "\\bmissing\\b",
+        "\\bcourier\\b",
+        "\\bcan'?t track\\b",
+        "\\btracking\\b",
+        "\\bnext day delivery\\b",
+        "\\bdispatch\\b",
+        "\\bwrong house\\b",
+        "\\bwhere is my\\b"
+      ]
+    },
+    {
+      "id": "sizing_accuracy",
+      "label": "Wrong size sent or inaccurate sizing charts",
+      "kind": "complaint",
+      "patterns": [
+        "\\bwrong size\\b",
+        "\\bsize\\b",
+        "\\bsizing\\b",
+        "\\bfit\\b",
+        "\\bfitting\\b",
+        "\\btight\\b",
+        "\\btoo small\\b",
+        "\\btoo big\\b",
+        "\\breceived a size\\b",
+        "\\bsize guide\\b"
+      ]
+    },
+    {
+      "id": "damaged_quality",
+      "label": "Damaged goods, pre-worn shoes or manufacturing faults",
+      "kind": "complaint",
+      "patterns": [
+        "\\bfaulty\\b",
+        "\\bpoorly made\\b",
+        "\\bdamaged\\b",
+        "\\bscuff(ed)?\\b",
+        "\\bpre.?worn\\b",
+        "\\bused condition\\b",
+        "\\bdefect(ive)?\\b",
+        "\\brip(ped)?\\b",
+        "\\btear(ing)?\\b",
+        "\\bbroken\\b",
+        "\\bcrack(ed)?\\b",
+        "\\bpoor quality\\b"
+      ]
+    },
+    {
+      "id": "stock_unfulfilled",
+      "label": "Ghost stock, unfulfilled pre-orders and inventory overselling",
+      "kind": "complaint",
+      "patterns": [
+        "\\bstock issues?\\b",
+        "\\bout of stock\\b",
+        "\\bpre.?order\\b",
+        "\\bunfulfilled\\b",
+        "\\bnot in stock\\b",
+        "\\bcancelled my order\\b",
+        "\\bsold out\\b",
+        "\\boversold\\b"
+      ]
+    },
+    {
+      "id": "customer_support",
+      "label": "Unresponsive customer service and automated bot loops",
+      "kind": "complaint",
+      "patterns": [
+        "\\bcustomer (service|support)\\b",
+        "\\bno response\\b",
+        "\\bno reply\\b",
+        "\\bnever replied\\b",
+        "\\bpoor communication\\b",
+        "\\bchase up\\b",
+        "\\bwaiting on a reply\\b",
+        "\\bignored\\b",
+        "\\bchat ?bot\\b",
+        "\\bcontact them\\b"
+      ]
+    },
+    {
+      "id": "local_currency_duties",
+      "label": "Hidden customs, foreign currency conversions and no COD",
+      "kind": "complaint",
+      "patterns": [
+        "\\bcustoms\\b",
+        "\\bdut(y|ies)\\b",
+        "\\btax(es)?\\b",
+        "\\bconversion\\b",
+        "\\bcurrency\\b",
+        "\\bexchange rate\\b",
+        "\\bimport fee\\b",
+        "\\bextra charge\\b",
+        "\\bhidden fee\\b"
+      ]
+    },
+    {
+      "id": "pricing",
+      "label": "High prices and expensive equipment",
+      "kind": "complaint",
+      "patterns": [
+        "\\bexpensive\\b",
+        "\\boverpriced\\b",
+        "\\bpricey\\b",
+        "\\bcostly\\b",
+        "\\brip.?off\\b"
+      ]
+    },
+    {
+      "id": "knocking_service",
+      "label": "Professional bat knocking-in, oiling and preparation",
+      "kind": "request",
+      "patterns": [
+        "\\bknock(ed|ing)?\\b",
+        "\\bpreparation\\b",
+        "\\boil(ing)?\\b",
+        "\\bscuff sheet\\b",
+        "\\bextratec\\b",
+        "\\breadytoplay\\b",
+        "\\breadypacked\\b"
+      ]
+    },
+    {
+      "id": "transparency_tracking",
+      "label": "Real-time SMS, courier tracking and WhatsApp support",
+      "kind": "request",
+      "patterns": [
+        "\\btrack(ing)?\\b",
+        "\\bsms\\b",
+        "\\bwhatsapp\\b",
+        "\\bupdates?\\b",
+        "\\bnotification\\b",
+        "\\blive update\\b"
+      ]
+    }
+  ]
+}

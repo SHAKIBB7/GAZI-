@@ -1,0 +1,807 @@
+[
+  {
+    "title": "Gazi Test Special English Willow Bat",
+    "sku": "GZ-TEST-BAT-1792404091291",
+    "category": "Cricket Bats",
+    "department": "Cricket Bats",
+    "vendor": "Gazi Sports",
+    "price": 14000,
+    "costPrice": 8656,
+    "oldPrice": null,
+    "stock": 32,
+    "lowStockThreshold": 5,
+    "sizes": [
+      "Standard"
+    ],
+    "color": "Standard",
+    "images": [
+      "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80"
+    ],
+    "description": "Updated description for championship play",
+    "specs": {
+      "willow": "Grade 1+ English Willow",
+      "weight": "2lb 8oz",
+      "handle": "12-piece Singapore cane",
+      "edges": "40mm",
+      "sweetSpot": "Mid-to-low blade"
+    },
+    "status": "published",
+    "franchise": "Gazi Sports Cricket",
+    "isNew": false,
+    "isExclusive": false,
+    "id": "PRD-1792404091352",
+    "rating": 5,
+    "reviewsCount": 0,
+    "createdAt": "2026-10-19T10:01:31.352Z",
+    "updatedAt": "2026-10-19T10:01:31.437Z"
+  },
+  {
+    "title": "Gazi Test Special English Willow Bat",
+    "sku": "GZ-TEST-BAT-1792404019175",
+    "category": "Cricket Bats",
+    "department": "Cricket Bats",
+    "vendor": "Gazi Sports",
+    "price": 14000,
+    "costPrice": 8500,
+    "oldPrice": null,
+    "stock": 22,
+    "lowStockThreshold": 5,
+    "sizes": [
+      "Standard"
+    ],
+    "color": "Standard",
+    "images": [
+      "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80"
+    ],
+    "description": "Updated description for championship play",
+    "specs": {
+      "willow": "Grade 1+ English Willow",
+      "weight": "2lb 8oz",
+      "handle": "12-piece Singapore cane",
+      "edges": "40mm",
+      "sweetSpot": "Mid-to-low blade"
+    },
+    "status": "published",
+    "franchise": "Gazi Sports Cricket",
+    "isNew": false,
+    "isExclusive": false,
+    "id": "PRD-1792404019221",
+    "rating": 5,
+    "reviewsCount": 0,
+    "createdAt": "2026-10-19T10:00:19.221Z",
+    "updatedAt": "2026-10-19T10:00:19.276Z"
+  },
+  {
+    "title": "Gazi Test Special English Willow Bat",
+    "sku": "GZ-TEST-BAT-1792403981087",
+    "category": "Cricket Bats",
+    "department": "Cricket Bats",
+    "vendor": "Gazi Sports",
+    "price": 14000,
+    "costPrice": 8500,
+    "oldPrice": null,
+    "stock": 22,
+    "lowStockThreshold": 5,
+    "sizes": [
+      "Standard"
+    ],
+    "color": "Standard",
+    "images": [
+      "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80"
+    ],
+    "description": "Updated description for championship play",
+    "specs": {
+      "willow": "Grade 1+ English Willow",
+      "weight": "2lb 8oz",
+      "handle": "12-piece Singapore cane",
+      "edges": "40mm",
+      "sweetSpot": "Mid-to-low blade"
+    },
+    "status": "published",
+    "franchise": "Gazi Sports Cricket",
+    "isNew": false,
+    "isExclusive": false,
+    "id": "PRD-1792403981132",
+    "rating": 5,
+    "reviewsCount": 0,
+    "createdAt": "2026-10-19T09:59:41.132Z",
+    "updatedAt": "2026-10-19T09:59:41.187Z"
+  },
+  {
+    "title": "Gazi Test Special English Willow Bat",
+    "sku": "GZ-TEST-BAT-1792403964696",
+    "category": "Cricket Bats",
+    "department": "Cricket Bats",
+    "vendor": "Gazi Sports",
+    "price": 14000,
+    "costPrice": 8500,
+    "oldPrice": null,
+    "stock": 22,
+    "lowStockThreshold": 5,
+    "sizes": [
+      "Standard"
+    ],
+    "color": "Standard",
+    "images": [
+      "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80"
+    ],
+    "description": "Updated description for championship play",
+    "specs": {
+      "willow": "Grade 1+ English Willow",
+      "weight": "2lb 8oz",
+      "handle": "12-piece Singapore cane",
+      "edges": "40mm",
+      "sweetSpot": "Mid-to-low blade"
+    },
+    "status": "published",
+    "franchise": "Gazi Sports Cricket",
+    "isNew": false,
+    "isExclusive": false,
+    "id": "PRD-1792403964757",
+    "rating": 5,
+    "reviewsCount": 0,
+    "createdAt": "2026-10-19T09:59:24.757Z",
+    "updatedAt": "2026-10-19T09:59:24.817Z"
+  },
+  {
+    "title": "Gazi Test Special English Willow Bat",
+    "sku": "GZ-TEST-BAT-1792403882706",
+    "category": "Cricket Bats",
+    "department": "Cricket Bats",
+    "vendor": "Gazi Sports",
+    "price": 14000,
+    "costPrice": 8500,
+    "oldPrice": null,
+    "stock": 22,
+    "lowStockThreshold": 5,
+    "sizes": [
+      "Standard"
+    ],
+    "color": "Standard",
+    "images": [
+      "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80"
+    ],
+    "description": "Updated description for championship play",
+    "specs": {
+      "willow": "Grade 1+ English Willow",
+      "weight": "2lb 8oz",
+      "handle": "12-piece Singapore cane",
+      "edges": "40mm",
+      "sweetSpot": "Mid-to-low blade"
+    },
+    "status": "published",
+    "franchise": "Gazi Sports Cricket",
+    "isNew": false,
+    "isExclusive": false,
+    "id": "PRD-1792403882766",
+    "rating": 5,
+    "reviewsCount": 0,
+    "createdAt": "2026-10-19T09:58:02.766Z",
+    "updatedAt": "2026-10-19T09:58:02.825Z"
+  },
+  {
+    "title": "Gazi Test Special English Willow Bat",
+    "sku": "GZ-TEST-BAT-1792403597653",
+    "category": "Cricket Bats",
+    "department": "Cricket Bats",
+    "vendor": "Gazi Sports",
+    "price": 14000,
+    "costPrice": 8500,
+    "oldPrice": null,
+    "stock": 20,
+    "lowStockThreshold": 5,
+    "sizes": [
+      "Standard"
+    ],
+    "color": "Standard",
+    "images": [
+      "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80"
+    ],
+    "description": "Updated description for championship play",
+    "specs": {
+      "willow": "Grade 1+ English Willow",
+      "weight": "2lb 8oz",
+      "handle": "12-piece Singapore cane",
+      "edges": "40mm",
+      "sweetSpot": "Mid-to-low blade"
+    },
+    "status": "published",
+    "franchise": "Gazi Sports Cricket",
+    "isNew": false,
+    "isExclusive": false,
+    "id": "PRD-1792403597715",
+    "rating": 5,
+    "reviewsCount": 0,
+    "createdAt": "2026-10-19T09:53:17.715Z",
+    "updatedAt": "2026-10-19T09:53:17.753Z"
+  },
+  {
+    "title": "Gazi Test Special English Willow Bat",
+    "sku": "GZ-TEST-BAT-1792403348031",
+    "category": "Cricket Bats",
+    "department": "Cricket Bats",
+    "vendor": "Gazi Sports",
+    "price": 14000,
+    "costPrice": 8500,
+    "oldPrice": null,
+    "stock": 22,
+    "lowStockThreshold": 5,
+    "sizes": [
+      "Standard"
+    ],
+    "color": "Standard",
+    "images": [
+      "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80"
+    ],
+    "description": "Updated description for championship play",
+    "specs": {
+      "willow": "Grade 1+ English Willow",
+      "weight": "2lb 8oz",
+      "handle": "12-piece Singapore cane",
+      "edges": "40mm",
+      "sweetSpot": "Mid-to-low blade"
+    },
+    "status": "published",
+    "franchise": "Gazi Sports Cricket",
+    "isNew": false,
+    "isExclusive": false,
+    "id": "PRD-1792403348099",
+    "rating": 5,
+    "reviewsCount": 0,
+    "createdAt": "2026-10-19T09:49:08.099Z",
+    "updatedAt": "2026-10-19T09:49:08.128Z"
+  },
+  {
+    "id": "1055203",
+    "sku": "CRK-SHOE-AD-22YDS",
+    "title": "adidas 22YDS Training Bowling Cricket Shoe",
+    "vendor": "adidas",
+    "category": "Cricket Footwear",
+    "department": "Footwear",
+    "handle": "adidas-22yds-training-bowling-cricket-shoe",
+    "costPrice": 9500,
+    "price": 14400,
+    "oldPrice": 16000,
+    "stock": 15,
+    "lowStockThreshold": 5,
+    "status": "active",
+    "sizes": [
+      "7",
+      "8",
+      "8.5",
+      "9",
+      "9.5",
+      "10",
+      "10.5",
+      "11",
+      "12"
+    ],
+    "color": "White/Aurora Onix/Core Black",
+    "images": [
+      "https://www.prodirectsport.com/cdn/shop/files/1055203_main.jpg?v=1792326199&width=800",
+      "https://www.prodirectsport.com/cdn/shop/files/1055203_gallery_1.jpg?v=1792326199&width=800"
+    ],
+    "description": "Designed primarily for hard training surfaces and artificial turf, this edition of the 22YDS lets you steam into the crease with confidence.",
+    "franchise": "Cricket Footwear",
+    "isNew": true,
+    "rating": 4.9,
+    "reviewsCount": 38,
+    "specs": {
+      "Surface": "Indoor & Artificial Turf",
+      "Outsole": "Herringbone Grip Rubber",
+      "Midsole": "Cushioned EVA + Torsion Stabilizer",
+      "Fastening": "Laces with Midfoot Lock Strap"
+    },
+    "createdAt": "2026-10-19T09:27:28.394Z",
+    "updatedAt": "2026-10-19T12:59:28.866Z"
+  },
+  {
+    "id": "1045195",
+    "sku": "CRK-SHOE-NB-CK4030",
+    "title": "New Balance CK4030 Cricket Shoe",
+    "vendor": "New Balance",
+    "category": "Cricket Footwear",
+    "department": "Footwear",
+    "handle": "new-balance-ck4030-cricket-shoe",
+    "costPrice": 10800,
+    "price": 16000,
+    "oldPrice": 21600,
+    "stock": 18,
+    "lowStockThreshold": 5,
+    "status": "active",
+    "sizes": [
+      "7",
+      "7.5",
+      "8",
+      "8.5",
+      "9",
+      "9.5",
+      "10",
+      "10.5",
+      "11",
+      "12"
+    ],
+    "color": "White/Red/Black",
+    "images": [
+      "https://www.prodirectsport.com/cdn/shop/files/1045195_main.jpg?v=1791977292&width=800",
+      "https://www.prodirectsport.com/cdn/shop/files/1045195_gallery_1.jpg?v=1791977292&width=800"
+    ],
+    "description": "With a new moulded heel overlay, the New Balance CK4030 V6 Cricket Shoe offers a stable, secure fit that wraps the rear of the foot.",
+    "franchise": "Cricket Footwear",
+    "isExclusive": true,
+    "rating": 4.8,
+    "reviewsCount": 29,
+    "specs": {
+      "Spike Configuration": "7/4 Metal Spikes with TPU Plate",
+      "Cushioning": "FuelCell Ultra Rebound Foam",
+      "Upper": "Engineered Mesh with Protective PU Film"
+    },
+    "createdAt": "2026-10-19T09:27:28.394Z",
+    "updatedAt": "2026-10-19T09:27:28.394Z"
+  },
+  {
+    "id": "4004056",
+    "sku": "CRK-SHOE-PU-EVO24",
+    "title": "Puma evoSPEED 24.1 Cricket Shoe",
+    "vendor": "Puma",
+    "category": "Cricket Footwear",
+    "department": "Footwear",
+    "handle": "puma-evospeed-241-cricket-shoe",
+    "costPrice": 10500,
+    "price": 16000,
+    "oldPrice": 17920,
+    "stock": 20,
+    "lowStockThreshold": 5,
+    "status": "active",
+    "sizes": [
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "color": "White/Speed Blue/Fizzy Light",
+    "images": [
+      "https://www.prodirectsport.com/cdn/shop/files/4004056_main.jpg?v=1791068918&width=800",
+      "https://www.prodirectsport.com/cdn/shop/files/4004056_gallery_1.jpg?v=1791068918&width=800"
+    ],
+    "description": "Upgraded for the next generation of cricket, the 24.1 edition features a cross-over mesh tongue for a snug, distraction-free fit.",
+    "franchise": "Cricket Footwear",
+    "rating": 4.7,
+    "reviewsCount": 19,
+    "specs": {
+      "Midsole": "ProFoamLite High-Rebound EVA",
+      "Flex": "Forefoot Articulated Flex Grooves"
+    },
+    "createdAt": "2026-10-19T09:27:28.394Z",
+    "updatedAt": "2026-10-19T09:27:28.394Z"
+  },
+  {
+    "id": "1031064",
+    "sku": "CRK-SHOE-PY-PROX",
+    "title": "Payntr Pro-X Club Cricket Shoe",
+    "vendor": "Payntr",
+    "category": "Cricket Footwear",
+    "department": "Footwear",
+    "handle": "payntr-pro-x-club-cricket-shoe",
+    "costPrice": 8600,
+    "price": 13200,
+    "oldPrice": 17600,
+    "stock": 16,
+    "lowStockThreshold": 4,
+    "status": "active",
+    "sizes": [
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "color": "White/Blue/Yellow",
+    "images": [
+      "https://www.prodirectsport.com/cdn/shop/files/1031064_main.jpg?v=1792172869&width=800",
+      "https://www.prodirectsport.com/cdn/shop/files/1031064_gallery_1.jpg?v=1792172869&width=800"
+    ],
+    "description": "Modern cricket shoe built to withstand the rigours of turf and hard wickets.",
+    "franchise": "Cricket Footwear",
+    "rating": 4.6,
+    "reviewsCount": 15,
+    "specs": {
+      "Insole": "Memory Foam Footbed",
+      "Toe Protection": "Reinforced Rubber Scuff Guard"
+    },
+    "createdAt": "2026-10-19T09:27:28.394Z",
+    "updatedAt": "2026-10-19T09:27:28.394Z"
+  },
+  {
+    "id": "1028799",
+    "sku": "CRK-BAT-GM-VERVA404",
+    "title": "Gunn & Moore Verva 404 Cricket Bat",
+    "vendor": "Gunn & Moore",
+    "category": "Cricket Bats",
+    "department": "Bats",
+    "handle": "gunn-moore-verva-404-cricket-bat",
+    "costPrice": 12000,
+    "price": 19200,
+    "oldPrice": 25600,
+    "stock": 14,
+    "lowStockThreshold": 4,
+    "status": "active",
+    "sizes": [
+      "Short Handle (Light)",
+      "Short Handle (Med)",
+      "Harrow"
+    ],
+    "color": "Green/Black",
+    "images": [
+      "https://www.prodirectsport.com/cdn/shop/files/1028799_main.jpg?v=1789136779&width=800",
+      "https://www.prodirectsport.com/cdn/shop/files/1028799_gallery_1.jpg?v=1789136779&width=800"
+    ],
+    "description": "Crafted for confident, attacking cricket with extra willow towards the toe.",
+    "franchise": "Cricket Bats",
+    "isNew": true,
+    "rating": 4.9,
+    "reviewsCount": 42,
+    "specs": {
+      "Willow Grade": "Seasoned Grade 4 English Willow",
+      "Blade Length": "Shorter L540 Blade for Rapid Hand Speed"
+    },
+    "createdAt": "2026-10-19T09:27:28.394Z",
+    "updatedAt": "2026-10-19T09:27:28.394Z"
+  },
+  {
+    "id": "4001355",
+    "sku": "CRK-BAT-AD-INCURZA",
+    "title": "adidas Incurza Heat Pro Cricket Bat",
+    "vendor": "adidas",
+    "category": "Cricket Bats",
+    "department": "Bats",
+    "handle": "adidas-incurza-heat-pro-cricket-bat",
+    "costPrice": 28000,
+    "price": 44800,
+    "oldPrice": 56000,
+    "stock": 8,
+    "lowStockThreshold": 3,
+    "status": "active",
+    "sizes": [
+      "Short Handle (Light)",
+      "Short Handle (Med)"
+    ],
+    "color": "Black/Lucid Tangerine",
+    "images": [
+      "https://www.prodirectsport.com/cdn/shop/files/4001355_main.jpg?v=1791246572&width=800",
+      "https://www.prodirectsport.com/cdn/shop/files/4001355_gallery_1.jpg?v=1791246572&width=800"
+    ],
+    "description": "Bold styling and aggressive attitude with a mid-low sweetspot.",
+    "franchise": "Cricket Bats",
+    "isExclusive": true,
+    "rating": 5,
+    "reviewsCount": 56,
+    "specs": {
+      "Willow Grade": "Selected Grade 1 English Willow",
+      "Edges": "Massive 38-40mm Full Power Contours"
+    },
+    "createdAt": "2026-10-19T09:27:28.394Z",
+    "updatedAt": "2026-10-19T09:27:28.394Z"
+  },
+  {
+    "id": "1050005",
+    "sku": "CRK-BAT-DSC-PEARLA",
+    "title": "DSC Pearla X4 Cricket Bat",
+    "vendor": "DSC",
+    "category": "Cricket Bats",
+    "department": "Bats",
+    "handle": "dsc-pearla-x4-cricket-bat",
+    "costPrice": 16500,
+    "price": 25600,
+    "oldPrice": 32800,
+    "stock": 15,
+    "lowStockThreshold": 4,
+    "status": "active",
+    "sizes": [
+      "Short Handle",
+      "Harrow",
+      "Size 6"
+    ],
+    "color": "White/Black",
+    "images": [
+      "https://www.prodirectsport.com/cdn/shop/files/1050005_main.jpg?v=1789155996&width=800",
+      "https://www.prodirectsport.com/cdn/shop/files/1050005_gallery_1.jpg?v=1789155996&width=800"
+    ],
+    "description": "With massive edges throughout the middle of the bat, Pearla gives power and control.",
+    "franchise": "Cricket Bats",
+    "rating": 4.8,
+    "reviewsCount": 21,
+    "specs": {
+      "Willow Grade": "Premium Grade 3 English Willow",
+      "Handle": "Multi-Piece Round Cane Handle"
+    },
+    "createdAt": "2026-10-19T09:27:28.394Z",
+    "updatedAt": "2026-10-19T09:27:28.394Z"
+  },
+  {
+    "id": "4012944",
+    "sku": "CRK-BAT-GM-STOKES55",
+    "title": "Gunn & Moore Diamond Ben Stokes 55 Cricket Bat",
+    "vendor": "Gunn & Moore",
+    "category": "Cricket Bats",
+    "department": "Bats",
+    "handle": "gm-diamond-ben-stokes-55-cricket-bat",
+    "costPrice": 58000,
+    "price": 88800,
+    "oldPrice": null,
+    "stock": 4,
+    "lowStockThreshold": 2,
+    "status": "active",
+    "sizes": [
+      "Short Handle (2lb 9oz)",
+      "Short Handle (2lb 10oz)"
+    ],
+    "color": "White/Electric Blue/Navy",
+    "images": [
+      "https://www.prodirectsport.com/cdn/shop/files/4012944_main.jpg?v=1789300399&width=800",
+      "https://www.prodirectsport.com/cdn/shop/files/4012944_gallery_1.jpg?v=1789300399&width=800"
+    ],
+    "description": "Trusted and wielded by England Captain Ben Stokes. Crafted in Nottingham from unbleached Grade 1+ English Willow.",
+    "franchise": "Ben Stokes Collection",
+    "isExclusive": true,
+    "isNew": true,
+    "rating": 5,
+    "reviewsCount": 88,
+    "specs": {
+      "Willow Grade": "Limited Edition Unbleached Grade 1+ English Willow",
+      "Crafted in": "Nottingham, England (GM DXM Precision Machined)"
+    },
+    "createdAt": "2026-10-19T09:27:28.394Z",
+    "updatedAt": "2026-10-19T09:27:28.394Z"
+  },
+  {
+    "id": "4012945",
+    "sku": "CRK-BAT-GM-DIA808",
+    "title": "Gunn & Moore Diamond 808 Cricket Bat",
+    "vendor": "Gunn & Moore",
+    "category": "Cricket Bats",
+    "department": "Bats",
+    "handle": "gm-diamond-808-cricket-bat",
+    "costPrice": 27000,
+    "price": 42000,
+    "oldPrice": 56000,
+    "stock": 10,
+    "lowStockThreshold": 3,
+    "status": "active",
+    "sizes": [
+      "Short Handle (Light)",
+      "Short Handle (Medium)"
+    ],
+    "color": "White/Cyan/Black",
+    "images": [
+      "https://www.prodirectsport.com/cdn/shop/files/4012944_main.jpg?v=1789300399&width=800",
+      "https://www.prodirectsport.com/cdn/shop/files/1050203_thumbnail.jpg?v=1791973772&width=800"
+    ],
+    "description": "Diamond silhouette designed with Ben Stokes, Grade 2 English Willow.",
+    "franchise": "Ben Stokes Collection",
+    "rating": 4.8,
+    "reviewsCount": 34,
+    "specs": {
+      "Willow Grade": "Superior Seasoned Grade 2 English Willow",
+      "Edges": "38mm contoured side walls"
+    },
+    "createdAt": "2026-10-19T09:27:28.394Z",
+    "updatedAt": "2026-10-19T09:27:28.394Z"
+  },
+  {
+    "id": "1011063",
+    "sku": "CRK-PAD-KB-T20",
+    "title": "Kookaburra T20 6.1 Ambi Batting Pads",
+    "vendor": "Kookaburra",
+    "category": "Batting Equipment",
+    "department": "Equipment",
+    "handle": "kookaburra-t20-61-ambi-batting-pads",
+    "costPrice": 3800,
+    "price": 5920,
+    "oldPrice": 8000,
+    "stock": 35,
+    "lowStockThreshold": 6,
+    "status": "active",
+    "sizes": [
+      "Adults",
+      "Youth",
+      "Junior"
+    ],
+    "color": "Black/White",
+    "images": [
+      "https://www.prodirectsport.com/cdn/shop/files/1011063_main.jpg?v=1791785380&width=800",
+      "https://www.prodirectsport.com/cdn/shop/files/1011063_gallery_1.jpg?v=1791785380&width=800"
+    ],
+    "description": "High-density shock foam with cane rods and grain PVC face.",
+    "franchise": "Batting Equipment",
+    "rating": 4.7,
+    "reviewsCount": 18,
+    "specs": {
+      "Handedness": "Ambidextrous (Left or Right Handed)",
+      "Shin Bolster": "Breathable Mesh Bolster"
+    },
+    "createdAt": "2026-10-19T09:27:28.394Z",
+    "updatedAt": "2026-10-19T09:27:28.394Z"
+  },
+  {
+    "id": "198547",
+    "sku": "CRK-PAD-CH-FLC",
+    "title": "Chase FLC RH Batting Pads",
+    "vendor": "Chase",
+    "category": "Batting Equipment",
+    "department": "Equipment",
+    "handle": "chase-flc-rh-batting-pads",
+    "costPrice": 13000,
+    "price": 19840,
+    "oldPrice": 24800,
+    "stock": 12,
+    "lowStockThreshold": 3,
+    "status": "active",
+    "sizes": [
+      "Adults RH",
+      "Mens RH"
+    ],
+    "color": "White/Silver",
+    "images": [
+      "https://www.prodirectsport.com/cdn/shop/files/198547_main.jpg?v=1790847345&width=800",
+      "https://www.prodirectsport.com/cdn/shop/files/198547_gallery_1.jpg?v=1790847345&width=800"
+    ],
+    "description": "Test-grade ultra-dense polymer foam protection with sleek silver badging.",
+    "franchise": "Batting Equipment",
+    "isExclusive": true,
+    "rating": 5,
+    "reviewsCount": 16,
+    "specs": {
+      "Protection Standard": "Test Match Protection Grade",
+      "Weight": "Featherlight High-Density Polymer Core"
+    },
+    "createdAt": "2026-10-19T09:27:28.394Z",
+    "updatedAt": "2026-10-19T09:27:28.394Z"
+  },
+  {
+    "id": "4012946",
+    "sku": "CRK-PAD-GM-DIA404",
+    "title": "Gunn & Moore Diamond 404 RH Batting Pads",
+    "vendor": "Gunn & Moore",
+    "category": "Batting Equipment",
+    "department": "Equipment",
+    "handle": "gm-diamond-404-rh-batting-pads",
+    "costPrice": 4200,
+    "price": 6720,
+    "oldPrice": 11200,
+    "stock": 22,
+    "lowStockThreshold": 5,
+    "status": "active",
+    "sizes": [
+      "Adults RH",
+      "Youth RH"
+    ],
+    "color": "White/Blue",
+    "images": [
+      "https://www.prodirectsport.com/cdn/shop/files/1011063_main.jpg?v=1791785380&width=800",
+      "https://www.prodirectsport.com/cdn/shop/files/1045106_thumbnail.jpg?v=1792172006&width=800"
+    ],
+    "description": "Ben Stokes signature Diamond collection leg guards with sculpted knee rolls.",
+    "franchise": "Ben Stokes Collection",
+    "rating": 4.8,
+    "reviewsCount": 22,
+    "specs": {
+      "Bolsters": "Tri-fold Low Density Foam",
+      "Facing": "Heavy Duty PVC Facing"
+    },
+    "createdAt": "2026-10-19T09:27:28.394Z",
+    "updatedAt": "2026-10-19T09:27:28.394Z"
+  },
+  {
+    "id": "4003032",
+    "sku": "CRK-APP-CS-ENGT20LS",
+    "title": "Castore England T20 Replica Long Sleeve Shirt",
+    "vendor": "Castore",
+    "category": "Cricket Clothing",
+    "department": "Clothing",
+    "handle": "castore-england-t20-replica-long-sleeve-shirt",
+    "costPrice": 6200,
+    "price": 10240,
+    "oldPrice": 12800,
+    "stock": 25,
+    "lowStockThreshold": 5,
+    "status": "active",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "color": "Fiery Red/Princess Blue",
+    "images": [
+      "https://www.prodirectsport.com/cdn/shop/files/4003032_main.jpg?v=1790171500&width=800",
+      "https://www.prodirectsport.com/cdn/shop/files/4003032_gallery_1.jpg?v=1790171500&width=800"
+    ],
+    "description": "High-performance breathable fabric with official England Cricket Board insignia.",
+    "franchise": "England Cricket Store",
+    "isNew": true,
+    "rating": 4.9,
+    "reviewsCount": 45,
+    "specs": {
+      "Material": "100% Lightweight Aerodynamic Poly",
+      "Official Team": "England Cricket Board (ECB)"
+    },
+    "createdAt": "2026-10-19T09:27:28.394Z",
+    "updatedAt": "2026-10-19T09:27:28.394Z"
+  },
+  {
+    "id": "4003042",
+    "sku": "CRK-APP-CS-POLO",
+    "title": "Castore England Training Poly Polo",
+    "vendor": "Castore",
+    "category": "Cricket Clothing",
+    "department": "Clothing",
+    "handle": "castore-england-training-poly-polo",
+    "costPrice": 3900,
+    "price": 6144,
+    "oldPrice": 7680,
+    "stock": 20,
+    "lowStockThreshold": 5,
+    "status": "active",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "color": "Ensign Blue/Airy Blue",
+    "images": [
+      "https://www.prodirectsport.com/cdn/shop/files/4003042_main.jpg?v=1790531503&width=800",
+      "https://www.prodirectsport.com/cdn/shop/files/4003042_gallery_1.jpg?v=1790531503&width=800"
+    ],
+    "description": "Warmup and net practice training polo with articulated raglan sleeves.",
+    "franchise": "England Cricket Store",
+    "rating": 4.6,
+    "reviewsCount": 14,
+    "specs": {
+      "Fit": "Slim Athletic Match Fit",
+      "Fabric": "Breathable Micro Pique"
+    },
+    "createdAt": "2026-10-19T09:27:28.394Z",
+    "updatedAt": "2026-10-19T09:27:28.394Z"
+  },
+  {
+    "id": "4012947",
+    "sku": "CRK-BAG-GM-WHEELIE",
+    "title": "Gunn & Moore Diamond Wheelie Bag",
+    "vendor": "Gunn & Moore",
+    "category": "Cricket Luggage",
+    "department": "Luggage",
+    "handle": "gm-diamond-wheelie-bag",
+    "costPrice": 3700,
+    "price": 5920,
+    "oldPrice": 7360,
+    "stock": 14,
+    "lowStockThreshold": 3,
+    "status": "active",
+    "sizes": [
+      "Standard (90L)"
+    ],
+    "color": "Black/Teal/White",
+    "images": [
+      "https://www.prodirectsport.com/cdn/shop/files/1044249_thumbnail.jpg?v=1789911455&width=800",
+      "https://www.prodirectsport.com/cdn/shop/files/1048935_thumbnail.jpg?v=1791735551&width=800"
+    ],
+    "description": "Spacious 90-litre cricket bag with rugged all-terrain wheels and internal bat holster.",
+    "franchise": "Ben Stokes Collection",
+    "rating": 4.7,
+    "reviewsCount": 28,
+    "specs": {
+      "Volume": "90 Litres Storage",
+      "Wheels": "Heavy-Duty Ball Bearing Wheels"
+    },
+    "createdAt": "2026-10-19T09:27:28.394Z",
+    "updatedAt": "2026-10-19T09:27:28.394Z"
+  }
+]

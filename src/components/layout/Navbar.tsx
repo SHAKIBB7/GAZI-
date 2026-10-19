@@ -1,278 +1,230 @@
-"use client";
+import React, { useState } from 'react';
+import { Search, Heart, ShoppingBag, Menu, ChevronDown } from 'lucide-react';
+import { useCart } from '../../context/CartContext';
+import { useWishlist } from '../../context/WishlistContext';
 
-import { useState } from "react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import {
-  Search,
-  ShoppingCart,
-  Heart,
-  User,
-  Menu,
-  X,
-  ChevronDown,
-  Shield,
-  Award,
-  Zap,
-  PhoneCall,
-} from "lucide-react";
-import { useCartStore } from "@/lib/store/cart-store";
-import { CRICKET_CATEGORIES, CRICKET_BRANDS, CRICKET_PRODUCTS } from "@/lib/data/cricket-products";
+interface NavbarProps {
+  onOpenSearch: () => void;
+  onSelectCategory: (category: string) => void;
+  onOpenMobileMenu: () => void;
+}
 
-export default function Navbar() {
-  const router = useRouter();
-  const [searchQuery, setSearchQuery] = useState("");
-  const [isSearchFocused, setIsSearchFocused] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeCategoryDropdown, setActiveCategoryDropdown] = useState(false);
+export const Navbar: React.FC<NavbarProps> = ({
+  onOpenSearch,
+  onSelectCategory,
+  onOpenMobileMenu,
+}) => {
+  const { totalItems, setIsCartOpen } = useCart();
+  const { totalWishlistItems, setIsWishlistOpen } = useWishlist();
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
-  const cartItemsCount = useCartStore((state) => state.getTotalItems());
-
-  // Search results preview
-  const searchResults = searchQuery.trim().length > 1
-    ? CRICKET_PRODUCTS.filter(
-        (p) =>
-          p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          p.brand.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          p.category.name.toLowerCase().includes(searchQuery.toLowerCase())
-      ).slice(0, 4)
-    : [];
-
-  const handleSearchSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      router.push(`/products?search=${encodeURIComponent(searchQuery)}`);
-      setIsSearchFocused(false);
-    }
-  };
+  const navItems = [
+    {
+      title: 'BATS',
+      category: 'Bats',
+      subLinks: [
+        'All Cricket Bats',
+        'Adult English Willow',
+        'Junior & Kids Bats',
+        'Gunn & Moore Bats',
+        'adidas Bats',
+        'DSC Bats',
+        'Ben Stokes Collection',
+      ],
+    },
+    {
+      title: 'SHOES',
+      category: 'Shoes',
+      subLinks: [
+        'All Cricket Footwear',
+        'Full Metal Spikes',
+        'Bowling Spikes',
+        'Turf & Indoor Trainers',
+        'adidas Footwear',
+        'New Balance Footwear',
+        'Puma Footwear',
+        'Payntr Footwear',
+      ],
+    },
+    {
+      title: 'BATTING EQUIPMENT',
+      category: 'Batting Equipment',
+      subLinks: [
+        'All Batting Protection',
+        'Batting Pads / Leg Guards',
+        'Batting Gloves',
+        'Thigh & Chest Guards',
+        'Kookaburra Equipment',
+        'Chase Equipment',
+      ],
+    },
+    {
+      title: 'PROTECTION',
+      category: 'Protection',
+      subLinks: [
+        'All Helmets',
+        'KNYX Helmets',
+        'Masuri Helmets',
+        'StemGuard Neck Protectors',
+        'Arm Guards & Abdo Guards',
+      ],
+    },
+    {
+      title: 'CLOTHING',
+      category: 'Clothing',
+      subLinks: [
+        'All Cricket Clothing',
+        'Replica Kits & Jerseys',
+        'Castore T20 Kits',
+        'Matchday Whites',
+        'Training Apparel',
+      ],
+    },
+    {
+      title: 'LUGGAGE',
+      category: 'Luggage',
+      subLinks: [
+        'All Cricket Bags',
+        'Wheelie Bags',
+        'Duffle Bags',
+        'Bat Sleeves & Covers',
+      ],
+    },
+    {
+      title: 'SALE',
+      category: 'Sale',
+      isSale: true,
+      subLinks: [
+        'All Sale Items',
+        'Bats on Sale',
+        'Shoes Clearance',
+        'Up to 40% Off Selected Lines',
+      ],
+    },
+  ];
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-sm">
-      {/* Main Header Row */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20 gap-4">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 flex-shrink-0 group">
-            <div className="w-11 h-11 rounded-xl cricket-gradient flex items-center justify-center text-white font-black text-xl shadow-md group-hover:scale-105 transition-transform">
-              🏏
-            </div>
-            <div>
-              <div className="flex items-center gap-1.5">
-                <span className="text-xl sm:text-2xl font-black tracking-tight text-slate-900">
-                  CRICKET<span className="text-cricket-pitch">STORE</span>
+    <header className="sticky top-0 z-40 bg-black text-white shadow-md">
+      <div className="max-w-7xl mx-auto px-4 h-16 sm:h-20 flex items-center justify-between">
+        {/* Left: Mobile Hamburger & Logo */}
+        <div className="flex items-center space-x-3 sm:space-x-4">
+          <button
+            onClick={onOpenMobileMenu}
+            className="lg:hidden text-white p-1.5 hover:bg-neutral-800 rounded transition-colors"
+            aria-label="Toggle mobile menu"
+          >
+            <Menu size={24} />
+          </button>
+
+          <a href="#" className="flex items-center space-x-2 group">
+            {/* Gazi Sports Brand Mark */}
+            <div className="flex flex-col">
+              <div className="flex items-center space-x-1">
+                <span className="font-extrabold text-lg sm:text-2xl tracking-tighter uppercase font-mono leading-none">
+                  GAZI<span className="text-[#ccff00]">.</span>SPORTS
                 </span>
-                <span className="bg-cricket-gold text-white text-[10px] font-black uppercase px-1.5 py-0.5 rounded tracking-wider">
-                  PRO
+                <span className="bg-[#ccff00] text-black text-[9px] sm:text-[10px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider">
+                  CRICKET BD
                 </span>
               </div>
-              <p className="text-[11px] font-semibold text-slate-500 tracking-wider uppercase">
-                Enterprise Multi-Vendor Hub
-              </p>
+              <span className="text-[9px] text-neutral-400 uppercase tracking-widest -mt-0.5 font-sans hidden sm:block">
+                Bangladesh's Cricket Specialist
+              </span>
             </div>
-          </Link>
+          </a>
+        </div>
 
-          {/* Mega Search Bar */}
-          <div className="hidden lg:flex flex-1 max-w-2xl relative">
-            <form onSubmit={handleSearchSubmit} className="w-full relative">
-              <input
-                type="text"
-                placeholder="Search English Willow bats, match balls, Kookaburra, SS, Shakib gear..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onFocus={() => setIsSearchFocused(true)}
-                onBlur={() => setTimeout(() => setIsSearchFocused(false), 250)}
-                className="w-full bg-slate-50 border border-slate-300 rounded-full pl-5 pr-12 py-3 text-sm focus:outline-none focus:border-cricket-pitch focus:ring-2 focus:ring-cricket-pitch/20 transition-all text-slate-800"
-              />
+        {/* Center: Desktop Navigation Bar */}
+        <nav className="hidden lg:flex items-center space-x-1 xl:space-x-3">
+          {navItems.map((item) => (
+            <div
+              key={item.title}
+              className="relative group"
+              onMouseEnter={() => setActiveDropdown(item.title)}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
               <button
-                type="submit"
-                className="absolute right-1.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full cricket-gradient text-white flex items-center justify-center hover:opacity-95 transition-opacity"
+                onClick={() => onSelectCategory(item.category)}
+                className={`flex items-center space-x-1 px-2.5 py-2 text-xs font-bold tracking-wider transition-colors uppercase cursor-pointer rounded ${
+                  item.isSale
+                    ? 'text-red-400 hover:text-red-300 font-extrabold'
+                    : 'text-neutral-200 hover:text-white hover:bg-neutral-900'
+                }`}
               >
-                <Search className="w-4 h-4" />
+                <span>{item.title}</span>
+                <ChevronDown size={12} className="opacity-60 group-hover:rotate-180 transition-transform duration-200" />
               </button>
-            </form>
 
-            {/* Live Search Instant Dropdown */}
-            {isSearchFocused && searchResults.length > 0 && (
-              <div className="absolute left-0 right-0 top-full mt-2 bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-150">
-                <div className="p-3 bg-slate-50 border-b border-slate-100 flex items-center justify-between text-xs font-semibold text-slate-500">
-                  <span>PRODUCTS MATCHING &ldquo;{searchQuery}&rdquo;</span>
-                  <span className="text-cricket-pitch">Sub-50ms Fast Search</span>
-                </div>
-                <div className="divide-y divide-slate-100">
-                  {searchResults.map((item) => (
-                    <Link
-                      key={item.id}
-                      href={`/products/${item.slug}`}
-                      className="flex items-center gap-3 p-3 hover:bg-slate-50 transition-colors"
+              {/* Mega Dropdown */}
+              {activeDropdown === item.title && (
+                <div className="absolute top-full left-0 w-64 bg-neutral-950 border border-neutral-800 shadow-2xl py-3 px-2 rounded-b-md z-50 animate-in fade-in slide-in-from-top-1 duration-150">
+                  <div className="text-[10px] uppercase font-bold text-neutral-400 px-3 pb-2 border-b border-neutral-800 mb-2">
+                    {item.title} Collections
+                  </div>
+                  {item.subLinks.map((sub) => (
+                    <button
+                      key={sub}
+                      onClick={() => {
+                        onSelectCategory(item.category);
+                        setActiveDropdown(null);
+                      }}
+                      className="w-full text-left px-3 py-2 text-xs text-neutral-300 hover:text-[#ccff00] hover:bg-neutral-900 rounded transition-colors flex items-center justify-between"
                     >
-                      <div className="w-12 h-12 rounded-lg bg-slate-100 flex-shrink-0 flex items-center justify-center text-xl overflow-hidden">
-                        🏏
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-sm font-semibold text-slate-900 truncate">
-                          {item.name}
-                        </p>
-                        <p className="text-xs text-slate-500">
-                          {item.brand.name} • {item.category.name}
-                        </p>
-                      </div>
-                      <div className="text-right">
-                        <p className="text-sm font-bold text-cricket-pitch">
-                          ৳{(item.discountPrice || item.basePrice).toLocaleString()}
-                        </p>
-                        {item.discountPrice && (
-                          <p className="text-xs line-through text-slate-400">
-                            ৳{item.basePrice.toLocaleString()}
-                          </p>
-                        )}
-                      </div>
-                    </Link>
+                      <span>{sub}</span>
+                      <span className="text-neutral-500 text-[10px]">→</span>
+                    </button>
                   ))}
                 </div>
-                <Link
-                  href={`/products?search=${encodeURIComponent(searchQuery)}`}
-                  className="block p-3 text-center text-xs font-bold text-cricket-pitch hover:bg-cricket-pitch/5 transition-colors border-t border-slate-100"
-                >
-                  View All Matching Cricket Gear →
-                </Link>
-              </div>
-            )}
-          </div>
-
-          {/* Action Buttons */}
-          <div className="flex items-center gap-2 sm:gap-4">
-            <Link
-              href="/admin"
-              className="hidden xl:flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-bold text-slate-700 hover:border-cricket-pitch hover:text-cricket-pitch transition-colors"
-            >
-              <Shield className="w-3.5 h-3.5" />
-              <span>Admin</span>
-            </Link>
-
-            <Link
-              href="/seller"
-              className="hidden xl:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-50 border border-amber-200 text-xs font-bold text-amber-900 hover:bg-amber-100 transition-colors"
-            >
-              <Award className="w-3.5 h-3.5 text-cricket-gold" />
-              <span>Seller Hub</span>
-            </Link>
-
-            <Link
-              href="/wishlist"
-              className="hidden sm:flex items-center justify-center w-10 h-10 rounded-full hover:bg-slate-100 text-slate-700 transition-colors relative"
-              title="Wishlist"
-            >
-              <Heart className="w-5 h-5" />
-            </Link>
-
-            <Link
-              href="/cart"
-              className="flex items-center gap-2.5 px-3.5 py-2 rounded-full cricket-gradient text-white shadow-sm hover:opacity-95 transition-opacity"
-            >
-              <div className="relative">
-                <ShoppingCart className="w-5 h-5" />
-                {cartItemsCount > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-cricket-leather text-white font-black text-[10px] w-4 h-4 rounded-full flex items-center justify-center border-2 border-white">
-                    {cartItemsCount}
-                  </span>
-                )}
-              </div>
-              <span className="text-xs font-bold hidden sm:inline">Bag</span>
-            </Link>
-
-            {/* Mobile Menu Hamburger */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 rounded-lg text-slate-700 hover:bg-slate-100"
-            >
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
-        </div>
-
-        {/* Categories Bar (Desktop) */}
-        <nav className="hidden lg:flex items-center justify-between border-t border-slate-100 py-2.5 text-xs font-bold uppercase tracking-wider text-slate-700">
-          <div className="flex items-center gap-6">
-            <Link
-              href="/products?category=cricket-bats"
-              className="flex items-center gap-1 hover:text-cricket-pitch transition-colors py-1 text-cricket-pitch font-black"
-            >
-              Cricket Bats <ChevronDown className="w-3 h-3" />
-            </Link>
-            <Link href="/products?category=cricket-balls" className="hover:text-cricket-pitch transition-colors py-1">
-              Match Balls
-            </Link>
-            <Link href="/products?category=batting-equipment" className="hover:text-cricket-pitch transition-colors py-1">
-              Batting Pads & Gloves
-            </Link>
-            <Link href="/products?category=wicket-keeping" className="hover:text-cricket-pitch transition-colors py-1">
-              Wicket Keeping
-            </Link>
-            <Link href="/products?category=cricket-shoes" className="hover:text-cricket-pitch transition-colors py-1">
-              Spikes & Turf Shoes
-            </Link>
-            <Link href="/players" className="flex items-center gap-1 text-cricket-gold hover:text-amber-700 transition-colors py-1">
-              <Zap className="w-3.5 h-3.5 fill-cricket-gold" />
-              Shop by Player
-            </Link>
-          </div>
-
-          <div className="flex items-center gap-5 font-semibold capitalize text-xs">
-            <Link href="/products?filter=flash-sale" className="text-cricket-leather font-bold flex items-center gap-1">
-              <span className="w-2 h-2 rounded-full bg-cricket-leather animate-ping" />
-              Flash Sale
-            </Link>
-            <Link href="/knocking-service" className="text-slate-600 hover:text-cricket-pitch">
-              Pro Knocking Lab
-            </Link>
-            <Link href="/bulk-orders" className="text-slate-600 hover:text-cricket-pitch">
-              Academy & Club Orders
-            </Link>
-          </div>
+              )}
+            </div>
+          ))}
         </nav>
-      </div>
 
-      {/* Mobile Drawer */}
-      {isMobileMenuOpen && (
-        <div className="lg:hidden border-t border-slate-200 bg-white p-4 space-y-4 shadow-xl">
-          <form onSubmit={handleSearchSubmit} className="relative">
-            <input
-              type="text"
-              placeholder="Search bats, balls, gear..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-slate-100 border border-slate-300 rounded-lg px-4 py-2.5 text-sm"
-            />
-            <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500">
-              <Search className="w-4 h-4" />
-            </button>
-          </form>
+        {/* Right: Actions (Search, Wishlist, Bag) */}
+        <div className="flex items-center space-x-1 sm:space-x-3">
+          {/* Search Trigger */}
+          <button
+            onClick={onOpenSearch}
+            className="flex items-center space-x-2 bg-neutral-900 hover:bg-neutral-800 text-neutral-300 px-3 py-2 rounded-full border border-neutral-700 transition-colors text-xs cursor-pointer"
+            aria-label="Search equipment"
+          >
+            <Search size={16} className="text-[#ccff00]" />
+            <span className="hidden sm:inline font-medium text-neutral-300 text-xs">
+              Search bats, shoes, gear...
+            </span>
+            <kbd className="hidden md:inline-block bg-neutral-800 text-neutral-400 text-[9px] px-1.5 py-0.5 rounded border border-neutral-700">
+              /
+            </kbd>
+          </button>
 
-          <div className="flex flex-col space-y-2 text-sm font-semibold text-slate-800">
-            <Link href="/products?category=cricket-bats" onClick={() => setIsMobileMenuOpen(false)} className="py-2 border-b border-slate-100">
-              🏏 Cricket Bats (English & Kashmir Willow)
-            </Link>
-            <Link href="/products?category=cricket-balls" onClick={() => setIsMobileMenuOpen(false)} className="py-2 border-b border-slate-100">
-              🔴 Match & Practice Balls
-            </Link>
-            <Link href="/products?category=batting-equipment" onClick={() => setIsMobileMenuOpen(false)} className="py-2 border-b border-slate-100">
-              🛡️ Pads, Gloves & Helmets
-            </Link>
-            <Link href="/players" onClick={() => setIsMobileMenuOpen(false)} className="py-2 border-b border-slate-100 text-cricket-gold font-bold">
-              ⚡ Shop by Player (Shakib, Kohli, Babar)
-            </Link>
-            <Link href="/products?filter=flash-sale" onClick={() => setIsMobileMenuOpen(false)} className="py-2 border-b border-slate-100 text-cricket-leather font-bold">
-              🔥 Flash Sale
-            </Link>
-            <Link href="/admin" onClick={() => setIsMobileMenuOpen(false)} className="py-2 border-b border-slate-100 text-slate-600">
-              🛡️ Admin Dashboard
-            </Link>
-            <Link href="/seller" onClick={() => setIsMobileMenuOpen(false)} className="py-2 text-amber-700">
-              🏪 Seller Hub (Multi-Vendor)
-            </Link>
-          </div>
+          {/* Wishlist Button */}
+          <button
+            onClick={() => setIsWishlistOpen(true)}
+            className="relative p-2.5 text-neutral-300 hover:text-white hover:bg-neutral-900 rounded-full transition-colors cursor-pointer"
+            aria-label="View Wishlist"
+          >
+            <Heart size={20} />
+            {totalWishlistItems > 0 && (
+              <span className="absolute -top-1 -right-1 bg-[#ccff00] text-black font-black text-[10px] w-5 h-5 rounded-full flex items-center justify-center animate-bounce">
+                {totalWishlistItems}
+              </span>
+            )}
+          </button>
+
+          {/* Cart Bag Button */}
+          <button
+            onClick={() => setIsCartOpen(true)}
+            className="relative flex items-center space-x-2 bg-white text-black hover:bg-neutral-200 px-3.5 py-2 rounded-full font-bold transition-transform active:scale-95 cursor-pointer"
+            aria-label="View Shopping Bag"
+          >
+            <ShoppingBag size={18} />
+            <span className="text-xs font-black hidden sm:inline">BAG</span>
+            <span className="bg-black text-white text-[11px] font-black w-5 h-5 rounded-full flex items-center justify-center">
+              {totalItems}
+            </span>
+          </button>
         </div>
-      )}
+      </div>
     </header>
   );
-}
+};

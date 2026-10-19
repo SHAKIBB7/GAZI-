@@ -1,0 +1,1572 @@
+[
+  {
+    "id": "GZ-BD-1792414769009",
+    "orderId": "GZ-BD-1792414769009",
+    "trackingNumber": "GZ-TRK-916499",
+    "date": "2026-10-19T12:59:29.009Z",
+    "status": "cancelled",
+    "fulfillmentStatus": "cancelled",
+    "paymentMethod": "COD",
+    "paymentStatus": "paid",
+    "paymentDetails": {
+      "paymentChannel": "cash_on_delivery",
+      "settledAt": "2026-10-19T12:59:29.025Z",
+      "settledBy": "admin"
+    },
+    "courier": "Steadfast Courier",
+    "deliveryZone": "inside_dhaka",
+    "estimatedDelivery": "24–48 Hours",
+    "customer": {
+      "fullName": "Tamim Iqbal",
+      "phone": "01819234567",
+      "email": "tamim@tigers.bd",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "thana": "",
+      "address": "Khan Shaheb Osman Ali Stadium Road",
+      "postalCode": "",
+      "notes": ""
+    },
+    "items": [
+      {
+        "productId": "PRD-1792414768972",
+        "sku": "GZ-TEST-BAT-1792414768927",
+        "title": "Gazi Test Special English Willow Bat",
+        "name": "Gazi Test Special English Willow Bat",
+        "selectedSize": "Standard",
+        "quantity": 2,
+        "unitPrice": 14000,
+        "unitCost": 8500,
+        "totalPrice": 28000,
+        "image": "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "financials": {
+      "currency": "BDT",
+      "subtotal": 28000,
+      "discount": 0,
+      "shipping": 0,
+      "total": 28000,
+      "cogs": 17000
+    },
+    "history": [
+      {
+        "timestamp": "2026-10-19T12:59:29.035Z",
+        "actor": "admin",
+        "action": "Status changed: shipped ➔ cancelled",
+        "note": "Order cancelled by admin. Inventory restored to Dhaka warehouse. Reason: Customer requested cancellation prior to handover"
+      },
+      {
+        "timestamp": "2026-10-19T12:59:29.025Z",
+        "actor": "admin",
+        "action": "Payment status updated: pending ➔ paid",
+        "note": "COD cash collected by courier and reconciled to accounts"
+      },
+      {
+        "timestamp": "2026-10-19T12:59:29.020Z",
+        "actor": "admin",
+        "action": "Status changed: pending ➔ shipped",
+        "note": ""
+      },
+      {
+        "timestamp": "2026-10-19T12:59:29.009Z",
+        "actor": "Customer Checkout",
+        "action": "Order Placed (Online)",
+        "note": "Payment Method: COD"
+      }
+    ],
+    "codSettledAt": "2026-10-19T12:59:29.025Z"
+  },
+  {
+    "id": "GZ-BD-1792414768867",
+    "orderId": "GZ-BD-1792414768867",
+    "trackingNumber": "GZ-TRK-204365",
+    "date": "2026-10-19T12:59:28.867Z",
+    "status": "pending",
+    "fulfillmentStatus": "pending",
+    "paymentMethod": "cod",
+    "paymentStatus": "pending",
+    "paymentDetails": {},
+    "courier": "Steadfast Courier",
+    "deliveryZone": "inside_dhaka",
+    "estimatedDelivery": "24–48 Hours",
+    "customer": {
+      "fullName": "Sakib Al Hasan",
+      "phone": "01711223344",
+      "email": "",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "thana": "Mirpur",
+      "address": "House 5, Road 2, Mirpur-2, Dhaka",
+      "postalCode": "",
+      "notes": ""
+    },
+    "items": [
+      {
+        "productId": "1055203",
+        "sku": "CRK-SHOE-AD-22YDS",
+        "title": "adidas 22YDS Training Bowling Cricket Shoe",
+        "name": "adidas 22YDS Training Bowling Cricket Shoe",
+        "selectedSize": "9",
+        "quantity": 1,
+        "unitPrice": 14400,
+        "unitCost": 9500,
+        "totalPrice": 14400,
+        "image": "https://www.prodirectsport.com/cdn/shop/files/1055203_main.jpg?v=1792326199&width=800"
+      }
+    ],
+    "financials": {
+      "currency": "BDT",
+      "subtotal": 14400,
+      "discount": 1440,
+      "shipping": 0,
+      "total": 12960,
+      "cogs": 9500
+    },
+    "history": [
+      {
+        "timestamp": "2026-10-19T12:59:28.867Z",
+        "actor": "Customer Checkout",
+        "action": "Order Placed (Online)",
+        "note": "Payment Method: cod"
+      }
+    ]
+  },
+  {
+    "id": "GZ-BD-1792414703923",
+    "orderId": "GZ-BD-1792414703923",
+    "trackingNumber": "GZ-TRK-480471",
+    "date": "2026-10-19T12:58:23.923Z",
+    "status": "cancelled",
+    "fulfillmentStatus": "cancelled",
+    "paymentMethod": "COD",
+    "paymentStatus": "paid",
+    "paymentDetails": {
+      "paymentChannel": "cash_on_delivery",
+      "settledAt": "2026-10-19T12:58:23.937Z",
+      "settledBy": "admin"
+    },
+    "courier": "Steadfast Courier",
+    "deliveryZone": "inside_dhaka",
+    "estimatedDelivery": "24–48 Hours",
+    "customer": {
+      "fullName": "Tamim Iqbal",
+      "phone": "01819234567",
+      "email": "tamim@tigers.bd",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "thana": "",
+      "address": "Khan Shaheb Osman Ali Stadium Road",
+      "postalCode": "",
+      "notes": ""
+    },
+    "items": [
+      {
+        "productId": "PRD-1792414703891",
+        "sku": "GZ-TEST-BAT-1792414703850",
+        "title": "Gazi Test Special English Willow Bat",
+        "name": "Gazi Test Special English Willow Bat",
+        "selectedSize": "Standard",
+        "quantity": 2,
+        "unitPrice": 14000,
+        "unitCost": 8500,
+        "totalPrice": 28000,
+        "image": "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "financials": {
+      "currency": "BDT",
+      "subtotal": 28000,
+      "discount": 0,
+      "shipping": 0,
+      "total": 28000,
+      "cogs": 17000
+    },
+    "history": [
+      {
+        "timestamp": "2026-10-19T12:58:23.946Z",
+        "actor": "admin",
+        "action": "Status changed: shipped ➔ cancelled",
+        "note": "Order cancelled by admin. Inventory restored to Dhaka warehouse. Reason: Customer requested cancellation prior to handover"
+      },
+      {
+        "timestamp": "2026-10-19T12:58:23.937Z",
+        "actor": "admin",
+        "action": "Payment status updated: pending ➔ paid",
+        "note": "COD cash collected by courier and reconciled to accounts"
+      },
+      {
+        "timestamp": "2026-10-19T12:58:23.933Z",
+        "actor": "admin",
+        "action": "Status changed: pending ➔ shipped",
+        "note": ""
+      },
+      {
+        "timestamp": "2026-10-19T12:58:23.923Z",
+        "actor": "Customer Checkout",
+        "action": "Order Placed (Online)",
+        "note": "Payment Method: COD"
+      }
+    ],
+    "codSettledAt": "2026-10-19T12:58:23.937Z"
+  },
+  {
+    "id": "GZ-BD-1792414703796",
+    "orderId": "GZ-BD-1792414703796",
+    "trackingNumber": "GZ-TRK-706894",
+    "date": "2026-10-19T12:58:23.796Z",
+    "status": "pending",
+    "fulfillmentStatus": "pending",
+    "paymentMethod": "cod",
+    "paymentStatus": "pending",
+    "paymentDetails": {},
+    "courier": "Steadfast Courier",
+    "deliveryZone": "inside_dhaka",
+    "estimatedDelivery": "24–48 Hours",
+    "customer": {
+      "fullName": "Sakib Al Hasan",
+      "phone": "01711223344",
+      "email": "",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "thana": "Mirpur",
+      "address": "House 5, Road 2, Mirpur-2, Dhaka",
+      "postalCode": "",
+      "notes": ""
+    },
+    "items": [
+      {
+        "productId": "1055203",
+        "sku": "CRK-SHOE-AD-22YDS",
+        "title": "adidas 22YDS Training Bowling Cricket Shoe",
+        "name": "adidas 22YDS Training Bowling Cricket Shoe",
+        "selectedSize": "9",
+        "quantity": 1,
+        "unitPrice": 14400,
+        "unitCost": 9500,
+        "totalPrice": 14400,
+        "image": "https://www.prodirectsport.com/cdn/shop/files/1055203_main.jpg?v=1792326199&width=800"
+      }
+    ],
+    "financials": {
+      "currency": "BDT",
+      "subtotal": 14400,
+      "discount": 1440,
+      "shipping": 0,
+      "total": 12960,
+      "cogs": 9500
+    },
+    "history": [
+      {
+        "timestamp": "2026-10-19T12:58:23.796Z",
+        "actor": "Customer Checkout",
+        "action": "Order Placed (Online)",
+        "note": "Payment Method: cod"
+      }
+    ]
+  },
+  {
+    "id": "GZ-BD-1792413837436",
+    "orderId": "GZ-BD-1792413837436",
+    "trackingNumber": "GZ-TRK-546959",
+    "date": "2026-10-19T12:43:57.436Z",
+    "status": "cancelled",
+    "fulfillmentStatus": "cancelled",
+    "paymentMethod": "COD",
+    "paymentStatus": "paid",
+    "paymentDetails": {
+      "paymentChannel": "cash_on_delivery",
+      "settledAt": "2026-10-19T12:43:57.450Z",
+      "settledBy": "admin"
+    },
+    "courier": "Steadfast Courier",
+    "deliveryZone": "inside_dhaka",
+    "estimatedDelivery": "24–48 Hours",
+    "customer": {
+      "fullName": "Tamim Iqbal",
+      "phone": "01819234567",
+      "email": "tamim@tigers.bd",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "thana": "",
+      "address": "Khan Shaheb Osman Ali Stadium Road",
+      "postalCode": "",
+      "notes": ""
+    },
+    "items": [
+      {
+        "productId": "PRD-1792413837405",
+        "sku": "GZ-TEST-BAT-1792413837364",
+        "title": "Gazi Test Special English Willow Bat",
+        "name": "Gazi Test Special English Willow Bat",
+        "selectedSize": "Standard",
+        "quantity": 2,
+        "unitPrice": 14000,
+        "unitCost": 8500,
+        "totalPrice": 28000,
+        "image": "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "financials": {
+      "currency": "BDT",
+      "subtotal": 28000,
+      "discount": 0,
+      "shipping": 0,
+      "total": 28000,
+      "cogs": 17000
+    },
+    "history": [
+      {
+        "timestamp": "2026-10-19T12:43:57.458Z",
+        "actor": "admin",
+        "action": "Status changed: shipped ➔ cancelled",
+        "note": "Order cancelled by admin. Inventory restored to Dhaka warehouse. Reason: Customer requested cancellation prior to handover"
+      },
+      {
+        "timestamp": "2026-10-19T12:43:57.450Z",
+        "actor": "admin",
+        "action": "Payment status updated: pending ➔ paid",
+        "note": "COD cash collected by courier and reconciled to accounts"
+      },
+      {
+        "timestamp": "2026-10-19T12:43:57.446Z",
+        "actor": "admin",
+        "action": "Status changed: pending ➔ shipped",
+        "note": ""
+      },
+      {
+        "timestamp": "2026-10-19T12:43:57.436Z",
+        "actor": "Customer Checkout",
+        "action": "Order Placed (Online)",
+        "note": "Payment Method: COD"
+      }
+    ],
+    "codSettledAt": "2026-10-19T12:43:57.450Z"
+  },
+  {
+    "id": "GZ-BD-1792413837312",
+    "orderId": "GZ-BD-1792413837312",
+    "trackingNumber": "GZ-TRK-451704",
+    "date": "2026-10-19T12:43:57.312Z",
+    "status": "pending",
+    "fulfillmentStatus": "pending",
+    "paymentMethod": "cod",
+    "paymentStatus": "pending",
+    "paymentDetails": {},
+    "courier": "Steadfast Courier",
+    "deliveryZone": "inside_dhaka",
+    "estimatedDelivery": "24–48 Hours",
+    "customer": {
+      "fullName": "Sakib Al Hasan",
+      "phone": "01711223344",
+      "email": "",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "thana": "Mirpur",
+      "address": "House 5, Road 2, Mirpur-2, Dhaka",
+      "postalCode": "",
+      "notes": ""
+    },
+    "items": [
+      {
+        "productId": "1055203",
+        "sku": "CRK-SHOE-AD-22YDS",
+        "title": "adidas 22YDS Training Bowling Cricket Shoe",
+        "name": "adidas 22YDS Training Bowling Cricket Shoe",
+        "selectedSize": "9",
+        "quantity": 1,
+        "unitPrice": 14400,
+        "unitCost": 9500,
+        "totalPrice": 14400,
+        "image": "https://www.prodirectsport.com/cdn/shop/files/1055203_main.jpg?v=1792326199&width=800"
+      }
+    ],
+    "financials": {
+      "currency": "BDT",
+      "subtotal": 14400,
+      "discount": 1440,
+      "shipping": 0,
+      "total": 12960,
+      "cogs": 9500
+    },
+    "history": [
+      {
+        "timestamp": "2026-10-19T12:43:57.312Z",
+        "actor": "Customer Checkout",
+        "action": "Order Placed (Online)",
+        "note": "Payment Method: cod"
+      }
+    ]
+  },
+  {
+    "id": "GZ-BD-1792404378018",
+    "orderId": "GZ-BD-1792404378018",
+    "trackingNumber": "GZ-TRK-172255",
+    "date": "2026-10-19T10:06:18.018Z",
+    "status": "cancelled",
+    "fulfillmentStatus": "cancelled",
+    "paymentMethod": "COD",
+    "paymentStatus": "paid",
+    "paymentDetails": {
+      "paymentChannel": "cash_on_delivery",
+      "settledAt": "2026-10-19T10:06:18.034Z",
+      "settledBy": "admin"
+    },
+    "courier": "Steadfast Courier",
+    "deliveryZone": "inside_dhaka",
+    "estimatedDelivery": "24–48 Hours",
+    "customer": {
+      "fullName": "Tamim Iqbal",
+      "phone": "01819234567",
+      "email": "tamim@tigers.bd",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "thana": "",
+      "address": "Khan Shaheb Osman Ali Stadium Road",
+      "postalCode": "",
+      "notes": ""
+    },
+    "items": [
+      {
+        "productId": "PRD-1792404377981",
+        "sku": "GZ-TEST-BAT-1792404377938",
+        "title": "Gazi Test Special English Willow Bat",
+        "name": "Gazi Test Special English Willow Bat",
+        "selectedSize": "Standard",
+        "quantity": 2,
+        "unitPrice": 14000,
+        "unitCost": 8500,
+        "totalPrice": 28000,
+        "image": "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "financials": {
+      "currency": "BDT",
+      "subtotal": 28000,
+      "discount": 0,
+      "shipping": 0,
+      "total": 28000,
+      "cogs": 17000
+    },
+    "history": [
+      {
+        "timestamp": "2026-10-19T10:06:18.043Z",
+        "actor": "admin",
+        "action": "Status changed: shipped ➔ cancelled",
+        "note": "Order cancelled by admin. Inventory restored to Dhaka warehouse. Reason: Customer requested cancellation prior to handover"
+      },
+      {
+        "timestamp": "2026-10-19T10:06:18.034Z",
+        "actor": "admin",
+        "action": "Payment status updated: pending ➔ paid",
+        "note": "COD cash collected by courier and reconciled to accounts"
+      },
+      {
+        "timestamp": "2026-10-19T10:06:18.030Z",
+        "actor": "admin",
+        "action": "Status changed: pending ➔ shipped",
+        "note": ""
+      },
+      {
+        "timestamp": "2026-10-19T10:06:18.018Z",
+        "actor": "Customer Checkout",
+        "action": "Order Placed (Online)",
+        "note": "Payment Method: COD"
+      }
+    ],
+    "codSettledAt": "2026-10-19T10:06:18.034Z"
+  },
+  {
+    "id": "GZ-BD-1792404377885",
+    "orderId": "GZ-BD-1792404377885",
+    "trackingNumber": "GZ-TRK-424898",
+    "date": "2026-10-19T10:06:17.885Z",
+    "status": "pending",
+    "fulfillmentStatus": "pending",
+    "paymentMethod": "cod",
+    "paymentStatus": "pending",
+    "paymentDetails": {},
+    "courier": "Steadfast Courier",
+    "deliveryZone": "inside_dhaka",
+    "estimatedDelivery": "24–48 Hours",
+    "customer": {
+      "fullName": "Sakib Al Hasan",
+      "phone": "01711223344",
+      "email": "",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "thana": "Mirpur",
+      "address": "House 5, Road 2, Mirpur-2, Dhaka",
+      "postalCode": "",
+      "notes": ""
+    },
+    "items": [
+      {
+        "productId": "1055203",
+        "sku": "CRK-SHOE-AD-22YDS",
+        "title": "adidas 22YDS Training Bowling Cricket Shoe",
+        "name": "adidas 22YDS Training Bowling Cricket Shoe",
+        "selectedSize": "9",
+        "quantity": 1,
+        "unitPrice": 14400,
+        "unitCost": 9500,
+        "totalPrice": 14400,
+        "image": "https://www.prodirectsport.com/cdn/shop/files/1055203_main.jpg?v=1792326199&width=800"
+      }
+    ],
+    "financials": {
+      "currency": "BDT",
+      "subtotal": 14400,
+      "discount": 1440,
+      "shipping": 0,
+      "total": 12960,
+      "cogs": 9500
+    },
+    "history": [
+      {
+        "timestamp": "2026-10-19T10:06:17.885Z",
+        "actor": "Customer Checkout",
+        "action": "Order Placed (Online)",
+        "note": "Payment Method: cod"
+      }
+    ]
+  },
+  {
+    "id": "GZ-BD-1792404345788",
+    "orderId": "GZ-BD-1792404345788",
+    "trackingNumber": "GZ-TRK-946675",
+    "date": "2026-10-19T10:05:45.788Z",
+    "status": "pending",
+    "fulfillmentStatus": "pending",
+    "paymentMethod": "cod",
+    "paymentStatus": "pending",
+    "paymentDetails": {},
+    "courier": "Steadfast Courier",
+    "deliveryZone": "inside_dhaka",
+    "estimatedDelivery": "24–48 Hours",
+    "customer": {
+      "fullName": "Sakib Al Hasan",
+      "phone": "01711223344",
+      "email": "",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "thana": "Mirpur",
+      "address": "House 5, Road 2, Mirpur-2, Dhaka",
+      "postalCode": "",
+      "notes": ""
+    },
+    "items": [
+      {
+        "productId": "1055203",
+        "sku": "CRK-SHOE-AD-22YDS",
+        "title": "adidas 22YDS Training Bowling Cricket Shoe",
+        "name": "adidas 22YDS Training Bowling Cricket Shoe",
+        "selectedSize": "9",
+        "quantity": 1,
+        "unitPrice": 14400,
+        "unitCost": 9500,
+        "totalPrice": 14400,
+        "image": "https://www.prodirectsport.com/cdn/shop/files/1055203_main.jpg?v=1792326199&width=800"
+      }
+    ],
+    "financials": {
+      "currency": "BDT",
+      "subtotal": 14400,
+      "discount": 1440,
+      "shipping": 0,
+      "total": 12960,
+      "cogs": 9500
+    },
+    "history": [
+      {
+        "timestamp": "2026-10-19T10:05:45.788Z",
+        "actor": "Customer Checkout",
+        "action": "Order Placed (Online)",
+        "note": "Payment Method: cod"
+      }
+    ]
+  },
+  {
+    "id": "GZ-BD-1792404339578",
+    "orderId": "GZ-BD-1792404339578",
+    "trackingNumber": "GZ-TRK-638250",
+    "date": "2026-10-19T10:05:39.578Z",
+    "status": "cancelled",
+    "fulfillmentStatus": "cancelled",
+    "paymentMethod": "COD",
+    "paymentStatus": "paid",
+    "paymentDetails": {
+      "paymentChannel": "cash_on_delivery",
+      "settledAt": "2026-10-19T10:05:39.596Z",
+      "settledBy": "admin"
+    },
+    "courier": "Steadfast Courier",
+    "deliveryZone": "inside_dhaka",
+    "estimatedDelivery": "24–48 Hours",
+    "customer": {
+      "fullName": "Tamim Iqbal",
+      "phone": "01819234567",
+      "email": "tamim@tigers.bd",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "thana": "",
+      "address": "Khan Shaheb Osman Ali Stadium Road",
+      "postalCode": "",
+      "notes": ""
+    },
+    "items": [
+      {
+        "productId": "PRD-1792404339536",
+        "sku": "GZ-TEST-BAT-1792404339477",
+        "title": "Gazi Test Special English Willow Bat",
+        "name": "Gazi Test Special English Willow Bat",
+        "selectedSize": "Standard",
+        "quantity": 2,
+        "unitPrice": 14000,
+        "unitCost": 8500,
+        "totalPrice": 28000,
+        "image": "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "financials": {
+      "currency": "BDT",
+      "subtotal": 28000,
+      "discount": 0,
+      "shipping": 0,
+      "total": 28000,
+      "cogs": 17000
+    },
+    "history": [
+      {
+        "timestamp": "2026-10-19T10:05:39.606Z",
+        "actor": "admin",
+        "action": "Status changed: shipped ➔ cancelled",
+        "note": "Order cancelled by admin. Inventory restored to Dhaka warehouse. Reason: Customer requested cancellation prior to handover"
+      },
+      {
+        "timestamp": "2026-10-19T10:05:39.596Z",
+        "actor": "admin",
+        "action": "Payment status updated: pending ➔ paid",
+        "note": "COD cash collected by courier and reconciled to accounts"
+      },
+      {
+        "timestamp": "2026-10-19T10:05:39.592Z",
+        "actor": "admin",
+        "action": "Status changed: pending ➔ shipped",
+        "note": ""
+      },
+      {
+        "timestamp": "2026-10-19T10:05:39.578Z",
+        "actor": "Customer Checkout",
+        "action": "Order Placed (Online)",
+        "note": "Payment Method: COD"
+      }
+    ],
+    "codSettledAt": "2026-10-19T10:05:39.596Z"
+  },
+  {
+    "id": "GZ-BD-1792404091393",
+    "orderId": "GZ-BD-1792404091393",
+    "trackingNumber": "GZ-TRK-973434",
+    "date": "2026-10-19T10:01:31.393Z",
+    "status": "cancelled",
+    "fulfillmentStatus": "cancelled",
+    "paymentMethod": "COD",
+    "paymentStatus": "paid",
+    "paymentDetails": {
+      "paymentChannel": "cash_on_delivery",
+      "settledAt": "2026-10-19T10:01:31.410Z",
+      "settledBy": "admin"
+    },
+    "courier": "Steadfast Courier",
+    "deliveryZone": "inside_dhaka",
+    "estimatedDelivery": "24–48 Hours",
+    "customer": {
+      "fullName": "Tamim Iqbal",
+      "phone": "01819234567",
+      "email": "tamim@tigers.bd",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "thana": "",
+      "address": "Khan Shaheb Osman Ali Stadium Road",
+      "postalCode": "",
+      "notes": ""
+    },
+    "items": [
+      {
+        "productId": "PRD-1792404091352",
+        "sku": "GZ-TEST-BAT-1792404091291",
+        "title": "Gazi Test Special English Willow Bat",
+        "name": "Gazi Test Special English Willow Bat",
+        "selectedSize": "Standard",
+        "quantity": 2,
+        "unitPrice": 14000,
+        "unitCost": 8500,
+        "totalPrice": 28000,
+        "image": "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "financials": {
+      "currency": "BDT",
+      "subtotal": 28000,
+      "discount": 0,
+      "shipping": 0,
+      "total": 28000,
+      "cogs": 17000
+    },
+    "history": [
+      {
+        "timestamp": "2026-10-19T10:01:31.419Z",
+        "actor": "admin",
+        "action": "Status changed: shipped ➔ cancelled",
+        "note": "Order cancelled by admin. Inventory restored to Dhaka warehouse. Reason: Customer requested cancellation prior to handover"
+      },
+      {
+        "timestamp": "2026-10-19T10:01:31.410Z",
+        "actor": "admin",
+        "action": "Payment status updated: pending ➔ paid",
+        "note": "COD cash collected by courier and reconciled to accounts"
+      },
+      {
+        "timestamp": "2026-10-19T10:01:31.405Z",
+        "actor": "admin",
+        "action": "Status changed: pending ➔ shipped",
+        "note": ""
+      },
+      {
+        "timestamp": "2026-10-19T10:01:31.393Z",
+        "actor": "Customer Checkout",
+        "action": "Order Placed (Online)",
+        "note": "Payment Method: COD"
+      }
+    ],
+    "codSettledAt": "2026-10-19T10:01:31.410Z"
+  },
+  {
+    "id": "GZ-BD-1792404019256",
+    "orderId": "GZ-BD-1792404019256",
+    "trackingNumber": "GZ-TRK-618417",
+    "date": "2026-10-19T10:00:19.256Z",
+    "status": "cancelled",
+    "fulfillmentStatus": "cancelled",
+    "paymentMethod": "COD",
+    "paymentStatus": "paid",
+    "paymentDetails": {
+      "paymentChannel": "cash_on_delivery",
+      "settledAt": "2026-10-19T10:00:19.271Z",
+      "settledBy": "admin"
+    },
+    "courier": "Steadfast Courier",
+    "deliveryZone": "inside_dhaka",
+    "estimatedDelivery": "24–48 Hours",
+    "customer": {
+      "fullName": "Tamim Iqbal",
+      "phone": "01819234567",
+      "email": "tamim@tigers.bd",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "thana": "",
+      "address": "Khan Shaheb Osman Ali Stadium Road",
+      "postalCode": "",
+      "notes": ""
+    },
+    "items": [
+      {
+        "productId": "PRD-1792404019221",
+        "sku": "GZ-TEST-BAT-1792404019175",
+        "title": "Gazi Test Special English Willow Bat",
+        "name": "Gazi Test Special English Willow Bat",
+        "selectedSize": "Standard",
+        "quantity": 2,
+        "unitPrice": 14000,
+        "unitCost": 8500,
+        "totalPrice": 28000,
+        "image": "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "financials": {
+      "currency": "BDT",
+      "subtotal": 28000,
+      "discount": 0,
+      "shipping": 0,
+      "total": 28000,
+      "cogs": 17000
+    },
+    "history": [
+      {
+        "timestamp": "2026-10-19T10:00:19.279Z",
+        "actor": "admin",
+        "action": "Status changed: shipped ➔ cancelled",
+        "note": "Order cancelled by admin. Inventory restored to Dhaka warehouse. Reason: Customer requested cancellation prior to handover"
+      },
+      {
+        "timestamp": "2026-10-19T10:00:19.271Z",
+        "actor": "admin",
+        "action": "Payment status updated: pending ➔ paid",
+        "note": "COD cash collected by courier and reconciled to accounts"
+      },
+      {
+        "timestamp": "2026-10-19T10:00:19.267Z",
+        "actor": "admin",
+        "action": "Status changed: pending ➔ shipped",
+        "note": ""
+      },
+      {
+        "timestamp": "2026-10-19T10:00:19.256Z",
+        "actor": "Customer Checkout",
+        "action": "Order Placed (Online)",
+        "note": "Payment Method: COD"
+      }
+    ],
+    "codSettledAt": "2026-10-19T10:00:19.271Z"
+  },
+  {
+    "id": "GZ-BD-1792403981166",
+    "orderId": "GZ-BD-1792403981166",
+    "trackingNumber": "GZ-TRK-884537",
+    "date": "2026-10-19T09:59:41.166Z",
+    "status": "cancelled",
+    "fulfillmentStatus": "cancelled",
+    "paymentMethod": "COD",
+    "paymentStatus": "paid",
+    "paymentDetails": {
+      "paymentChannel": "cash_on_delivery",
+      "settledAt": "2026-10-19T09:59:41.182Z",
+      "settledBy": "admin"
+    },
+    "courier": "Steadfast Courier",
+    "deliveryZone": "inside_dhaka",
+    "estimatedDelivery": "24–48 Hours",
+    "customer": {
+      "fullName": "Tamim Iqbal",
+      "phone": "01819234567",
+      "email": "tamim@tigers.bd",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "thana": "",
+      "address": "Khan Shaheb Osman Ali Stadium Road",
+      "postalCode": "",
+      "notes": ""
+    },
+    "items": [
+      {
+        "productId": "PRD-1792403981132",
+        "sku": "GZ-TEST-BAT-1792403981087",
+        "title": "Gazi Test Special English Willow Bat",
+        "name": "Gazi Test Special English Willow Bat",
+        "selectedSize": "Standard",
+        "quantity": 2,
+        "unitPrice": 14000,
+        "unitCost": 8500,
+        "totalPrice": 28000,
+        "image": "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "financials": {
+      "currency": "BDT",
+      "subtotal": 28000,
+      "discount": 0,
+      "shipping": 0,
+      "total": 28000,
+      "cogs": 17000
+    },
+    "history": [
+      {
+        "timestamp": "2026-10-19T09:59:41.191Z",
+        "actor": "admin",
+        "action": "Status changed: shipped ➔ cancelled",
+        "note": "Order cancelled by admin. Inventory restored to Dhaka warehouse. Reason: Customer requested cancellation prior to handover"
+      },
+      {
+        "timestamp": "2026-10-19T09:59:41.182Z",
+        "actor": "admin",
+        "action": "Payment status updated: pending ➔ paid",
+        "note": "COD cash collected by courier and reconciled to accounts"
+      },
+      {
+        "timestamp": "2026-10-19T09:59:41.177Z",
+        "actor": "admin",
+        "action": "Status changed: pending ➔ shipped",
+        "note": ""
+      },
+      {
+        "timestamp": "2026-10-19T09:59:41.166Z",
+        "actor": "Customer Checkout",
+        "action": "Order Placed (Online)",
+        "note": "Payment Method: COD"
+      }
+    ],
+    "codSettledAt": "2026-10-19T09:59:41.182Z"
+  },
+  {
+    "id": "GZ-BD-1792403964795",
+    "orderId": "GZ-BD-1792403964795",
+    "trackingNumber": "GZ-TRK-256565",
+    "date": "2026-10-19T09:59:24.795Z",
+    "status": "cancelled",
+    "fulfillmentStatus": "cancelled",
+    "paymentMethod": "COD",
+    "paymentStatus": "paid",
+    "paymentDetails": {
+      "paymentChannel": "cash_on_delivery",
+      "settledAt": "2026-10-19T09:59:24.812Z",
+      "settledBy": "admin"
+    },
+    "courier": "Steadfast Courier",
+    "deliveryZone": "inside_dhaka",
+    "estimatedDelivery": "24–48 Hours",
+    "customer": {
+      "fullName": "Tamim Iqbal",
+      "phone": "01819234567",
+      "email": "tamim@tigers.bd",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "thana": "",
+      "address": "Khan Shaheb Osman Ali Stadium Road",
+      "postalCode": "",
+      "notes": ""
+    },
+    "items": [
+      {
+        "productId": "PRD-1792403964757",
+        "sku": "GZ-TEST-BAT-1792403964696",
+        "title": "Gazi Test Special English Willow Bat",
+        "name": "Gazi Test Special English Willow Bat",
+        "selectedSize": "Standard",
+        "quantity": 2,
+        "unitPrice": 14000,
+        "unitCost": 8500,
+        "totalPrice": 28000,
+        "image": "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "financials": {
+      "currency": "BDT",
+      "subtotal": 28000,
+      "discount": 0,
+      "shipping": 0,
+      "total": 28000,
+      "cogs": 17000
+    },
+    "history": [
+      {
+        "timestamp": "2026-10-19T09:59:24.820Z",
+        "actor": "admin",
+        "action": "Status changed: shipped ➔ cancelled",
+        "note": "Order cancelled by admin. Inventory restored to Dhaka warehouse. Reason: Customer requested cancellation prior to handover"
+      },
+      {
+        "timestamp": "2026-10-19T09:59:24.812Z",
+        "actor": "admin",
+        "action": "Payment status updated: pending ➔ paid",
+        "note": "COD cash collected by courier and reconciled to accounts"
+      },
+      {
+        "timestamp": "2026-10-19T09:59:24.807Z",
+        "actor": "admin",
+        "action": "Status changed: pending ➔ shipped",
+        "note": ""
+      },
+      {
+        "timestamp": "2026-10-19T09:59:24.795Z",
+        "actor": "Customer Checkout",
+        "action": "Order Placed (Online)",
+        "note": "Payment Method: COD"
+      }
+    ],
+    "codSettledAt": "2026-10-19T09:59:24.812Z"
+  },
+  {
+    "id": "GZ-BD-1792403882805",
+    "orderId": "GZ-BD-1792403882805",
+    "trackingNumber": "GZ-TRK-470218",
+    "date": "2026-10-19T09:58:02.805Z",
+    "status": "cancelled",
+    "fulfillmentStatus": "cancelled",
+    "paymentMethod": "COD",
+    "paymentStatus": "paid",
+    "paymentDetails": {
+      "paymentChannel": "cash_on_delivery",
+      "settledAt": "2026-10-19T09:58:02.821Z",
+      "settledBy": "admin"
+    },
+    "courier": "Steadfast Courier",
+    "deliveryZone": "inside_dhaka",
+    "estimatedDelivery": "24–48 Hours",
+    "customer": {
+      "fullName": "Tamim Iqbal",
+      "phone": "01819234567",
+      "email": "tamim@tigers.bd",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "thana": "",
+      "address": "Khan Shaheb Osman Ali Stadium Road",
+      "postalCode": "",
+      "notes": ""
+    },
+    "items": [
+      {
+        "productId": "PRD-1792403882766",
+        "sku": "GZ-TEST-BAT-1792403882706",
+        "title": "Gazi Test Special English Willow Bat",
+        "name": "Gazi Test Special English Willow Bat",
+        "selectedSize": "Standard",
+        "quantity": 2,
+        "unitPrice": 14000,
+        "unitCost": 8500,
+        "totalPrice": 28000,
+        "image": "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "financials": {
+      "currency": "BDT",
+      "subtotal": 28000,
+      "discount": 0,
+      "shipping": 0,
+      "total": 28000,
+      "cogs": 17000
+    },
+    "history": [
+      {
+        "timestamp": "2026-10-19T09:58:02.829Z",
+        "actor": "admin",
+        "action": "Status changed: shipped ➔ cancelled",
+        "note": "Order cancelled by admin. Inventory restored to Dhaka warehouse. Reason: Customer requested cancellation prior to handover"
+      },
+      {
+        "timestamp": "2026-10-19T09:58:02.821Z",
+        "actor": "admin",
+        "action": "Payment status updated: pending ➔ paid",
+        "note": "COD cash collected by courier and reconciled to accounts"
+      },
+      {
+        "timestamp": "2026-10-19T09:58:02.816Z",
+        "actor": "admin",
+        "action": "Status changed: pending ➔ shipped",
+        "note": ""
+      },
+      {
+        "timestamp": "2026-10-19T09:58:02.805Z",
+        "actor": "Customer Checkout",
+        "action": "Order Placed (Online)",
+        "note": "Payment Method: COD"
+      }
+    ],
+    "codSettledAt": "2026-10-19T09:58:02.821Z"
+  },
+  {
+    "id": "GZ-BD-1792403597754",
+    "orderId": "GZ-BD-1792403597754",
+    "trackingNumber": "GZ-TRK-763556",
+    "date": "2026-10-19T09:53:17.754Z",
+    "status": "pending",
+    "fulfillmentStatus": "pending",
+    "paymentMethod": "COD",
+    "paymentStatus": "pending",
+    "paymentDetails": {},
+    "courier": "Steadfast Courier",
+    "deliveryZone": "inside_dhaka",
+    "estimatedDelivery": "24–48 Hours",
+    "customer": {
+      "fullName": "Tamim Iqbal",
+      "phone": "01819234567",
+      "email": "tamim@tigers.bd",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "thana": "",
+      "address": "Khan Shaheb Osman Ali Stadium Road",
+      "postalCode": "",
+      "notes": ""
+    },
+    "items": [
+      {
+        "productId": "PRD-1792403597715",
+        "sku": "GZ-TEST-BAT-1792403597653",
+        "title": "Gazi Test Special English Willow Bat",
+        "name": "Gazi Test Special English Willow Bat",
+        "selectedSize": "Standard",
+        "quantity": 2,
+        "unitPrice": 14000,
+        "unitCost": 8500,
+        "totalPrice": 28000,
+        "image": "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80"
+      }
+    ],
+    "financials": {
+      "currency": "BDT",
+      "subtotal": 28000,
+      "discount": 0,
+      "shipping": 0,
+      "total": 28000,
+      "cogs": 17000
+    },
+    "history": [
+      {
+        "timestamp": "2026-10-19T09:53:17.754Z",
+        "actor": "Customer Checkout",
+        "action": "Order Placed (Online)",
+        "note": "Payment Method: COD"
+      }
+    ]
+  },
+  {
+    "orderId": "GZ-BD-1792403348143",
+    "trackingNumber": "GZ-TRK-609051",
+    "date": "2026-10-19T09:49:08.143Z",
+    "status": "pending",
+    "fulfillmentStatus": "pending",
+    "paymentMethod": "COD",
+    "paymentStatus": "pending",
+    "paymentDetails": {},
+    "courier": "Steadfast Courier",
+    "deliveryZone": "inside_dhaka",
+    "estimatedDelivery": "24–48 Hours",
+    "customer": {
+      "fullName": "Cricket Customer",
+      "phone": "01819234567",
+      "email": "tamim@tigers.bd",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "thana": "",
+      "address": "Khan Shaheb Osman Ali Stadium Road",
+      "postalCode": "",
+      "notes": ""
+    },
+    "items": [
+      {
+        "sku": "CRK-undefined",
+        "title": "Cricket Product",
+        "selectedSize": "Standard",
+        "quantity": 2,
+        "unitPrice": 14000,
+        "unitCost": 9100,
+        "totalPrice": 28000,
+        "image": ""
+      }
+    ],
+    "financials": {
+      "currency": "BDT",
+      "subtotal": 28000,
+      "discount": 0,
+      "shipping": 0,
+      "total": 28000,
+      "cogs": 18200
+    },
+    "history": [
+      {
+        "timestamp": "2026-10-19T09:49:08.143Z",
+        "actor": "Customer Checkout",
+        "action": "Order Placed (Online)",
+        "note": "Payment Method: COD"
+      }
+    ]
+  },
+  {
+    "orderId": "GZ-BD-1792403348137",
+    "trackingNumber": "GZ-TRK-879509",
+    "date": "2026-10-19T09:49:08.137Z",
+    "status": "pending",
+    "fulfillmentStatus": "pending",
+    "paymentMethod": "COD",
+    "paymentStatus": "pending",
+    "paymentDetails": {},
+    "courier": "Steadfast Courier",
+    "deliveryZone": "inside_dhaka",
+    "estimatedDelivery": "24–48 Hours",
+    "customer": {
+      "fullName": "Cricket Customer",
+      "phone": "01712345678",
+      "email": "mushfiq@tigers.bd",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "thana": "",
+      "address": "Mirpur National Stadium, Gate 2",
+      "postalCode": "",
+      "notes": ""
+    },
+    "items": [
+      {
+        "sku": "CRK-undefined",
+        "title": "Cricket Product",
+        "selectedSize": "Standard",
+        "quantity": 100,
+        "unitPrice": 14000,
+        "unitCost": 9100,
+        "totalPrice": 1400000,
+        "image": ""
+      }
+    ],
+    "financials": {
+      "currency": "BDT",
+      "subtotal": 1400000,
+      "discount": 0,
+      "shipping": 0,
+      "total": 1400000,
+      "cogs": 910000
+    },
+    "history": [
+      {
+        "timestamp": "2026-10-19T09:49:08.137Z",
+        "actor": "Customer Checkout",
+        "action": "Order Placed (Online)",
+        "note": "Payment Method: COD"
+      }
+    ]
+  },
+  {
+    "orderId": "GZ-BD-1792402906036",
+    "trackingNumber": "GZ-TRK-218230",
+    "date": "2026-10-19T09:41:46.036Z",
+    "status": "pending",
+    "fulfillmentStatus": "pending",
+    "paymentMethod": "cod",
+    "paymentStatus": "pending",
+    "paymentDetails": {},
+    "courier": "Steadfast Courier",
+    "deliveryZone": "inside_dhaka",
+    "estimatedDelivery": "24–48 Hours",
+    "customer": {
+      "fullName": "Sakib Al Hasan",
+      "phone": "01711223344",
+      "email": "",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "thana": "Mirpur",
+      "address": "House 5, Road 2, Mirpur-2, Dhaka",
+      "postalCode": "",
+      "notes": ""
+    },
+    "items": [
+      {
+        "productId": "1055203",
+        "sku": "CRK-SHOE-AD-22YDS",
+        "title": "adidas 22YDS Training Bowling Cricket Shoe",
+        "selectedSize": "9",
+        "quantity": 1,
+        "unitPrice": 14400,
+        "unitCost": 9500,
+        "totalPrice": 14400,
+        "image": "https://www.prodirectsport.com/cdn/shop/files/1055203_main.jpg?v=1792326199&width=800"
+      }
+    ],
+    "financials": {
+      "currency": "BDT",
+      "subtotal": 14400,
+      "discount": 1440,
+      "shipping": 0,
+      "total": 12960,
+      "cogs": 9500
+    },
+    "history": [
+      {
+        "timestamp": "2026-10-19T09:41:46.036Z",
+        "actor": "Customer Checkout",
+        "action": "Order Placed (Online)",
+        "note": "Payment Method: cod"
+      }
+    ]
+  },
+  {
+    "orderId": "GZ-BD-1792402162388",
+    "trackingNumber": "GZ-TRK-784361",
+    "date": "2026-10-19T09:29:22.388Z",
+    "status": "pending",
+    "fulfillmentStatus": "pending",
+    "paymentMethod": "cod",
+    "paymentStatus": "pending",
+    "paymentDetails": {},
+    "courier": "Steadfast Courier",
+    "deliveryZone": "inside_dhaka",
+    "estimatedDelivery": "24–48 Hours",
+    "customer": {
+      "fullName": "Sakib Al Hasan",
+      "phone": "01711223344",
+      "email": "",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "thana": "Mirpur",
+      "address": "House 5, Road 2, Mirpur-2, Dhaka",
+      "postalCode": "",
+      "notes": ""
+    },
+    "items": [
+      {
+        "productId": "1055203",
+        "sku": "CRK-SHOE-AD-22YDS",
+        "title": "adidas 22YDS Training Bowling Cricket Shoe",
+        "selectedSize": "9",
+        "quantity": 1,
+        "unitPrice": 14400,
+        "unitCost": 9500,
+        "totalPrice": 14400,
+        "image": "https://www.prodirectsport.com/cdn/shop/files/1055203_main.jpg?v=1792326199&width=800"
+      }
+    ],
+    "financials": {
+      "currency": "BDT",
+      "subtotal": 14400,
+      "discount": 1440,
+      "shipping": 0,
+      "total": 12960,
+      "cogs": 9500
+    },
+    "history": [
+      {
+        "timestamp": "2026-10-19T09:29:22.388Z",
+        "actor": "Customer Checkout",
+        "action": "Order Placed (Online)",
+        "note": "Payment Method: cod"
+      }
+    ]
+  },
+  {
+    "orderId": "GZ-BD-1792402152240",
+    "trackingNumber": "GZ-TRK-298319",
+    "date": "2026-10-19T09:29:12.240Z",
+    "status": "pending",
+    "fulfillmentStatus": "pending",
+    "paymentMethod": "cod",
+    "paymentStatus": "pending",
+    "paymentDetails": {},
+    "courier": "Steadfast Courier",
+    "deliveryZone": "inside_dhaka",
+    "estimatedDelivery": "24–48 Hours",
+    "customer": {
+      "fullName": "Sakib Al Hasan",
+      "phone": "01711223344",
+      "email": "",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "thana": "Mirpur",
+      "address": "House 5, Road 2, Mirpur-2, Dhaka",
+      "postalCode": "",
+      "notes": ""
+    },
+    "items": [
+      {
+        "productId": "1055203",
+        "sku": "CRK-SHOE-AD-22YDS",
+        "title": "adidas 22YDS Training Bowling Cricket Shoe",
+        "selectedSize": "9",
+        "quantity": 1,
+        "unitPrice": 14400,
+        "unitCost": 9500,
+        "totalPrice": 14400,
+        "image": "https://www.prodirectsport.com/cdn/shop/files/1055203_main.jpg?v=1792326199&width=800"
+      }
+    ],
+    "financials": {
+      "currency": "BDT",
+      "subtotal": 14400,
+      "discount": 1440,
+      "shipping": 0,
+      "total": 12960,
+      "cogs": 9500
+    },
+    "history": [
+      {
+        "timestamp": "2026-10-19T09:29:12.240Z",
+        "actor": "Customer Checkout",
+        "action": "Order Placed (Online)",
+        "note": "Payment Method: cod"
+      }
+    ]
+  },
+  {
+    "orderId": "GZ-BD-1792402095376",
+    "trackingNumber": "GZ-TRK-332963",
+    "date": "2026-10-19T09:28:15.376Z",
+    "status": "pending",
+    "fulfillmentStatus": "pending",
+    "paymentMethod": "cod",
+    "paymentStatus": "pending",
+    "paymentDetails": {},
+    "courier": "Steadfast Courier",
+    "deliveryZone": "inside_dhaka",
+    "estimatedDelivery": "24–48 Hours",
+    "customer": {
+      "fullName": "Sakib Al Hasan",
+      "phone": "01711223344",
+      "email": "",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "thana": "Mirpur",
+      "address": "House 5, Road 2, Mirpur-2, Dhaka",
+      "postalCode": "",
+      "notes": ""
+    },
+    "items": [
+      {
+        "productId": "1055203",
+        "sku": "CRK-SHOE-AD-22YDS",
+        "title": "adidas 22YDS Training Bowling Cricket Shoe",
+        "selectedSize": "9",
+        "quantity": 1,
+        "unitPrice": 14400,
+        "unitCost": 9500,
+        "totalPrice": 14400,
+        "image": "https://www.prodirectsport.com/cdn/shop/files/1055203_main.jpg?v=1792326199&width=800"
+      }
+    ],
+    "financials": {
+      "currency": "BDT",
+      "subtotal": 14400,
+      "discount": 1440,
+      "shipping": 0,
+      "total": 12960,
+      "cogs": 9500
+    },
+    "history": [
+      {
+        "timestamp": "2026-10-19T09:28:15.376Z",
+        "actor": "Customer Checkout",
+        "action": "Order Placed (Online)",
+        "note": "Payment Method: cod"
+      }
+    ]
+  },
+  {
+    "orderId": "GZ-BD-1792402000994",
+    "trackingNumber": "GZ-TRK-2026-114499",
+    "date": "2026-10-19T09:26:40.994Z",
+    "status": "Confirmed - Preparing for Dispatch",
+    "estimatedDelivery": "Tuesday 20 October",
+    "courier": "Steadfast Courier",
+    "customer": {
+      "fullName": "Mahmudul Hasan",
+      "phone": "12345",
+      "email": "mahmudul@gmail.com",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "thana": "Mirpur",
+      "address": "House 14, Road 5, Block B, Mirpur-12, Dhaka"
+    },
+    "items": [
+      {
+        "productId": "1055203",
+        "sku": "CRK-SHOE-AD-22YDS",
+        "title": "adidas 22YDS Training Bowling Cricket Shoe",
+        "selectedSize": "9",
+        "quantity": 1,
+        "unitPrice": 14400,
+        "unitCost": 9500,
+        "totalPrice": 14400
+      }
+    ],
+    "financials": {
+      "currency": "BDT",
+      "subtotal": 14400,
+      "discount": 0,
+      "shipping": 70,
+      "total": 14400,
+      "cogs": 9500
+    },
+    "fulfillmentStatus": "delivered",
+    "paymentMethod": "cod",
+    "paymentStatus": "paid",
+    "deliveryZone": "inside_dhaka",
+    "history": [
+      {
+        "timestamp": "2026-10-19T09:26:40.994Z",
+        "actor": "System",
+        "action": "Order Placed & Confirmed"
+      }
+    ]
+  },
+  {
+    "orderId": "GZ-BD-1792402000992",
+    "trackingNumber": "GZ-TRK-2026-986277",
+    "date": "2026-10-19T09:26:40.992Z",
+    "status": "Confirmed - Preparing for Dispatch",
+    "estimatedDelivery": "Tuesday 20 October",
+    "courier": "Steadfast Courier",
+    "customer": {
+      "fullName": "Mahmudul Hasan",
+      "phone": "01711223344",
+      "email": "mahmudul@gmail.com",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "thana": "Mirpur",
+      "address": "House 14, Road 5, Block B, Mirpur-12, Dhaka"
+    },
+    "items": [
+      {
+        "productId": "1055203",
+        "sku": "CRK-SHOE-AD-22YDS",
+        "title": "adidas 22YDS Training Bowling Cricket Shoe",
+        "selectedSize": "9",
+        "quantity": 1,
+        "unitPrice": 14400,
+        "unitCost": 9500,
+        "totalPrice": 14400
+      }
+    ],
+    "financials": {
+      "currency": "BDT",
+      "subtotal": 14400,
+      "discount": 1440,
+      "shipping": 70,
+      "total": 12960,
+      "cogs": 9500
+    },
+    "fulfillmentStatus": "delivered",
+    "paymentMethod": "cod",
+    "paymentStatus": "paid",
+    "deliveryZone": "inside_dhaka",
+    "history": [
+      {
+        "timestamp": "2026-10-19T09:26:40.992Z",
+        "actor": "System",
+        "action": "Order Placed & Confirmed"
+      }
+    ]
+  },
+  {
+    "orderId": "GZ-BD-1792400446774",
+    "trackingNumber": "GZ-TRK-2026-365934",
+    "date": "2026-10-19T09:00:46.774Z",
+    "status": "Confirmed - Preparing for Dispatch",
+    "estimatedDelivery": "Tuesday 20 October",
+    "courier": "Steadfast Courier",
+    "customer": {
+      "fullName": "Valued Cricketer",
+      "phone": "01711223344",
+      "email": "customer@cricketfan.com",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "thana": "Mirpur",
+      "address": "House 14, Road 5, Block B, Mirpur-12, Dhaka"
+    },
+    "items": [
+      {
+        "productId": "1055203",
+        "sku": "CRK-SHOE-AD-22YDS",
+        "title": "adidas 22YDS Training Bowling Cricket Shoe",
+        "selectedSize": "9",
+        "quantity": 1,
+        "unitPrice": 14400,
+        "unitCost": 9500,
+        "totalPrice": 14400
+      }
+    ],
+    "financials": {
+      "currency": "BDT",
+      "subtotal": 14400,
+      "discount": 1440,
+      "shipping": 70,
+      "total": 12960,
+      "cogs": 9500
+    },
+    "fulfillmentStatus": "delivered",
+    "paymentMethod": "cod",
+    "paymentStatus": "paid",
+    "deliveryZone": "inside_dhaka",
+    "history": [
+      {
+        "timestamp": "2026-10-19T09:00:46.774Z",
+        "actor": "System",
+        "action": "Order Placed & Confirmed"
+      }
+    ]
+  }
+]

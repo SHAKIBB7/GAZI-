@@ -1,0 +1,123 @@
+[
+  {
+    "id": "EXP-1792414769058",
+    "category": "Packaging",
+    "amount": 3500,
+    "date": "2026-10-19",
+    "description": "Custom padded cricket bat carrying covers",
+    "paymentMethod": "bKash Merchant",
+    "recordedBy": "admin",
+    "receiptRef": "",
+    "createdAt": "2026-10-19T12:59:29.058Z"
+  },
+  {
+    "id": "EXP-1792414703966",
+    "category": "Packaging",
+    "amount": 3500,
+    "date": "2026-10-19",
+    "description": "Custom padded cricket bat carrying covers",
+    "paymentMethod": "bKash Merchant",
+    "recordedBy": "admin",
+    "receiptRef": "",
+    "createdAt": "2026-10-19T12:58:23.966Z"
+  },
+  {
+    "id": "EXP-1792413837479",
+    "category": "Packaging",
+    "amount": 3500,
+    "date": "2026-10-19",
+    "description": "Custom padded cricket bat carrying covers",
+    "paymentMethod": "bKash Merchant",
+    "recordedBy": "admin",
+    "receiptRef": "",
+    "createdAt": "2026-10-19T12:43:57.479Z"
+  },
+  {
+    "id": "EXP-1792404378068",
+    "category": "Packaging",
+    "amount": 3500,
+    "date": "2026-10-19",
+    "description": "Custom padded cricket bat carrying covers",
+    "paymentMethod": "bKash Merchant",
+    "recordedBy": "admin",
+    "receiptRef": "",
+    "createdAt": "2026-10-19T10:06:18.068Z"
+  },
+  {
+    "id": "EXP-1792404339633",
+    "category": "Packaging",
+    "amount": 3500,
+    "date": "2026-10-19",
+    "description": "Custom padded cricket bat carrying covers",
+    "paymentMethod": "bKash Merchant",
+    "recordedBy": "admin",
+    "receiptRef": "",
+    "createdAt": "2026-10-19T10:05:39.633Z"
+  },
+  {
+    "id": "EXP-1792404091446",
+    "category": "Packaging",
+    "amount": 3500,
+    "date": "2026-10-19",
+    "description": "Custom padded cricket bat carrying covers",
+    "paymentMethod": "bKash Merchant",
+    "recordedBy": "admin",
+    "receiptRef": "",
+    "createdAt": "2026-10-19T10:01:31.446Z"
+  },
+  {
+    "id": "exp-101",
+    "category": "warehouse_rent",
+    "amount": 45000,
+    "date": "2026-01-05",
+    "description": "Monthly Warehouse Lease for Mirpur Cricket Distribution Facility",
+    "paymentMethod": "bank_transfer",
+    "recordedBy": "admin",
+    "receiptRef": "RENT-MIRPUR-JAN2026",
+    "createdAt": "2026-01-05T09:00:00.000Z"
+  },
+  {
+    "id": "exp-102",
+    "category": "courier_shipping",
+    "amount": 14500,
+    "date": "2026-01-18",
+    "description": "Steadfast Courier Advance Parcel Delivery Contract Top-up",
+    "paymentMethod": "bkash",
+    "recordedBy": "admin",
+    "receiptRef": "STEADFAST-DEP-8841",
+    "createdAt": "2026-01-18T11:00:00.000Z"
+  },
+  {
+    "id": "exp-103",
+    "category": "packaging_materials",
+    "amount": 8200,
+    "date": "2026-01-20",
+    "description": "Heavy duty padded corrugated bat boxes and bubble roll wrap",
+    "paymentMethod": "cash",
+    "recordedBy": "inventory",
+    "receiptRef": "PKG-DHAKA-551",
+    "createdAt": "2026-01-20T14:00:00.000Z"
+  },
+  {
+    "id": "exp-104",
+    "category": "marketing_ads",
+    "amount": 22000,
+    "date": "2026-02-02",
+    "description": "Facebook & Google Display Ads Campaign - BPL Cricket Season Promotion",
+    "paymentMethod": "bank_transfer",
+    "recordedBy": "admin",
+    "receiptRef": "META-ADS-INV-9901",
+    "createdAt": "2026-02-02T16:00:00.000Z"
+  },
+  {
+    "id": "exp-105",
+    "category": "utilities",
+    "amount": 6800,
+    "date": "2026-02-08",
+    "description": "Electricity & High-Speed Optical Fiber Internet (Warehouse & Office)",
+    "paymentMethod": "bkash",
+    "recordedBy": "admin",
+    "receiptRef": "DESCO-FEB-2026",
+    "createdAt": "2026-02-08T10:00:00.000Z"
+  }
+]
