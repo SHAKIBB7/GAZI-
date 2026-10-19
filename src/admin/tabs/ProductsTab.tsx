@@ -29,6 +29,21 @@ const CRICKET_CATEGORIES = [
   'Cricket Balls & Accessories',
 ];
 
+const CRICKET_BRANDS = [
+  'Gunn & Moore',
+  'Gray-Nicolls',
+  'Kookaburra',
+  'Newbery',
+  'DSC',
+  'SS',
+  'SG',
+  'New Balance',
+  'Salix',
+  'Chase',
+  'Adidas',
+  'Puma',
+];
+
 const WILLOW_GRADES = [
   'Limited Edition Unbleached Grade 1+ English Willow',
   'Selected Grade 1 English Willow',
@@ -308,6 +323,21 @@ export const ProductsTab: React.FC = () => {
           <option value="All">All Cricket Categories</option>
           {CRICKET_CATEGORIES.map((c) => (
             <option key={c} value={c}>{c}</option>
+          ))}
+        </select>
+
+        {/* Brand / Vendor Filter */}
+        <select
+          value={selectedVendor}
+          onChange={(e) => {
+            setSelectedVendor(e.target.value);
+            setPage(1);
+          }}
+          className="bg-neutral-900 border border-neutral-800 text-white rounded-lg px-2.5 py-1.5 cursor-pointer focus:outline-none"
+        >
+          <option value="All">All Cricket Brands</option>
+          {CRICKET_BRANDS.map((b) => (
+            <option key={b} value={b}>{b}</option>
           ))}
         </select>
 
@@ -823,6 +853,7 @@ export const ProductsTab: React.FC = () => {
                           </span>
                           <input
                             type="text"
+                            list={specKey === 'Willow Grade' ? 'willow-grades' : undefined}
                             value={formData.specs?.[specKey] || ''}
                             onChange={(e) =>
                               setFormData({
@@ -835,6 +866,11 @@ export const ProductsTab: React.FC = () => {
                           />
                         </div>
                       ))}
+                      <datalist id="willow-grades">
+                        {WILLOW_GRADES.map((grade) => (
+                          <option key={grade} value={grade} />
+                        ))}
+                      </datalist>
                     </div>
                   </div>
                 </div>

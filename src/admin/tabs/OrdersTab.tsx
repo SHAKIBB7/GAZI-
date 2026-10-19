@@ -7,20 +7,12 @@ import {
   ShoppingBag,
   Truck,
   CheckCircle,
-  AlertCircle,
   Clock,
-  RotateCcw,
-  XCircle,
   DollarSign,
   User,
-  Phone,
-  MapPin,
-  FileText,
   Printer,
   ChevronLeft,
   ChevronRight,
-  Filter,
-  Check,
   X,
 } from 'lucide-react';
 
@@ -398,7 +390,7 @@ export const OrdersTab: React.FC = () => {
 
         {/* Pagination */}
         <div className="p-4 border-t border-neutral-800 flex items-center justify-between text-xs text-neutral-400">
-          <span>Page {page} of {totalPages || 1}</span>
+          <span>Showing {orders.length} of {total} orders (Page {page} of {totalPages || 1})</span>
           <div className="flex items-center space-x-2">
             <button
               onClick={() => setPage((p) => Math.max(1, p - 1))}
