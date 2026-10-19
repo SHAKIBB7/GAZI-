@@ -29,13 +29,13 @@ const upload = multer({
   storage,
   limits: { fileSize: 10 * 1024 * 1024 }, // 10MB limit
   fileFilter: (req, file, cb) => {
-    const allowed = /jpeg|jpg|png|webp|svg|gif/;
+    const allowed = /jpeg|jpg|png|webp|gif/;
     const ext = path.extname(file.originalname).toLowerCase().replace('.', '');
     const mime = file.mimetype;
-    if (allowed.test(ext) && (mime.startsWith('image/') || mime === 'image/svg+xml')) {
+    if (allowed.test(ext) && mime.startsWith('image/') && mime !== 'image/svg+xml') {
       return cb(null, true);
     }
-    cb(new Error('Only standard image files (JPG, PNG, WebP, SVG) are permitted'));
+    cb(new Error('Only standard secure raster image files (JPG, PNG, WebP, GIF) are permitted. SVG is disabled for security.'));
   },
 });
 

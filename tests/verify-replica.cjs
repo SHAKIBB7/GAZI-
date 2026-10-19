@@ -189,6 +189,49 @@ async function runApiTests() {
     assert(checkoutRes.json?.order?.financials?.shipping === 0, 'Order above ৳5,000 qualified for FREE delivery');
     assert(checkoutRes.json?.order?.financials?.total === 12960, 'Grand total accurately calculated: 14400 - 1440 = ৳12,960');
 
+    // Clean up test order to prevent database pollution
+    if (checkoutRes.json?.order?.orderId) {
+      try {
+        const loginRes = await postJson('http://localhost:4000/api/admin/auth/login', {
+          username: 'admin',
+          password: 'AdminPassword2026!'
+        });
+        if (loginRes.json?.token) {
+          // Cancel order with restock first to restore stock
+          await new Promise((resolve) => {
+            const cancelData = JSON.stringify({ restock: true, reason: 'Automated test suite cleanup' });
+            const cancelReq = http.request(new URL(`/api/admin/orders/${checkoutRes.json.order.orderId}/cancel`, 'http://localhost:4000'), {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Content-Length': Buffer.byteLength(cancelData),
+                Authorization: `Bearer ${loginRes.json.token}`
+              }
+            }, (res) => {
+              res.on('data', () => {});
+              res.on('end', resolve);
+            });
+            cancelReq.on('error', () => resolve());
+            cancelReq.write(cancelData);
+            cancelReq.end();
+          });
+
+          // Delete the test order from the database
+          await new Promise((resolve) => {
+            const delReq = http.request(new URL(`/api/admin/orders/${checkoutRes.json.order.orderId}`, 'http://localhost:4000'), {
+              method: 'DELETE',
+              headers: { Authorization: `Bearer ${loginRes.json.token}` }
+            }, (res) => {
+              res.on('data', () => {});
+              res.on('end', resolve);
+            });
+            delReq.on('error', () => resolve());
+            delReq.end();
+          });
+        }
+      } catch (_) {}
+    }
+
     // Test Phone Number Validation Rejection in Checkout API
     const invalidPhonePayload = {
       items: [{ productId: '1055203', quantity: 1, selectedSize: '9', price: 14400 }],

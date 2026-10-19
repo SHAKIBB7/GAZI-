@@ -1,6 +1,7 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Product } from '../../types/cricket';
 import { PRODUCTS } from '../../data/cricketData';
+import { apiService } from '../../services/api';
 import { ProductCard } from './ProductCard';
 import { FilterSidebar } from './FilterSidebar';
 import { SlidersHorizontal, ArrowUpDown, X } from 'lucide-react';
@@ -26,11 +27,30 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
   searchQuery,
   onClearSearch,
 }) => {
+  const [liveProducts, setLiveProducts] = useState<Product[]>(PRODUCTS);
   const [activeTab, setActiveTab] = useState<'all' | 'new' | 'trending' | 'sale'>('all');
   const [maxPrice, setMaxPrice] = useState<number>(100000);
   const [onlySale, setOnlySale] = useState<boolean>(false);
   const [sortBy, setSortBy] = useState<SortOption>('featured');
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
+
+  useEffect(() => {
+    let isMounted = true;
+    async function loadProducts() {
+      try {
+        const data = await apiService.getProducts();
+        if (isMounted && data && Array.isArray(data.products) && data.products.length > 0) {
+          setLiveProducts(data.products);
+        }
+      } catch (e) {
+        console.warn('Using static cricket catalog fallback:', e);
+      }
+    }
+    loadProducts();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const handleResetFilters = () => {
     onSelectCategory('All');
@@ -42,7 +62,7 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
   };
 
   const filteredProducts = useMemo(() => {
-    let result = [...PRODUCTS];
+    let result = [...liveProducts];
 
     // Search Query filter
     if (searchQuery.trim()) {

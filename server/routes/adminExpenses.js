@@ -112,4 +112,18 @@ router.post('/', authenticateAdmin, requireRole(['super_admin']), async (req, re
   }
 });
 
+// 3. DELETE EXPENSE
+router.delete('/:id', authenticateAdmin, requireRole(['super_admin']), async (req, res) => {
+  try {
+    const deleted = await db.deleteExpense(req.params.id, req.admin.username);
+    res.json({
+      success: true,
+      message: 'Expense deleted successfully',
+      expense: deleted,
+    });
+  } catch (err) {
+    res.status(404).json({ error: err.message });
+  }
+});
+
 export default router;

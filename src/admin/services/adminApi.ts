@@ -11,7 +11,10 @@ import {
   AuditLogEntry,
 } from '../types';
 
-const API_BASE = '/api/admin';
+const VITE_API_URL = typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_API_URL
+  ? String(import.meta.env.VITE_API_URL).replace(/\/$/, '')
+  : '';
+const API_BASE = VITE_API_URL ? `${VITE_API_URL}/api/admin` : '/api/admin';
 
 function getToken(): string | null {
   return localStorage.getItem('gazi_admin_token');

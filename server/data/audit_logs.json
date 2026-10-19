@@ -1,15 +1,1658 @@
 [
   {
-    "id": "LOG-1792414769079-624",
-    "timestamp": "2026-10-19T12:59:29.079Z",
+    "id": "LOG-1792416944612-317",
+    "timestamp": "2026-10-19T13:35:44.612Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "ORDER_DELETED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792416944589",
+    "details": {
+      "total": 12960
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416944608-664",
+    "timestamp": "2026-10-19T13:35:44.608Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "ORDER_STATUS_UPDATED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792416944589",
+    "details": {
+      "oldStatus": "pending",
+      "newStatus": "cancelled",
+      "note": "Order cancelled by admin. Inventory restored to Dhaka warehouse. Reason: Automated test suite cleanup"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416944605-162",
+    "timestamp": "2026-10-19T13:35:44.605Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "STOCK_ADJUSTED",
+    "entity": "inventory",
+    "entityId": "1055203",
+    "details": {
+      "sku": "CRK-SHOE-AD-22YDS",
+      "delta": 1,
+      "oldStock": 23,
+      "newStock": 24,
+      "reason": "Restock due to order cancellation: Automated test suite cleanup"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416944599-296",
+    "timestamp": "2026-10-19T13:35:44.599Z",
+    "actor": "admin",
+    "role": "super_admin",
+    "action": "LOGIN_SUCCESS",
+    "entity": "auth",
+    "entityId": "adm-001",
+    "details": {
+      "message": "Successful admin login from web console"
+    },
+    "ip": "::1"
+  },
+  {
+    "id": "LOG-1792416944592-395",
+    "timestamp": "2026-10-19T13:35:44.592Z",
+    "actor": "Customer Checkout",
+    "role": "admin",
+    "action": "ORDER_PLACED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792416944589",
+    "details": {
+      "total": 12960,
+      "itemsCount": 1,
+      "paymentMethod": "cod"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416918122-287",
+    "timestamp": "2026-10-19T13:35:18.122Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "EXPENSE_DELETED",
+    "entity": "expense",
+    "entityId": "EXP-1792416918091",
+    "details": {
+      "category": "Packaging",
+      "amount": 3500
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416918118-507",
+    "timestamp": "2026-10-19T13:35:18.118Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "SUPPLIER_DELETED",
+    "entity": "supplier",
+    "entityId": "sup-8076",
+    "details": {
+      "name": "Sialkot Master Bats Ltd"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416918114-660",
+    "timestamp": "2026-10-19T13:35:18.114Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "PURCHASE_DELETED",
+    "entity": "purchase",
+    "entityId": "po-1792416918081",
+    "details": {
+      "poNumber": "PO-BD-1792416918079"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416918111-793",
+    "timestamp": "2026-10-19T13:35:18.111Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "ORDER_DELETED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792416918044",
+    "details": {
+      "total": 28000
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416918107-995",
+    "timestamp": "2026-10-19T13:35:18.107Z",
     "actor": "admin",
     "role": "admin",
     "action": "PRODUCT_DELETED",
     "entity": "product",
-    "entityId": "PRD-1792414768972",
+    "entityId": "PRD-1792416918010",
     "details": {
-      "sku": "GZ-TEST-BAT-1792414768927",
+      "sku": "GZ-TEST-BAT-1792416917968",
       "title": "Gazi Test Special English Willow Bat"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416918093-717",
+    "timestamp": "2026-10-19T13:35:18.093Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "EXPENSE_RECORDED",
+    "entity": "expense",
+    "entityId": "EXP-1792416918091",
+    "details": {
+      "category": "Packaging",
+      "amount": 3500,
+      "description": "Custom padded cricket bat carrying covers"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416918088-893",
+    "timestamp": "2026-10-19T13:35:18.088Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "PURCHASE_ORDER_RECEIVED",
+    "entity": "purchase",
+    "entityId": "PO-BD-1792416918079",
+    "details": {
+      "supplier": "Sialkot Master Bats Ltd",
+      "total": 92000
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416918082-474",
+    "timestamp": "2026-10-19T13:35:18.082Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "PURCHASE_ORDER_CREATED",
+    "entity": "purchase",
+    "entityId": "PO-BD-1792416918079",
+    "details": {
+      "supplier": "Sialkot Master Bats Ltd",
+      "total": 92000,
+      "itemsCount": 1
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416918078-645",
+    "timestamp": "2026-10-19T13:35:18.078Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "SUPPLIER_CREATED",
+    "entity": "supplier",
+    "entityId": "sup-8076",
+    "details": {
+      "name": "Sialkot Master Bats Ltd"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416918071-833",
+    "timestamp": "2026-10-19T13:35:18.071Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "ORDER_STATUS_UPDATED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792416918044",
+    "details": {
+      "oldStatus": "shipped",
+      "newStatus": "cancelled",
+      "note": "Order cancelled by admin. Inventory restored to Dhaka warehouse. Reason: Customer requested cancellation prior to handover"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416918068-727",
+    "timestamp": "2026-10-19T13:35:18.068Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "STOCK_ADJUSTED",
+    "entity": "inventory",
+    "entityId": "PRD-1792416918010",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792416917968",
+      "delta": 2,
+      "oldStock": 20,
+      "newStock": 22,
+      "reason": "Restock due to order cancellation: Customer requested cancellation prior to handover"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416918062-222",
+    "timestamp": "2026-10-19T13:35:18.062Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "ORDER_PAYMENT_UPDATED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792416918044",
+    "details": {
+      "oldStatus": "pending",
+      "newStatus": "paid",
+      "amount": 28000
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416918058-521",
+    "timestamp": "2026-10-19T13:35:18.058Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "ORDER_STATUS_UPDATED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792416918044",
+    "details": {
+      "oldStatus": "pending",
+      "newStatus": "shipped"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416918048-115",
+    "timestamp": "2026-10-19T13:35:18.048Z",
+    "actor": "Customer Checkout",
+    "role": "admin",
+    "action": "ORDER_PLACED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792416918044",
+    "details": {
+      "total": 28000,
+      "itemsCount": 1,
+      "paymentMethod": "COD"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416918038-116",
+    "timestamp": "2026-10-19T13:35:18.038Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "STOCK_ADJUSTED",
+    "entity": "inventory",
+    "entityId": "PRD-1792416918010",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792416917968",
+      "delta": -1,
+      "oldStock": 23,
+      "newStock": 22,
+      "reason": "Physical count reconciliation. Recorded: 23, Counted: 22. Reason: End-of-month physical warehouse count discrepancy"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416918032-565",
+    "timestamp": "2026-10-19T13:35:18.032Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "STOCK_ADJUSTED",
+    "entity": "inventory",
+    "entityId": "PRD-1792416918010",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792416917968",
+      "delta": -2,
+      "oldStock": 25,
+      "newStock": 23,
+      "reason": "Cracked handle during moisture testing"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416918026-790",
+    "timestamp": "2026-10-19T13:35:18.026Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "STOCK_ADJUSTED",
+    "entity": "inventory",
+    "entityId": "PRD-1792416918010",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792416917968",
+      "delta": 5,
+      "oldStock": 20,
+      "newStock": 25,
+      "reason": "Urgent warehouse batch intake (Received from Sialkot emergency flight)"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416918018-578",
+    "timestamp": "2026-10-19T13:35:18.018Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "PRODUCT_UPDATED",
+    "entity": "product",
+    "entityId": "PRD-1792416918010",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792416917968",
+      "title": "Gazi Test Special English Willow Bat",
+      "price": 14000
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416918012-684",
+    "timestamp": "2026-10-19T13:35:18.012Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "PRODUCT_CREATED",
+    "entity": "product",
+    "entityId": "PRD-1792416918010",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792416917968",
+      "title": "Gazi Test Special English Willow Bat",
+      "price": 13500,
+      "stock": 20
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416918005-146",
+    "timestamp": "2026-10-19T13:35:18.005Z",
+    "actor": "admin",
+    "role": "super_admin",
+    "action": "LOGIN_SUCCESS",
+    "entity": "auth",
+    "entityId": "adm-001",
+    "details": {
+      "message": "Successful admin login from web console"
+    },
+    "ip": "::1"
+  },
+  {
+    "id": "LOG-1792416917998-704",
+    "timestamp": "2026-10-19T13:35:17.998Z",
+    "actor": "admin",
+    "role": "super_admin",
+    "action": "LOGIN_FAILED",
+    "entity": "auth",
+    "entityId": "adm-001",
+    "details": {
+      "reason": "Incorrect password",
+      "ip": "::1"
+    },
+    "ip": "::1"
+  },
+  {
+    "id": "LOG-1792416917917-265",
+    "timestamp": "2026-10-19T13:35:17.917Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "ORDER_DELETED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792416917893",
+    "details": {
+      "total": 12960
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416917912-818",
+    "timestamp": "2026-10-19T13:35:17.912Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "ORDER_STATUS_UPDATED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792416917893",
+    "details": {
+      "oldStatus": "pending",
+      "newStatus": "cancelled",
+      "note": "Order cancelled by admin. Inventory restored to Dhaka warehouse. Reason: Automated test suite cleanup"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416917909-940",
+    "timestamp": "2026-10-19T13:35:17.909Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "STOCK_ADJUSTED",
+    "entity": "inventory",
+    "entityId": "1055203",
+    "details": {
+      "sku": "CRK-SHOE-AD-22YDS",
+      "delta": 1,
+      "oldStock": 23,
+      "newStock": 24,
+      "reason": "Restock due to order cancellation: Automated test suite cleanup"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416917903-163",
+    "timestamp": "2026-10-19T13:35:17.903Z",
+    "actor": "admin",
+    "role": "super_admin",
+    "action": "LOGIN_SUCCESS",
+    "entity": "auth",
+    "entityId": "adm-001",
+    "details": {
+      "message": "Successful admin login from web console"
+    },
+    "ip": "::1"
+  },
+  {
+    "id": "LOG-1792416917896-326",
+    "timestamp": "2026-10-19T13:35:17.896Z",
+    "actor": "Customer Checkout",
+    "role": "admin",
+    "action": "ORDER_PLACED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792416917893",
+    "details": {
+      "total": 12960,
+      "itemsCount": 1,
+      "paymentMethod": "cod"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416870299-966",
+    "timestamp": "2026-10-19T13:34:30.299Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "EXPENSE_DELETED",
+    "entity": "expense",
+    "entityId": "EXP-1792416870251",
+    "details": {
+      "category": "Packaging",
+      "amount": 3500
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416870294-251",
+    "timestamp": "2026-10-19T13:34:30.294Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "SUPPLIER_DELETED",
+    "entity": "supplier",
+    "entityId": "sup-0234",
+    "details": {
+      "name": "Sialkot Master Bats Ltd"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416870291-642",
+    "timestamp": "2026-10-19T13:34:30.291Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "PURCHASE_DELETED",
+    "entity": "purchase",
+    "entityId": "po-1792416870239",
+    "details": {
+      "poNumber": "PO-BD-1792416870237"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416870287-928",
+    "timestamp": "2026-10-19T13:34:30.287Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "ORDER_DELETED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792416870203",
+    "details": {
+      "total": 28000
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416870283-691",
+    "timestamp": "2026-10-19T13:34:30.283Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "PRODUCT_DELETED",
+    "entity": "product",
+    "entityId": "PRD-1792416870168",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792416870124",
+      "title": "Gazi Test Special English Willow Bat"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416870252-173",
+    "timestamp": "2026-10-19T13:34:30.252Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "EXPENSE_RECORDED",
+    "entity": "expense",
+    "entityId": "EXP-1792416870251",
+    "details": {
+      "category": "Packaging",
+      "amount": 3500,
+      "description": "Custom padded cricket bat carrying covers"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416870246-733",
+    "timestamp": "2026-10-19T13:34:30.246Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "PURCHASE_ORDER_RECEIVED",
+    "entity": "purchase",
+    "entityId": "PO-BD-1792416870237",
+    "details": {
+      "supplier": "Sialkot Master Bats Ltd",
+      "total": 92000
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416870240-257",
+    "timestamp": "2026-10-19T13:34:30.240Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "PURCHASE_ORDER_CREATED",
+    "entity": "purchase",
+    "entityId": "PO-BD-1792416870237",
+    "details": {
+      "supplier": "Sialkot Master Bats Ltd",
+      "total": 92000,
+      "itemsCount": 1
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416870235-290",
+    "timestamp": "2026-10-19T13:34:30.235Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "SUPPLIER_CREATED",
+    "entity": "supplier",
+    "entityId": "sup-0234",
+    "details": {
+      "name": "Sialkot Master Bats Ltd"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416870228-196",
+    "timestamp": "2026-10-19T13:34:30.228Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "ORDER_STATUS_UPDATED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792416870203",
+    "details": {
+      "oldStatus": "shipped",
+      "newStatus": "cancelled",
+      "note": "Order cancelled by admin. Inventory restored to Dhaka warehouse. Reason: Customer requested cancellation prior to handover"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416870225-280",
+    "timestamp": "2026-10-19T13:34:30.226Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "STOCK_ADJUSTED",
+    "entity": "inventory",
+    "entityId": "PRD-1792416870168",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792416870124",
+      "delta": 2,
+      "oldStock": 20,
+      "newStock": 22,
+      "reason": "Restock due to order cancellation: Customer requested cancellation prior to handover"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416870220-234",
+    "timestamp": "2026-10-19T13:34:30.220Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "ORDER_PAYMENT_UPDATED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792416870203",
+    "details": {
+      "oldStatus": "pending",
+      "newStatus": "paid",
+      "amount": 28000
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416870216-282",
+    "timestamp": "2026-10-19T13:34:30.216Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "ORDER_STATUS_UPDATED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792416870203",
+    "details": {
+      "oldStatus": "pending",
+      "newStatus": "shipped"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416870206-335",
+    "timestamp": "2026-10-19T13:34:30.206Z",
+    "actor": "Customer Checkout",
+    "role": "admin",
+    "action": "ORDER_PLACED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792416870203",
+    "details": {
+      "total": 28000,
+      "itemsCount": 1,
+      "paymentMethod": "COD"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416870197-917",
+    "timestamp": "2026-10-19T13:34:30.197Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "STOCK_ADJUSTED",
+    "entity": "inventory",
+    "entityId": "PRD-1792416870168",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792416870124",
+      "delta": -1,
+      "oldStock": 23,
+      "newStock": 22,
+      "reason": "Physical count reconciliation. Recorded: 23, Counted: 22. Reason: End-of-month physical warehouse count discrepancy"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416870191-615",
+    "timestamp": "2026-10-19T13:34:30.191Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "STOCK_ADJUSTED",
+    "entity": "inventory",
+    "entityId": "PRD-1792416870168",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792416870124",
+      "delta": -2,
+      "oldStock": 25,
+      "newStock": 23,
+      "reason": "Cracked handle during moisture testing"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416870186-486",
+    "timestamp": "2026-10-19T13:34:30.186Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "STOCK_ADJUSTED",
+    "entity": "inventory",
+    "entityId": "PRD-1792416870168",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792416870124",
+      "delta": 5,
+      "oldStock": 20,
+      "newStock": 25,
+      "reason": "Urgent warehouse batch intake (Received from Sialkot emergency flight)"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416870177-713",
+    "timestamp": "2026-10-19T13:34:30.177Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "PRODUCT_UPDATED",
+    "entity": "product",
+    "entityId": "PRD-1792416870168",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792416870124",
+      "title": "Gazi Test Special English Willow Bat",
+      "price": 14000
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416870170-224",
+    "timestamp": "2026-10-19T13:34:30.170Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "PRODUCT_CREATED",
+    "entity": "product",
+    "entityId": "PRD-1792416870168",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792416870124",
+      "title": "Gazi Test Special English Willow Bat",
+      "price": 13500,
+      "stock": 20
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416870162-825",
+    "timestamp": "2026-10-19T13:34:30.162Z",
+    "actor": "admin",
+    "role": "super_admin",
+    "action": "LOGIN_SUCCESS",
+    "entity": "auth",
+    "entityId": "adm-001",
+    "details": {
+      "message": "Successful admin login from web console"
+    },
+    "ip": "::1"
+  },
+  {
+    "id": "LOG-1792416870155-761",
+    "timestamp": "2026-10-19T13:34:30.155Z",
+    "actor": "admin",
+    "role": "super_admin",
+    "action": "LOGIN_FAILED",
+    "entity": "auth",
+    "entityId": "adm-001",
+    "details": {
+      "reason": "Incorrect password",
+      "ip": "::1"
+    },
+    "ip": "::1"
+  },
+  {
+    "id": "LOG-1792416870075-783",
+    "timestamp": "2026-10-19T13:34:30.075Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "ORDER_DELETED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792416870057",
+    "details": {
+      "total": 12960
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416870070-625",
+    "timestamp": "2026-10-19T13:34:30.070Z",
+    "actor": "admin",
+    "role": "super_admin",
+    "action": "LOGIN_SUCCESS",
+    "entity": "auth",
+    "entityId": "adm-001",
+    "details": {
+      "message": "Successful admin login from web console"
+    },
+    "ip": "::1"
+  },
+  {
+    "id": "LOG-1792416870061-964",
+    "timestamp": "2026-10-19T13:34:30.061Z",
+    "actor": "Customer Checkout",
+    "role": "admin",
+    "action": "ORDER_PLACED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792416870057",
+    "details": {
+      "total": 12960,
+      "itemsCount": 1,
+      "paymentMethod": "cod"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416616663-564",
+    "timestamp": "2026-10-19T13:30:16.663Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "PRODUCT_DELETED",
+    "entity": "product",
+    "entityId": "PRD-1792416616578",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792416616537",
+      "title": "Gazi Test Special English Willow Bat"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416616650-692",
+    "timestamp": "2026-10-19T13:30:16.650Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "EXPENSE_RECORDED",
+    "entity": "expense",
+    "entityId": "EXP-1792416616648",
+    "details": {
+      "category": "Packaging",
+      "amount": 3500,
+      "description": "Custom padded cricket bat carrying covers"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416616645-950",
+    "timestamp": "2026-10-19T13:30:16.645Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "PURCHASE_ORDER_RECEIVED",
+    "entity": "purchase",
+    "entityId": "PO-BD-1792416616637",
+    "details": {
+      "supplier": "Sialkot Master Bats Ltd",
+      "total": 92000
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416616639-256",
+    "timestamp": "2026-10-19T13:30:16.639Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "PURCHASE_ORDER_CREATED",
+    "entity": "purchase",
+    "entityId": "PO-BD-1792416616637",
+    "details": {
+      "supplier": "Sialkot Master Bats Ltd",
+      "total": 92000,
+      "itemsCount": 1
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416616635-781",
+    "timestamp": "2026-10-19T13:30:16.635Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "SUPPLIER_CREATED",
+    "entity": "supplier",
+    "entityId": "sup-6634",
+    "details": {
+      "name": "Sialkot Master Bats Ltd"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416616629-379",
+    "timestamp": "2026-10-19T13:30:16.629Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "ORDER_STATUS_UPDATED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792416616607",
+    "details": {
+      "oldStatus": "shipped",
+      "newStatus": "cancelled",
+      "note": "Order cancelled by admin. Inventory restored to Dhaka warehouse. Reason: Customer requested cancellation prior to handover"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416616626-893",
+    "timestamp": "2026-10-19T13:30:16.626Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "STOCK_ADJUSTED",
+    "entity": "inventory",
+    "entityId": "PRD-1792416616578",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792416616537",
+      "delta": 2,
+      "oldStock": 20,
+      "newStock": 22,
+      "reason": "Restock due to order cancellation: Customer requested cancellation prior to handover"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416616622-421",
+    "timestamp": "2026-10-19T13:30:16.622Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "ORDER_PAYMENT_UPDATED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792416616607",
+    "details": {
+      "oldStatus": "pending",
+      "newStatus": "paid",
+      "amount": 28000
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416616618-584",
+    "timestamp": "2026-10-19T13:30:16.618Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "ORDER_STATUS_UPDATED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792416616607",
+    "details": {
+      "oldStatus": "pending",
+      "newStatus": "shipped"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416616610-170",
+    "timestamp": "2026-10-19T13:30:16.610Z",
+    "actor": "Customer Checkout",
+    "role": "admin",
+    "action": "ORDER_PLACED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792416616607",
+    "details": {
+      "total": 28000,
+      "itemsCount": 1,
+      "paymentMethod": "COD"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416616602-748",
+    "timestamp": "2026-10-19T13:30:16.602Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "STOCK_ADJUSTED",
+    "entity": "inventory",
+    "entityId": "PRD-1792416616578",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792416616537",
+      "delta": -1,
+      "oldStock": 23,
+      "newStock": 22,
+      "reason": "Physical count reconciliation. Recorded: 23, Counted: 22. Reason: End-of-month physical warehouse count discrepancy"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416616597-525",
+    "timestamp": "2026-10-19T13:30:16.597Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "STOCK_ADJUSTED",
+    "entity": "inventory",
+    "entityId": "PRD-1792416616578",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792416616537",
+      "delta": -2,
+      "oldStock": 25,
+      "newStock": 23,
+      "reason": "Cracked handle during moisture testing"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416616592-394",
+    "timestamp": "2026-10-19T13:30:16.592Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "STOCK_ADJUSTED",
+    "entity": "inventory",
+    "entityId": "PRD-1792416616578",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792416616537",
+      "delta": 5,
+      "oldStock": 20,
+      "newStock": 25,
+      "reason": "Urgent warehouse batch intake (Received from Sialkot emergency flight)"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416616585-450",
+    "timestamp": "2026-10-19T13:30:16.585Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "PRODUCT_UPDATED",
+    "entity": "product",
+    "entityId": "PRD-1792416616578",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792416616537",
+      "title": "Gazi Test Special English Willow Bat",
+      "price": 14000
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416616580-202",
+    "timestamp": "2026-10-19T13:30:16.580Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "PRODUCT_CREATED",
+    "entity": "product",
+    "entityId": "PRD-1792416616578",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792416616537",
+      "title": "Gazi Test Special English Willow Bat",
+      "price": 13500,
+      "stock": 20
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416616574-610",
+    "timestamp": "2026-10-19T13:30:16.574Z",
+    "actor": "admin",
+    "role": "super_admin",
+    "action": "LOGIN_SUCCESS",
+    "entity": "auth",
+    "entityId": "adm-001",
+    "details": {
+      "message": "Successful admin login from web console"
+    },
+    "ip": "::1"
+  },
+  {
+    "id": "LOG-1792416616567-697",
+    "timestamp": "2026-10-19T13:30:16.567Z",
+    "actor": "admin",
+    "role": "super_admin",
+    "action": "LOGIN_FAILED",
+    "entity": "auth",
+    "entityId": "adm-001",
+    "details": {
+      "reason": "Incorrect password",
+      "ip": "::1"
+    },
+    "ip": "::1"
+  },
+  {
+    "id": "LOG-1792416616486-256",
+    "timestamp": "2026-10-19T13:30:16.486Z",
+    "actor": "admin",
+    "role": "super_admin",
+    "action": "LOGIN_SUCCESS",
+    "entity": "auth",
+    "entityId": "adm-001",
+    "details": {
+      "message": "Successful admin login from web console"
+    },
+    "ip": "::1"
+  },
+  {
+    "id": "LOG-1792416616478-904",
+    "timestamp": "2026-10-19T13:30:16.478Z",
+    "actor": "Customer Checkout",
+    "role": "admin",
+    "action": "ORDER_PLACED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792416616475",
+    "details": {
+      "total": 12960,
+      "itemsCount": 1,
+      "paymentMethod": "cod"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416337322-383",
+    "timestamp": "2026-10-19T13:25:37.322Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "PRODUCT_DELETED",
+    "entity": "product",
+    "entityId": "PRD-1792416337238",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792416337198",
+      "title": "Gazi Test Special English Willow Bat"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416337309-291",
+    "timestamp": "2026-10-19T13:25:37.309Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "EXPENSE_RECORDED",
+    "entity": "expense",
+    "entityId": "EXP-1792416337308",
+    "details": {
+      "category": "Packaging",
+      "amount": 3500,
+      "description": "Custom padded cricket bat carrying covers"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416337304-627",
+    "timestamp": "2026-10-19T13:25:37.304Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "PURCHASE_ORDER_RECEIVED",
+    "entity": "purchase",
+    "entityId": "PO-BD-1792416337296",
+    "details": {
+      "supplier": "Sialkot Master Bats Ltd",
+      "total": 92000
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416337299-764",
+    "timestamp": "2026-10-19T13:25:37.299Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "PURCHASE_ORDER_CREATED",
+    "entity": "purchase",
+    "entityId": "PO-BD-1792416337296",
+    "details": {
+      "supplier": "Sialkot Master Bats Ltd",
+      "total": 92000,
+      "itemsCount": 1
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416337295-130",
+    "timestamp": "2026-10-19T13:25:37.295Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "SUPPLIER_CREATED",
+    "entity": "supplier",
+    "entityId": "sup-7294",
+    "details": {
+      "name": "Sialkot Master Bats Ltd"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416337289-308",
+    "timestamp": "2026-10-19T13:25:37.289Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "ORDER_STATUS_UPDATED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792416337267",
+    "details": {
+      "oldStatus": "shipped",
+      "newStatus": "cancelled",
+      "note": "Order cancelled by admin. Inventory restored to Dhaka warehouse. Reason: Customer requested cancellation prior to handover"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416337286-504",
+    "timestamp": "2026-10-19T13:25:37.286Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "STOCK_ADJUSTED",
+    "entity": "inventory",
+    "entityId": "PRD-1792416337238",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792416337198",
+      "delta": 2,
+      "oldStock": 20,
+      "newStock": 22,
+      "reason": "Restock due to order cancellation: Customer requested cancellation prior to handover"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416337281-970",
+    "timestamp": "2026-10-19T13:25:37.281Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "ORDER_PAYMENT_UPDATED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792416337267",
+    "details": {
+      "oldStatus": "pending",
+      "newStatus": "paid",
+      "amount": 28000
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416337277-645",
+    "timestamp": "2026-10-19T13:25:37.277Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "ORDER_STATUS_UPDATED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792416337267",
+    "details": {
+      "oldStatus": "pending",
+      "newStatus": "shipped"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416337270-972",
+    "timestamp": "2026-10-19T13:25:37.270Z",
+    "actor": "Customer Checkout",
+    "role": "admin",
+    "action": "ORDER_PLACED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792416337267",
+    "details": {
+      "total": 28000,
+      "itemsCount": 1,
+      "paymentMethod": "COD"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416337262-762",
+    "timestamp": "2026-10-19T13:25:37.262Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "STOCK_ADJUSTED",
+    "entity": "inventory",
+    "entityId": "PRD-1792416337238",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792416337198",
+      "delta": -1,
+      "oldStock": 23,
+      "newStock": 22,
+      "reason": "Physical count reconciliation. Recorded: 23, Counted: 22. Reason: End-of-month physical warehouse count discrepancy"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416337257-362",
+    "timestamp": "2026-10-19T13:25:37.257Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "STOCK_ADJUSTED",
+    "entity": "inventory",
+    "entityId": "PRD-1792416337238",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792416337198",
+      "delta": -2,
+      "oldStock": 25,
+      "newStock": 23,
+      "reason": "Cracked handle during moisture testing"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416337253-711",
+    "timestamp": "2026-10-19T13:25:37.253Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "STOCK_ADJUSTED",
+    "entity": "inventory",
+    "entityId": "PRD-1792416337238",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792416337198",
+      "delta": 5,
+      "oldStock": 20,
+      "newStock": 25,
+      "reason": "Urgent warehouse batch intake (Received from Sialkot emergency flight)"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416337245-615",
+    "timestamp": "2026-10-19T13:25:37.245Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "PRODUCT_UPDATED",
+    "entity": "product",
+    "entityId": "PRD-1792416337238",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792416337198",
+      "title": "Gazi Test Special English Willow Bat",
+      "price": 14000
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416337240-318",
+    "timestamp": "2026-10-19T13:25:37.240Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "PRODUCT_CREATED",
+    "entity": "product",
+    "entityId": "PRD-1792416337238",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792416337198",
+      "title": "Gazi Test Special English Willow Bat",
+      "price": 13500,
+      "stock": 20
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416337234-447",
+    "timestamp": "2026-10-19T13:25:37.234Z",
+    "actor": "admin",
+    "role": "super_admin",
+    "action": "LOGIN_SUCCESS",
+    "entity": "auth",
+    "entityId": "adm-001",
+    "details": {
+      "message": "Successful admin login from web console"
+    },
+    "ip": "::1"
+  },
+  {
+    "id": "LOG-1792416337228-804",
+    "timestamp": "2026-10-19T13:25:37.228Z",
+    "actor": "admin",
+    "role": "super_admin",
+    "action": "LOGIN_FAILED",
+    "entity": "auth",
+    "entityId": "adm-001",
+    "details": {
+      "reason": "Incorrect password",
+      "ip": "::1"
+    },
+    "ip": "::1"
+  },
+  {
+    "id": "LOG-1792416337149-563",
+    "timestamp": "2026-10-19T13:25:37.149Z",
+    "actor": "admin",
+    "role": "super_admin",
+    "action": "LOGIN_SUCCESS",
+    "entity": "auth",
+    "entityId": "adm-001",
+    "details": {
+      "message": "Successful admin login from web console"
+    },
+    "ip": "::1"
+  },
+  {
+    "id": "LOG-1792416337141-820",
+    "timestamp": "2026-10-19T13:25:37.141Z",
+    "actor": "Customer Checkout",
+    "role": "admin",
+    "action": "ORDER_PLACED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792416337137",
+    "details": {
+      "total": 12960,
+      "itemsCount": 1,
+      "paymentMethod": "cod"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416277882-329",
+    "timestamp": "2026-10-19T13:24:37.882Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "PRODUCT_DELETED",
+    "entity": "product",
+    "entityId": "PRD-1792416277799",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792416277757",
+      "title": "Gazi Test Special English Willow Bat"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416277868-629",
+    "timestamp": "2026-10-19T13:24:37.869Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "EXPENSE_RECORDED",
+    "entity": "expense",
+    "entityId": "EXP-1792416277867",
+    "details": {
+      "category": "Packaging",
+      "amount": 3500,
+      "description": "Custom padded cricket bat carrying covers"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416277864-372",
+    "timestamp": "2026-10-19T13:24:37.864Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "PURCHASE_ORDER_RECEIVED",
+    "entity": "purchase",
+    "entityId": "PO-BD-1792416277856",
+    "details": {
+      "supplier": "Sialkot Master Bats Ltd",
+      "total": 92000
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416277859-351",
+    "timestamp": "2026-10-19T13:24:37.859Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "PURCHASE_ORDER_CREATED",
+    "entity": "purchase",
+    "entityId": "PO-BD-1792416277856",
+    "details": {
+      "supplier": "Sialkot Master Bats Ltd",
+      "total": 92000,
+      "itemsCount": 1
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416277855-846",
+    "timestamp": "2026-10-19T13:24:37.855Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "SUPPLIER_CREATED",
+    "entity": "supplier",
+    "entityId": "sup-7854",
+    "details": {
+      "name": "Sialkot Master Bats Ltd"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416277850-252",
+    "timestamp": "2026-10-19T13:24:37.850Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "ORDER_STATUS_UPDATED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792416277829",
+    "details": {
+      "oldStatus": "shipped",
+      "newStatus": "cancelled",
+      "note": "Order cancelled by admin. Inventory restored to Dhaka warehouse. Reason: Customer requested cancellation prior to handover"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416277847-763",
+    "timestamp": "2026-10-19T13:24:37.847Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "STOCK_ADJUSTED",
+    "entity": "inventory",
+    "entityId": "PRD-1792416277799",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792416277757",
+      "delta": 2,
+      "oldStock": 20,
+      "newStock": 22,
+      "reason": "Restock due to order cancellation: Customer requested cancellation prior to handover"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416277843-668",
+    "timestamp": "2026-10-19T13:24:37.843Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "ORDER_PAYMENT_UPDATED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792416277829",
+    "details": {
+      "oldStatus": "pending",
+      "newStatus": "paid",
+      "amount": 28000
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416277839-828",
+    "timestamp": "2026-10-19T13:24:37.839Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "ORDER_STATUS_UPDATED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792416277829",
+    "details": {
+      "oldStatus": "pending",
+      "newStatus": "shipped"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416277832-553",
+    "timestamp": "2026-10-19T13:24:37.832Z",
+    "actor": "Customer Checkout",
+    "role": "admin",
+    "action": "ORDER_PLACED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792416277829",
+    "details": {
+      "total": 28000,
+      "itemsCount": 1,
+      "paymentMethod": "COD"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416277824-190",
+    "timestamp": "2026-10-19T13:24:37.824Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "STOCK_ADJUSTED",
+    "entity": "inventory",
+    "entityId": "PRD-1792416277799",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792416277757",
+      "delta": -1,
+      "oldStock": 23,
+      "newStock": 22,
+      "reason": "Physical count reconciliation. Recorded: 23, Counted: 22. Reason: End-of-month physical warehouse count discrepancy"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416277819-717",
+    "timestamp": "2026-10-19T13:24:37.819Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "STOCK_ADJUSTED",
+    "entity": "inventory",
+    "entityId": "PRD-1792416277799",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792416277757",
+      "delta": -2,
+      "oldStock": 25,
+      "newStock": 23,
+      "reason": "Cracked handle during moisture testing"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416277813-387",
+    "timestamp": "2026-10-19T13:24:37.813Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "STOCK_ADJUSTED",
+    "entity": "inventory",
+    "entityId": "PRD-1792416277799",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792416277757",
+      "delta": 5,
+      "oldStock": 20,
+      "newStock": 25,
+      "reason": "Urgent warehouse batch intake (Received from Sialkot emergency flight)"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416277806-662",
+    "timestamp": "2026-10-19T13:24:37.806Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "PRODUCT_UPDATED",
+    "entity": "product",
+    "entityId": "PRD-1792416277799",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792416277757",
+      "title": "Gazi Test Special English Willow Bat",
+      "price": 14000
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416277801-234",
+    "timestamp": "2026-10-19T13:24:37.801Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "PRODUCT_CREATED",
+    "entity": "product",
+    "entityId": "PRD-1792416277799",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792416277757",
+      "title": "Gazi Test Special English Willow Bat",
+      "price": 13500,
+      "stock": 20
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792416277794-522",
+    "timestamp": "2026-10-19T13:24:37.794Z",
+    "actor": "admin",
+    "role": "super_admin",
+    "action": "LOGIN_SUCCESS",
+    "entity": "auth",
+    "entityId": "adm-001",
+    "details": {
+      "message": "Successful admin login from web console"
+    },
+    "ip": "::1"
+  },
+  {
+    "id": "LOG-1792416277788-197",
+    "timestamp": "2026-10-19T13:24:37.788Z",
+    "actor": "admin",
+    "role": "super_admin",
+    "action": "LOGIN_FAILED",
+    "entity": "auth",
+    "entityId": "adm-001",
+    "details": {
+      "reason": "Incorrect password",
+      "ip": "::1"
+    },
+    "ip": "::1"
+  },
+  {
+    "id": "LOG-1792416277704-423",
+    "timestamp": "2026-10-19T13:24:37.704Z",
+    "actor": "admin",
+    "role": "super_admin",
+    "action": "LOGIN_SUCCESS",
+    "entity": "auth",
+    "entityId": "adm-001",
+    "details": {
+      "message": "Successful admin login from web console"
+    },
+    "ip": "::1"
+  },
+  {
+    "id": "LOG-1792416277697-362",
+    "timestamp": "2026-10-19T13:24:37.697Z",
+    "actor": "Customer Checkout",
+    "role": "admin",
+    "action": "ORDER_PLACED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792416277694",
+    "details": {
+      "total": 12960,
+      "itemsCount": 1,
+      "paymentMethod": "cod"
     },
     "ip": "127.0.0.1"
   },
@@ -86,23 +1729,6 @@
     "ip": "127.0.0.1"
   },
   {
-    "id": "LOG-1792414769033-284",
-    "timestamp": "2026-10-19T12:59:29.033Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792414768972",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792414768927",
-      "delta": 2,
-      "oldStock": 20,
-      "newStock": 22,
-      "reason": "Restock due to order cancellation: Customer requested cancellation prior to handover"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
     "id": "LOG-1792414769026-531",
     "timestamp": "2026-10-19T12:59:29.026Z",
     "actor": "admin",
@@ -147,88 +1773,6 @@
     "ip": "127.0.0.1"
   },
   {
-    "id": "LOG-1792414769002-983",
-    "timestamp": "2026-10-19T12:59:29.002Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792414768972",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792414768927",
-      "delta": -1,
-      "oldStock": 23,
-      "newStock": 22,
-      "reason": "Physical count reconciliation. Recorded: 23, Counted: 22. Reason: End-of-month physical warehouse count discrepancy"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792414768995-292",
-    "timestamp": "2026-10-19T12:59:28.995Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792414768972",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792414768927",
-      "delta": -2,
-      "oldStock": 25,
-      "newStock": 23,
-      "reason": "Cracked handle during moisture testing"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792414768990-529",
-    "timestamp": "2026-10-19T12:59:28.990Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792414768972",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792414768927",
-      "delta": 5,
-      "oldStock": 20,
-      "newStock": 25,
-      "reason": "Urgent warehouse batch intake (Received from Sialkot emergency flight)"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792414768981-356",
-    "timestamp": "2026-10-19T12:59:28.981Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "PRODUCT_UPDATED",
-    "entity": "product",
-    "entityId": "PRD-1792414768972",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792414768927",
-      "title": "Gazi Test Special English Willow Bat",
-      "price": 14000
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792414768974-695",
-    "timestamp": "2026-10-19T12:59:28.974Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "PRODUCT_CREATED",
-    "entity": "product",
-    "entityId": "PRD-1792414768972",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792414768927",
-      "title": "Gazi Test Special English Willow Bat",
-      "price": 13500,
-      "stock": 20
-    },
-    "ip": "127.0.0.1"
-  },
-  {
     "id": "LOG-1792414768967-792",
     "timestamp": "2026-10-19T12:59:28.967Z",
     "actor": "admin",
@@ -267,20 +1811,6 @@
       "total": 12960,
       "itemsCount": 1,
       "paymentMethod": "cod"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792414703982-631",
-    "timestamp": "2026-10-19T12:58:23.982Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "PRODUCT_DELETED",
-    "entity": "product",
-    "entityId": "PRD-1792414703891",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792414703850",
-      "title": "Gazi Test Special English Willow Bat"
     },
     "ip": "127.0.0.1"
   },
@@ -357,23 +1887,6 @@
     "ip": "127.0.0.1"
   },
   {
-    "id": "LOG-1792414703944-944",
-    "timestamp": "2026-10-19T12:58:23.944Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792414703891",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792414703850",
-      "delta": 2,
-      "oldStock": 20,
-      "newStock": 22,
-      "reason": "Restock due to order cancellation: Customer requested cancellation prior to handover"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
     "id": "LOG-1792414703939-905",
     "timestamp": "2026-10-19T12:58:23.939Z",
     "actor": "admin",
@@ -418,88 +1931,6 @@
     "ip": "127.0.0.1"
   },
   {
-    "id": "LOG-1792414703918-266",
-    "timestamp": "2026-10-19T12:58:23.918Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792414703891",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792414703850",
-      "delta": -1,
-      "oldStock": 23,
-      "newStock": 22,
-      "reason": "Physical count reconciliation. Recorded: 23, Counted: 22. Reason: End-of-month physical warehouse count discrepancy"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792414703912-664",
-    "timestamp": "2026-10-19T12:58:23.912Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792414703891",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792414703850",
-      "delta": -2,
-      "oldStock": 25,
-      "newStock": 23,
-      "reason": "Cracked handle during moisture testing"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792414703907-840",
-    "timestamp": "2026-10-19T12:58:23.907Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792414703891",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792414703850",
-      "delta": 5,
-      "oldStock": 20,
-      "newStock": 25,
-      "reason": "Urgent warehouse batch intake (Received from Sialkot emergency flight)"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792414703898-727",
-    "timestamp": "2026-10-19T12:58:23.898Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "PRODUCT_UPDATED",
-    "entity": "product",
-    "entityId": "PRD-1792414703891",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792414703850",
-      "title": "Gazi Test Special English Willow Bat",
-      "price": 14000
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792414703893-964",
-    "timestamp": "2026-10-19T12:58:23.893Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "PRODUCT_CREATED",
-    "entity": "product",
-    "entityId": "PRD-1792414703891",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792414703850",
-      "title": "Gazi Test Special English Willow Bat",
-      "price": 13500,
-      "stock": 20
-    },
-    "ip": "127.0.0.1"
-  },
-  {
     "id": "LOG-1792414703886-174",
     "timestamp": "2026-10-19T12:58:23.886Z",
     "actor": "admin",
@@ -538,20 +1969,6 @@
       "total": 12960,
       "itemsCount": 1,
       "paymentMethod": "cod"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792413837495-445",
-    "timestamp": "2026-10-19T12:43:57.495Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "PRODUCT_DELETED",
-    "entity": "product",
-    "entityId": "PRD-1792413837405",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792413837364",
-      "title": "Gazi Test Special English Willow Bat"
     },
     "ip": "127.0.0.1"
   },
@@ -628,23 +2045,6 @@
     "ip": "127.0.0.1"
   },
   {
-    "id": "LOG-1792413837457-842",
-    "timestamp": "2026-10-19T12:43:57.457Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792413837405",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792413837364",
-      "delta": 2,
-      "oldStock": 20,
-      "newStock": 22,
-      "reason": "Restock due to order cancellation: Customer requested cancellation prior to handover"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
     "id": "LOG-1792413837451-772",
     "timestamp": "2026-10-19T12:43:57.451Z",
     "actor": "admin",
@@ -685,88 +2085,6 @@
       "total": 28000,
       "itemsCount": 1,
       "paymentMethod": "COD"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792413837430-972",
-    "timestamp": "2026-10-19T12:43:57.430Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792413837405",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792413837364",
-      "delta": -1,
-      "oldStock": 23,
-      "newStock": 22,
-      "reason": "Physical count reconciliation. Recorded: 23, Counted: 22. Reason: End-of-month physical warehouse count discrepancy"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792413837425-433",
-    "timestamp": "2026-10-19T12:43:57.425Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792413837405",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792413837364",
-      "delta": -2,
-      "oldStock": 25,
-      "newStock": 23,
-      "reason": "Cracked handle during moisture testing"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792413837421-302",
-    "timestamp": "2026-10-19T12:43:57.421Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792413837405",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792413837364",
-      "delta": 5,
-      "oldStock": 20,
-      "newStock": 25,
-      "reason": "Urgent warehouse batch intake (Received from Sialkot emergency flight)"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792413837412-783",
-    "timestamp": "2026-10-19T12:43:57.412Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "PRODUCT_UPDATED",
-    "entity": "product",
-    "entityId": "PRD-1792413837405",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792413837364",
-      "title": "Gazi Test Special English Willow Bat",
-      "price": 14000
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792413837407-196",
-    "timestamp": "2026-10-19T12:43:57.407Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "PRODUCT_CREATED",
-    "entity": "product",
-    "entityId": "PRD-1792413837405",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792413837364",
-      "title": "Gazi Test Special English Willow Bat",
-      "price": 13500,
-      "stock": 20
     },
     "ip": "127.0.0.1"
   },
@@ -824,20 +2142,6 @@
       "message": "Successful admin login from web console"
     },
     "ip": "::1"
-  },
-  {
-    "id": "LOG-1792404378088-506",
-    "timestamp": "2026-10-19T10:06:18.088Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "PRODUCT_DELETED",
-    "entity": "product",
-    "entityId": "PRD-1792404377981",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792404377938",
-      "title": "Gazi Test Special English Willow Bat"
-    },
-    "ip": "127.0.0.1"
   },
   {
     "id": "LOG-1792404378069-777",
@@ -912,23 +2216,6 @@
     "ip": "127.0.0.1"
   },
   {
-    "id": "LOG-1792404378041-592",
-    "timestamp": "2026-10-19T10:06:18.041Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792404377981",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792404377938",
-      "delta": 2,
-      "oldStock": 20,
-      "newStock": 22,
-      "reason": "Restock due to order cancellation: Customer requested cancellation prior to handover"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
     "id": "LOG-1792404378035-375",
     "timestamp": "2026-10-19T10:06:18.035Z",
     "actor": "admin",
@@ -969,88 +2256,6 @@
       "total": 28000,
       "itemsCount": 1,
       "paymentMethod": "COD"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792404378011-950",
-    "timestamp": "2026-10-19T10:06:18.011Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792404377981",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792404377938",
-      "delta": -1,
-      "oldStock": 23,
-      "newStock": 22,
-      "reason": "Physical count reconciliation. Recorded: 23, Counted: 22. Reason: End-of-month physical warehouse count discrepancy"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792404378005-704",
-    "timestamp": "2026-10-19T10:06:18.005Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792404377981",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792404377938",
-      "delta": -2,
-      "oldStock": 25,
-      "newStock": 23,
-      "reason": "Cracked handle during moisture testing"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792404377999-174",
-    "timestamp": "2026-10-19T10:06:17.999Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792404377981",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792404377938",
-      "delta": 5,
-      "oldStock": 20,
-      "newStock": 25,
-      "reason": "Urgent warehouse batch intake (Received from Sialkot emergency flight)"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792404377989-293",
-    "timestamp": "2026-10-19T10:06:17.989Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "PRODUCT_UPDATED",
-    "entity": "product",
-    "entityId": "PRD-1792404377981",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792404377938",
-      "title": "Gazi Test Special English Willow Bat",
-      "price": 14000
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792404377983-440",
-    "timestamp": "2026-10-19T10:06:17.983Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "PRODUCT_CREATED",
-    "entity": "product",
-    "entityId": "PRD-1792404377981",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792404377938",
-      "title": "Gazi Test Special English Willow Bat",
-      "price": 13500,
-      "stock": 20
     },
     "ip": "127.0.0.1"
   },
@@ -1108,20 +2313,6 @@
       "total": 12960,
       "itemsCount": 1,
       "paymentMethod": "cod"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792404339676-162",
-    "timestamp": "2026-10-19T10:05:39.676Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "PRODUCT_DELETED",
-    "entity": "product",
-    "entityId": "PRD-1792404339536",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792404339477",
-      "title": "Gazi Test Special English Willow Bat"
     },
     "ip": "127.0.0.1"
   },
@@ -1198,23 +2389,6 @@
     "ip": "127.0.0.1"
   },
   {
-    "id": "LOG-1792404339604-575",
-    "timestamp": "2026-10-19T10:05:39.604Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792404339536",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792404339477",
-      "delta": 2,
-      "oldStock": 20,
-      "newStock": 22,
-      "reason": "Restock due to order cancellation: Customer requested cancellation prior to handover"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
     "id": "LOG-1792404339597-416",
     "timestamp": "2026-10-19T10:05:39.597Z",
     "actor": "admin",
@@ -1255,88 +2429,6 @@
       "total": 28000,
       "itemsCount": 1,
       "paymentMethod": "COD"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792404339570-617",
-    "timestamp": "2026-10-19T10:05:39.570Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792404339536",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792404339477",
-      "delta": -1,
-      "oldStock": 23,
-      "newStock": 22,
-      "reason": "Physical count reconciliation. Recorded: 23, Counted: 22. Reason: End-of-month physical warehouse count discrepancy"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792404339562-737",
-    "timestamp": "2026-10-19T10:05:39.562Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792404339536",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792404339477",
-      "delta": -2,
-      "oldStock": 25,
-      "newStock": 23,
-      "reason": "Cracked handle during moisture testing"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792404339557-589",
-    "timestamp": "2026-10-19T10:05:39.557Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792404339536",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792404339477",
-      "delta": 5,
-      "oldStock": 20,
-      "newStock": 25,
-      "reason": "Urgent warehouse batch intake (Received from Sialkot emergency flight)"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792404339546-465",
-    "timestamp": "2026-10-19T10:05:39.546Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "PRODUCT_UPDATED",
-    "entity": "product",
-    "entityId": "PRD-1792404339536",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792404339477",
-      "title": "Gazi Test Special English Willow Bat",
-      "price": 14000
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792404339538-181",
-    "timestamp": "2026-10-19T10:05:39.538Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "PRODUCT_CREATED",
-    "entity": "product",
-    "entityId": "PRD-1792404339536",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792404339477",
-      "title": "Gazi Test Special English Willow Bat",
-      "price": 13500,
-      "stock": 20
     },
     "ip": "127.0.0.1"
   },
@@ -1440,23 +2532,6 @@
     "ip": "127.0.0.1"
   },
   {
-    "id": "LOG-1792404091418-321",
-    "timestamp": "2026-10-19T10:01:31.418Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792404091352",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792404091291",
-      "delta": 2,
-      "oldStock": 20,
-      "newStock": 22,
-      "reason": "Restock due to order cancellation: Customer requested cancellation prior to handover"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
     "id": "LOG-1792404091412-564",
     "timestamp": "2026-10-19T10:01:31.412Z",
     "actor": "admin",
@@ -1497,88 +2572,6 @@
       "total": 28000,
       "itemsCount": 1,
       "paymentMethod": "COD"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792404091385-981",
-    "timestamp": "2026-10-19T10:01:31.385Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792404091352",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792404091291",
-      "delta": -1,
-      "oldStock": 23,
-      "newStock": 22,
-      "reason": "Physical count reconciliation. Recorded: 23, Counted: 22. Reason: End-of-month physical warehouse count discrepancy"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792404091378-894",
-    "timestamp": "2026-10-19T10:01:31.378Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792404091352",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792404091291",
-      "delta": -2,
-      "oldStock": 25,
-      "newStock": 23,
-      "reason": "Cracked handle during moisture testing"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792404091373-176",
-    "timestamp": "2026-10-19T10:01:31.373Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792404091352",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792404091291",
-      "delta": 5,
-      "oldStock": 20,
-      "newStock": 25,
-      "reason": "Urgent warehouse batch intake (Received from Sialkot emergency flight)"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792404091362-106",
-    "timestamp": "2026-10-19T10:01:31.362Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "PRODUCT_UPDATED",
-    "entity": "product",
-    "entityId": "PRD-1792404091352",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792404091291",
-      "title": "Gazi Test Special English Willow Bat",
-      "price": 14000
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792404091354-797",
-    "timestamp": "2026-10-19T10:01:31.354Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "PRODUCT_CREATED",
-    "entity": "product",
-    "entityId": "PRD-1792404091352",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792404091291",
-      "title": "Gazi Test Special English Willow Bat",
-      "price": 13500,
-      "stock": 20
     },
     "ip": "127.0.0.1"
   },
@@ -1637,23 +2630,6 @@
     "ip": "127.0.0.1"
   },
   {
-    "id": "LOG-1792404019278-712",
-    "timestamp": "2026-10-19T10:00:19.278Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792404019221",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792404019175",
-      "delta": 2,
-      "oldStock": 20,
-      "newStock": 22,
-      "reason": "Restock due to order cancellation: Customer requested cancellation prior to handover"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
     "id": "LOG-1792404019273-252",
     "timestamp": "2026-10-19T10:00:19.273Z",
     "actor": "admin",
@@ -1694,88 +2670,6 @@
       "total": 28000,
       "itemsCount": 1,
       "paymentMethod": "COD"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792404019249-600",
-    "timestamp": "2026-10-19T10:00:19.249Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792404019221",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792404019175",
-      "delta": -1,
-      "oldStock": 23,
-      "newStock": 22,
-      "reason": "Physical count reconciliation. Recorded: 23, Counted: 22. Reason: End-of-month physical warehouse count discrepancy"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792404019243-232",
-    "timestamp": "2026-10-19T10:00:19.243Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792404019221",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792404019175",
-      "delta": -2,
-      "oldStock": 25,
-      "newStock": 23,
-      "reason": "Cracked handle during moisture testing"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792404019238-218",
-    "timestamp": "2026-10-19T10:00:19.238Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792404019221",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792404019175",
-      "delta": 5,
-      "oldStock": 20,
-      "newStock": 25,
-      "reason": "Urgent warehouse batch intake (Received from Sialkot emergency flight)"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792404019229-820",
-    "timestamp": "2026-10-19T10:00:19.229Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "PRODUCT_UPDATED",
-    "entity": "product",
-    "entityId": "PRD-1792404019221",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792404019175",
-      "title": "Gazi Test Special English Willow Bat",
-      "price": 14000
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792404019224-331",
-    "timestamp": "2026-10-19T10:00:19.224Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "PRODUCT_CREATED",
-    "entity": "product",
-    "entityId": "PRD-1792404019221",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792404019175",
-      "title": "Gazi Test Special English Willow Bat",
-      "price": 13500,
-      "stock": 20
     },
     "ip": "127.0.0.1"
   },
@@ -1834,23 +2728,6 @@
     "ip": "127.0.0.1"
   },
   {
-    "id": "LOG-1792403981190-137",
-    "timestamp": "2026-10-19T09:59:41.190Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792403981132",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792403981087",
-      "delta": 2,
-      "oldStock": 20,
-      "newStock": 22,
-      "reason": "Restock due to order cancellation: Customer requested cancellation prior to handover"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
     "id": "LOG-1792403981183-911",
     "timestamp": "2026-10-19T09:59:41.183Z",
     "actor": "admin",
@@ -1891,88 +2768,6 @@
       "total": 28000,
       "itemsCount": 1,
       "paymentMethod": "COD"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792403981160-645",
-    "timestamp": "2026-10-19T09:59:41.160Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792403981132",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792403981087",
-      "delta": -1,
-      "oldStock": 23,
-      "newStock": 22,
-      "reason": "Physical count reconciliation. Recorded: 23, Counted: 22. Reason: End-of-month physical warehouse count discrepancy"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792403981154-326",
-    "timestamp": "2026-10-19T09:59:41.154Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792403981132",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792403981087",
-      "delta": -2,
-      "oldStock": 25,
-      "newStock": 23,
-      "reason": "Cracked handle during moisture testing"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792403981149-693",
-    "timestamp": "2026-10-19T09:59:41.149Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792403981132",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792403981087",
-      "delta": 5,
-      "oldStock": 20,
-      "newStock": 25,
-      "reason": "Urgent warehouse batch intake (Received from Sialkot emergency flight)"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792403981140-612",
-    "timestamp": "2026-10-19T09:59:41.140Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "PRODUCT_UPDATED",
-    "entity": "product",
-    "entityId": "PRD-1792403981132",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792403981087",
-      "title": "Gazi Test Special English Willow Bat",
-      "price": 14000
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792403981134-314",
-    "timestamp": "2026-10-19T09:59:41.134Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "PRODUCT_CREATED",
-    "entity": "product",
-    "entityId": "PRD-1792403981132",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792403981087",
-      "title": "Gazi Test Special English Willow Bat",
-      "price": 13500,
-      "stock": 20
     },
     "ip": "127.0.0.1"
   },
@@ -2031,23 +2826,6 @@
     "ip": "127.0.0.1"
   },
   {
-    "id": "LOG-1792403964819-180",
-    "timestamp": "2026-10-19T09:59:24.819Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792403964757",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792403964696",
-      "delta": 2,
-      "oldStock": 20,
-      "newStock": 22,
-      "reason": "Restock due to order cancellation: Customer requested cancellation prior to handover"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
     "id": "LOG-1792403964813-489",
     "timestamp": "2026-10-19T09:59:24.813Z",
     "actor": "admin",
@@ -2088,88 +2866,6 @@
       "total": 28000,
       "itemsCount": 1,
       "paymentMethod": "COD"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792403964787-205",
-    "timestamp": "2026-10-19T09:59:24.787Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792403964757",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792403964696",
-      "delta": -1,
-      "oldStock": 23,
-      "newStock": 22,
-      "reason": "Physical count reconciliation. Recorded: 23, Counted: 22. Reason: End-of-month physical warehouse count discrepancy"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792403964781-950",
-    "timestamp": "2026-10-19T09:59:24.781Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792403964757",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792403964696",
-      "delta": -2,
-      "oldStock": 25,
-      "newStock": 23,
-      "reason": "Cracked handle during moisture testing"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792403964776-198",
-    "timestamp": "2026-10-19T09:59:24.776Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792403964757",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792403964696",
-      "delta": 5,
-      "oldStock": 20,
-      "newStock": 25,
-      "reason": "Urgent warehouse batch intake (Received from Sialkot emergency flight)"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792403964766-400",
-    "timestamp": "2026-10-19T09:59:24.766Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "PRODUCT_UPDATED",
-    "entity": "product",
-    "entityId": "PRD-1792403964757",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792403964696",
-      "title": "Gazi Test Special English Willow Bat",
-      "price": 14000
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792403964759-447",
-    "timestamp": "2026-10-19T09:59:24.759Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "PRODUCT_CREATED",
-    "entity": "product",
-    "entityId": "PRD-1792403964757",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792403964696",
-      "title": "Gazi Test Special English Willow Bat",
-      "price": 13500,
-      "stock": 20
     },
     "ip": "127.0.0.1"
   },
@@ -2228,23 +2924,6 @@
     "ip": "127.0.0.1"
   },
   {
-    "id": "LOG-1792403882828-800",
-    "timestamp": "2026-10-19T09:58:02.828Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792403882766",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792403882706",
-      "delta": 2,
-      "oldStock": 20,
-      "newStock": 22,
-      "reason": "Restock due to order cancellation: Customer requested cancellation prior to handover"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
     "id": "LOG-1792403882822-749",
     "timestamp": "2026-10-19T09:58:02.822Z",
     "actor": "admin",
@@ -2289,88 +2968,6 @@
     "ip": "127.0.0.1"
   },
   {
-    "id": "LOG-1792403882797-477",
-    "timestamp": "2026-10-19T09:58:02.797Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792403882766",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792403882706",
-      "delta": -1,
-      "oldStock": 23,
-      "newStock": 22,
-      "reason": "Physical count reconciliation. Recorded: 23, Counted: 22. Reason: End-of-month physical warehouse count discrepancy"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792403882791-103",
-    "timestamp": "2026-10-19T09:58:02.791Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792403882766",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792403882706",
-      "delta": -2,
-      "oldStock": 25,
-      "newStock": 23,
-      "reason": "Cracked handle during moisture testing"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792403882786-226",
-    "timestamp": "2026-10-19T09:58:02.786Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792403882766",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792403882706",
-      "delta": 5,
-      "oldStock": 20,
-      "newStock": 25,
-      "reason": "Urgent warehouse batch intake (Received from Sialkot emergency flight)"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792403882775-902",
-    "timestamp": "2026-10-19T09:58:02.775Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "PRODUCT_UPDATED",
-    "entity": "product",
-    "entityId": "PRD-1792403882766",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792403882706",
-      "title": "Gazi Test Special English Willow Bat",
-      "price": 14000
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792403882768-677",
-    "timestamp": "2026-10-19T09:58:02.768Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "PRODUCT_CREATED",
-    "entity": "product",
-    "entityId": "PRD-1792403882766",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792403882706",
-      "title": "Gazi Test Special English Willow Bat",
-      "price": 13500,
-      "stock": 20
-    },
-    "ip": "127.0.0.1"
-  },
-  {
     "id": "LOG-1792403882758-214",
     "timestamp": "2026-10-19T09:58:02.758Z",
     "actor": "admin",
@@ -2409,88 +3006,6 @@
       "total": 28000,
       "itemsCount": 1,
       "paymentMethod": "COD"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792403597746-318",
-    "timestamp": "2026-10-19T09:53:17.746Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792403597715",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792403597653",
-      "delta": -1,
-      "oldStock": 23,
-      "newStock": 22,
-      "reason": "Physical count reconciliation. Recorded: 23, Counted: 22. Reason: End-of-month physical warehouse count discrepancy"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792403597740-741",
-    "timestamp": "2026-10-19T09:53:17.740Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792403597715",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792403597653",
-      "delta": -2,
-      "oldStock": 25,
-      "newStock": 23,
-      "reason": "Cracked handle during moisture testing"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792403597734-702",
-    "timestamp": "2026-10-19T09:53:17.734Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792403597715",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792403597653",
-      "delta": 5,
-      "oldStock": 20,
-      "newStock": 25,
-      "reason": "Urgent warehouse batch intake (Received from Sialkot emergency flight)"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792403597724-945",
-    "timestamp": "2026-10-19T09:53:17.724Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "PRODUCT_UPDATED",
-    "entity": "product",
-    "entityId": "PRD-1792403597715",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792403597653",
-      "title": "Gazi Test Special English Willow Bat",
-      "price": 14000
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792403597717-563",
-    "timestamp": "2026-10-19T09:53:17.717Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "PRODUCT_CREATED",
-    "entity": "product",
-    "entityId": "PRD-1792403597715",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792403597653",
-      "title": "Gazi Test Special English Willow Bat",
-      "price": 13500,
-      "stock": 20
     },
     "ip": "127.0.0.1"
   },
@@ -2575,88 +3090,6 @@
       "total": 1400000,
       "itemsCount": 1,
       "paymentMethod": "COD"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792403348131-348",
-    "timestamp": "2026-10-19T09:49:08.131Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792403348099",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792403348031",
-      "delta": -1,
-      "oldStock": 23,
-      "newStock": 22,
-      "reason": "Physical count reconciliation. Recorded: 23, Counted: 22. Reason: End-of-month physical warehouse count discrepancy"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792403348125-749",
-    "timestamp": "2026-10-19T09:49:08.125Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792403348099",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792403348031",
-      "delta": -2,
-      "oldStock": 25,
-      "newStock": 23,
-      "reason": "Cracked handle during moisture testing"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792403348120-598",
-    "timestamp": "2026-10-19T09:49:08.120Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "STOCK_ADJUSTED",
-    "entity": "inventory",
-    "entityId": "PRD-1792403348099",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792403348031",
-      "delta": 5,
-      "oldStock": 20,
-      "newStock": 25,
-      "reason": "Urgent warehouse batch intake (Received from Sialkot emergency flight)"
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792403348109-142",
-    "timestamp": "2026-10-19T09:49:08.109Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "PRODUCT_UPDATED",
-    "entity": "product",
-    "entityId": "PRD-1792403348099",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792403348031",
-      "title": "Gazi Test Special English Willow Bat",
-      "price": 14000
-    },
-    "ip": "127.0.0.1"
-  },
-  {
-    "id": "LOG-1792403348102-643",
-    "timestamp": "2026-10-19T09:49:08.102Z",
-    "actor": "admin",
-    "role": "admin",
-    "action": "PRODUCT_CREATED",
-    "entity": "product",
-    "entityId": "PRD-1792403348099",
-    "details": {
-      "sku": "GZ-TEST-BAT-1792403348031",
-      "title": "Gazi Test Special English Willow Bat",
-      "price": 13500,
-      "stock": 20
     },
     "ip": "127.0.0.1"
   },

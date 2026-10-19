@@ -150,34 +150,14 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
 
     const res = await apiService.checkout(checkoutPayload);
 
-    if (res && res.order) {
+    if (res && res.success && res.order) {
       onOrderSuccess(res.order);
       clearCart();
       onClose();
     } else {
-      // Offline / Local fallback simulation
-      const fallbackOrder: CheckoutResult['order'] = {
-        orderId: `GZ-BD-${Date.now()}`,
-        trackingNumber: `GZ-TRK-${Math.floor(100000 + Math.random() * 900000)}`,
-        date: new Date().toISOString(),
-        status: 'Order Placed - Pending Verification Call from Dhaka Hub',
-        estimatedDelivery: deliveryZone === 'inside_dhaka' ? '24 to 48 Hours (Dhaka Metro)' : '48 to 72 Hours (Nationwide)',
-        courier: deliveryZone === 'inside_dhaka' ? 'Pathao Logistics / Steadfast Express' : 'Steadfast Courier / Sundarban',
-        deliveryZone,
-        paymentMethod,
-        trxId: trxId.trim() || undefined,
-        financials: {
-          currency: 'BDT',
-          symbol: '৳',
-          subtotal,
-          discount,
-          shipping: deliveryFee,
-          total: grandTotal,
-        },
-      };
-      onOrderSuccess(fallbackOrder);
-      clearCart();
-      onClose();
+      setErrors({
+        general: res?.error || 'Could not process order. Please check your network connection and details, then try again.',
+      });
     }
     setIsSubmitting(false);
   };
@@ -221,6 +201,13 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
 
         {/* Scrollable Form Body */}
         <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6 space-y-6">
+          {errors.general && (
+            <div className="p-3.5 bg-red-50 border border-red-200 text-red-700 rounded-xl text-xs flex items-center space-x-2 font-medium">
+              <AlertCircle size={16} className="shrink-0 text-red-500" />
+              <span>{errors.general}</span>
+            </div>
+          )}
+
           {/* Section 1: Customer Details */}
           <div>
             <div className="flex items-center space-x-2 text-xs font-black uppercase text-neutral-900 tracking-wider mb-3">

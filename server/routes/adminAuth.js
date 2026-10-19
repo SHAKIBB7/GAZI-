@@ -94,4 +94,22 @@ router.post('/logout', authenticateAdmin, async (req, res) => {
   res.json({ success: true, message: 'Logged out successfully' });
 });
 
+// 4. Change Admin Password
+router.post('/change-password', authenticateAdmin, async (req, res) => {
+  const { currentPassword, newPassword } = req.body;
+  if (!currentPassword || !newPassword) {
+    return res.status(400).json({ error: 'Current password and new password are required' });
+  }
+  if (newPassword.length < 8) {
+    return res.status(400).json({ error: 'New password must be at least 8 characters long' });
+  }
+
+  const success = await db.changeAdminPassword(req.admin.username, currentPassword, newPassword);
+  if (!success) {
+    return res.status(400).json({ error: 'Incorrect current password or account not found' });
+  }
+
+  res.json({ success: true, message: 'Administrative password updated successfully' });
+});
+
 export default router;

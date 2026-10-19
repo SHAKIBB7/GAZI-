@@ -1,10 +1,13 @@
+import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
+import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
 import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
 
-import { db } from './db.js';
+import { db, createBackupSnapshot } from './db.js';
 import adminAuthRouter from './routes/adminAuth.js';
 import adminProductsRouter from './routes/adminProducts.js';
 import adminInventoryRouter from './routes/adminInventory.js';
@@ -21,8 +24,39 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 4000;
 
+// Security Middleware: Helmet headers
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+    crossOriginEmbedderPolicy: false,
+  })
+);
+
+// CORS configuration: allow any origin in dev or configured frontend URL
 app.use(cors());
 app.use(express.json({ limit: '20mb' }));
+
+// Rate Limiting: General API & Administrative Brute-force protection
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 1000,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Too many requests from this IP, please try again later.' },
+});
+app.use('/api', apiLimiter);
+
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 20,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Too many administrative login attempts, please try again in 15 minutes.' },
+});
+app.use('/api/admin/auth/login', authLimiter);
+
+// Initial automatic database backup snapshot
+createBackupSnapshot();
 
 // Serve static uploaded media files from public/uploads
 const uploadsDir = path.join(__dirname, '../public/uploads');
@@ -299,11 +333,47 @@ app.use('/api/admin/reports', adminReportsRouter);
 app.use('/api/admin/audit-logs', adminAuditLogsRouter);
 app.use('/api/admin/upload', uploadRouter);
 
-// Start Server
-app.listen(PORT, () => {
+// Global Express Error Handler: prevents stack trace leaks in production
+app.use((err, req, res, next) => {
+  console.error('Unhandled server error:', err);
+  const status = err.status || 500;
+  res.status(status).json({
+    error: process.env.NODE_ENV === 'production'
+      ? 'An unexpected server error occurred. Please contact customer support.'
+      : (err.message || 'Internal server error'),
+  });
+});
+
+// Process crash safety
+process.on('uncaughtException', (err) => {
+  console.error('FATAL UNCAUGHT EXCEPTION:', err);
+});
+
+process.on('unhandledRejection', (reason) => {
+  console.error('FATAL UNHANDLED REJECTION:', reason);
+});
+
+// Start Server with Graceful Shutdown
+const server = app.listen(PORT, () => {
   console.log(`\n======================================================`);
   console.log(`🚀 Gazi Cricket Enterprise Platform API Running on port ${PORT}`);
   console.log(`📡 URL: http://localhost:${PORT}/api/health`);
   console.log(`🛡️  Admin API: http://localhost:${PORT}/api/admin/auth/me`);
   console.log(`======================================================\n`);
+});
+
+process.on('SIGTERM', () => {
+  console.log('SIGTERM signal received: closing HTTP server gracefully');
+  server.close(() => {
+    console.log('HTTP server terminated safely');
+    process.exit(0);
+  });
+});
+
+process.on('SIGINT', () => {
+  console.log('SIGINT signal received: closing HTTP server gracefully');
+  server.close(() => {
+    console.log('HTTP server terminated safely');
+    process.exit(0);
+  });
 });

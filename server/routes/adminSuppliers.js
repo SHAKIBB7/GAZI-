@@ -169,12 +169,42 @@ async function handleReceivePo(req, res) {
   }
 }
 
+// 6. DELETE SUPPLIER
+async function handleDeleteSupplier(req, res) {
+  try {
+    const deleted = await db.deleteSupplier(req.params.id, req.admin.username);
+    res.json({
+      success: true,
+      message: `Supplier '${deleted.name}' deleted successfully`,
+      supplier: deleted,
+    });
+  } catch (err) {
+    res.status(404).json({ error: err.message });
+  }
+}
+
+// 7. DELETE PURCHASE ORDER
+async function handleDeletePurchase(req, res) {
+  try {
+    const deleted = await db.deletePurchase(req.params.id, req.admin.username);
+    res.json({
+      success: true,
+      message: `Purchase order #${deleted.poNumber || deleted.id} deleted successfully`,
+      purchase: deleted,
+    });
+  } catch (err) {
+    res.status(404).json({ error: err.message });
+  }
+}
+
 // ROUTE DEFINITIONS
 router.get('/suppliers', authenticateAdmin, handleGetSuppliers);
 router.post('/suppliers', authenticateAdmin, requireRole(['super_admin', 'inventory_manager']), handleSaveSupplier);
+router.delete('/suppliers/:id', authenticateAdmin, requireRole(['super_admin']), handleDeleteSupplier);
 
 router.get('/purchases', authenticateAdmin, handleGetPurchases);
 router.post('/purchases', authenticateAdmin, requireRole(['super_admin', 'inventory_manager']), handleCreatePurchase);
+router.delete('/purchases/:id', authenticateAdmin, requireRole(['super_admin']), handleDeletePurchase);
 
 router.all('/purchases/:id/receive', authenticateAdmin, requireRole(['super_admin', 'inventory_manager']), handleReceivePo);
 router.all('/:id/receive', authenticateAdmin, requireRole(['super_admin', 'inventory_manager']), handleReceivePo);
@@ -190,6 +220,11 @@ router.post('/', authenticateAdmin, requireRole(['super_admin', 'inventory_manag
   if (req.baseUrl.includes('supplier')) return handleSaveSupplier(req, res);
   if (req.baseUrl.includes('purchase')) return handleCreatePurchase(req, res);
   return handleSaveSupplier(req, res);
+});
+
+router.delete('/:id', authenticateAdmin, requireRole(['super_admin']), (req, res) => {
+  if (req.baseUrl.includes('purchase')) return handleDeletePurchase(req, res);
+  return handleDeleteSupplier(req, res);
 });
 
 export default router;

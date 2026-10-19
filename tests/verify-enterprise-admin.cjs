@@ -21,6 +21,8 @@ let testProductId = '';
 let testSku = `GZ-TEST-BAT-${Date.now()}`;
 let testSupplierId = '';
 let testOrderId = '';
+let testPoId = '';
+let testExpenseId = '';
 
 let totalTests = 0;
 let passedTests = 0;
@@ -370,7 +372,8 @@ async function runSuite() {
       console.log('PO Creation Failed:', poRes.status, poRes.body);
     }
     assert(poRes.status === 201, 'Purchase order created in pending status');
-    const poId = poRes.body.purchase ? poRes.body.purchase.id : (poRes.body.purchaseOrder ? poRes.body.purchaseOrder.id : '');
+    testPoId = poRes.body.purchase ? poRes.body.purchase.id : (poRes.body.purchaseOrder ? poRes.body.purchaseOrder.id : '');
+    const poId = testPoId;
 
     // Receive purchase order (triggers auto stock-in & WAC calculation)
     const receivePoRes = await request('PUT', `/api/admin/purchases/${poId}/receive`, null, authToken);
@@ -400,6 +403,7 @@ async function runSuite() {
       paymentMethod: 'bKash Merchant'
     }, authToken);
     assert(expRes.status === 201, 'Operating expense recorded with HTTP 201');
+    testExpenseId = expRes.body.expense ? expRes.body.expense.id : '';
 
     const expListRes = await request('GET', '/api/admin/expenses', null, authToken);
     assert(expListRes.status === 200, 'Fetched expenses list');
@@ -461,8 +465,22 @@ async function runSuite() {
     assert(actions.includes('SETTLE_COD') || actions.includes('ORDER_PAYMENT_UPDATED'), 'Audit trail records payment update / settlement event');
     assert(actions.includes('CANCEL_ORDER') || actions.includes('ORDER_STATUS_UPDATED'), 'Audit trail records order status / cancellation event');
 
-    // Clean up test product
-    await request('DELETE', `/api/admin/products/${testProductId}`, null, authToken);
+    // Clean up test fixtures to maintain database hygiene
+    if (testProductId) {
+      await request('DELETE', `/api/admin/products/${testProductId}`, null, authToken);
+    }
+    if (testOrderId) {
+      await request('DELETE', `/api/admin/orders/${testOrderId}`, null, authToken);
+    }
+    if (testPoId) {
+      await request('DELETE', `/api/admin/purchases/${testPoId}`, null, authToken);
+    }
+    if (testSupplierId) {
+      await request('DELETE', `/api/admin/suppliers/${testSupplierId}`, null, authToken);
+    }
+    if (testExpenseId) {
+      await request('DELETE', `/api/admin/expenses/${testExpenseId}`, null, authToken);
+    }
   } catch (err) {
     console.error('Test execution error:', err);
     failedTests++;

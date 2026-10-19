@@ -1,6 +1,9 @@
 import { Product } from '../types/cricket';
 
-const API_BASE = '/api';
+const VITE_API_URL = typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_API_URL
+  ? String(import.meta.env.VITE_API_URL).replace(/\/$/, '')
+  : '';
+const API_BASE = VITE_API_URL ? `${VITE_API_URL}/api` : '/api';
 
 export interface PromoResult {
   valid: boolean;
@@ -12,8 +15,9 @@ export interface PromoResult {
 
 export interface CheckoutResult {
   success: boolean;
-  message: string;
-  order: {
+  message?: string;
+  error?: string;
+  order?: {
     orderId: string;
     trackingNumber: string;
     date: string;
@@ -103,7 +107,7 @@ export const apiService = {
           trxId?: string;
         },
     promoCodeParam?: string
-  ): Promise<CheckoutResult | null> {
+  ): Promise<CheckoutResult> {
     try {
       let bodyData;
       if (Array.isArray(itemsOrPayload)) {
@@ -117,10 +121,19 @@ export const apiService = {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(bodyData),
       });
-      if (!res.ok) throw new Error('Checkout API error');
-      return await res.json();
-    } catch {
-      return null;
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        return {
+          success: false,
+          error: data.error || `Checkout failed with status ${res.status}. Please check your details and try again.`,
+        };
+      }
+      return data;
+    } catch (err: any) {
+      return {
+        success: false,
+        error: err.message || 'Network communication error. Please check your internet connection.',
+      };
     }
   },
 

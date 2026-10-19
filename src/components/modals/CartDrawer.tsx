@@ -50,39 +50,8 @@ export const CartDrawer: React.FC = () => {
     }
   };
 
-  const handleCheckout = async () => {
-    setIsSubmitting(true);
-    const itemsPayload = cart.map((i) => ({
-      productId: i.product.id,
-      quantity: i.quantity,
-      selectedSize: i.selectedSize,
-      price: i.product.price,
-    }));
-
-    const result = await apiService.checkout(itemsPayload, promoCode);
-    if (result && result.order) {
-      setConfirmedOrder(result.order);
-      clearCart();
-    } else {
-      // Local fallback
-      setConfirmedOrder({
-        orderId: `PDC-ORD-${Date.now()}`,
-        trackingNumber: `PDC-GB-2026-${Math.floor(100000 + Math.random() * 900000)}`,
-        date: new Date().toISOString(),
-        status: 'Confirmed - Next Day Dispatch Queued',
-        estimatedDelivery: 'Tomorrow by 1:00 PM',
-        courier: 'Royal Mail Tracked 24',
-        financials: {
-          currency,
-          subtotal,
-          discount,
-          shipping,
-          total: grandTotal,
-        },
-      });
-      clearCart();
-    }
-    setIsSubmitting(false);
+  const handleCheckout = () => {
+    setIsCheckoutModalOpen(true);
   };
 
   return (

@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
 import { fileURLToPath } from 'url';
+import { AsyncLocalStorage } from 'async_hooks';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -17,19 +18,45 @@ if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir, { recursive: true });
 }
 
-// In-memory mutex per collection to prevent race conditions during concurrent writes
-const collectionLocks = new Map();
+// Re-entrant FIFO Promise Queue Mutex per collection for atomic concurrency
+const lockQueues = new Map();
+const lockContext = new AsyncLocalStorage();
 
-async function withLock(collectionName, callback) {
-  while (collectionLocks.get(collectionName)) {
-    await new Promise((resolve) => setTimeout(resolve, 15));
-  }
-  collectionLocks.set(collectionName, true);
-  try {
+export async function withLock(collectionName, callback) {
+  const currentLocks = lockContext.getStore() || new Set();
+  if (currentLocks.has(collectionName)) {
+    // Re-entrant: lock already held in this async execution context
     return await callback();
-  } finally {
-    collectionLocks.set(collectionName, false);
   }
+
+  const prevPromise = lockQueues.get(collectionName) || Promise.resolve();
+  let release;
+  const currentPromise = new Promise((resolve) => {
+    release = resolve;
+  });
+  lockQueues.set(collectionName, prevPromise.then(() => currentPromise).catch(() => currentPromise));
+  await prevPromise;
+
+  const nextLocks = new Set(currentLocks);
+  nextLocks.add(collectionName);
+
+  try {
+    return await lockContext.run(nextLocks, () => callback());
+  } finally {
+    release();
+  }
+}
+
+// Multi-collection lock with alphabetical sorting to guarantee deadlock freedom
+export async function withLocks(collectionNames, callback) {
+  const sorted = [...new Set(collectionNames)].sort();
+  async function acquireNext(index) {
+    if (index >= sorted.length) {
+      return await callback();
+    }
+    return await withLock(sorted[index], () => acquireNext(index + 1));
+  }
+  return await acquireNext(0);
 }
 
 // Atomic file writer: writes to a temp file and renames it atomically
@@ -47,6 +74,7 @@ function writeAtomicJson(filePath, data) {
   }
 }
 
+// Safe non-destructive JSON reader: NEVER returns fallback [] when reading an existing file fails!
 function readJsonSafe(filePath, defaultValue = []) {
   if (!fs.existsSync(filePath)) {
     writeAtomicJson(filePath, defaultValue);
@@ -54,10 +82,44 @@ function readJsonSafe(filePath, defaultValue = []) {
   }
   try {
     const raw = fs.readFileSync(filePath, 'utf-8');
+    if (!raw.trim()) {
+      return defaultValue;
+    }
     return JSON.parse(raw);
   } catch (err) {
-    console.error(`Error reading ${filePath}, restoring default:`, err);
-    return defaultValue;
+    console.error(`FATAL ERROR reading database file ${filePath}:`, err);
+    throw new Error(`Database read failure for ${path.basename(filePath)}: ${err.message}. Aborting operation to prevent data loss.`);
+  }
+}
+
+// Automated backup directory and snapshot rotation
+const backupDir = path.join(__dirname, 'backups');
+if (!fs.existsSync(backupDir)) {
+  fs.mkdirSync(backupDir, { recursive: true });
+}
+
+export function createBackupSnapshot() {
+  try {
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+    const snapshotDir = path.join(backupDir, `snapshot-${timestamp}`);
+    fs.mkdirSync(snapshotDir, { recursive: true });
+    for (const [key, p] of Object.entries(filePaths)) {
+      if (fs.existsSync(p)) {
+        fs.copyFileSync(p, path.join(snapshotDir, path.basename(p)));
+      }
+    }
+    // Prune older snapshots if more than 10 exist
+    const all = fs.readdirSync(backupDir).filter((f) => f.startsWith('snapshot-'));
+    if (all.length > 10) {
+      all.sort();
+      for (const old of all.slice(0, all.length - 10)) {
+        fs.rmSync(path.join(backupDir, old), { recursive: true, force: true });
+      }
+    }
+    return snapshotDir;
+  } catch (err) {
+    console.error('Backup creation failed:', err);
+    return null;
   }
 }
 
@@ -91,7 +153,7 @@ function initializeSeeds() {
   // 1. Admins
   let admins = readJsonSafe(filePaths.admins, []);
   if (admins.length === 0) {
-    const defaultPassword = 'AdminPassword2026!';
+    const defaultPassword = process.env.ADMIN_DEFAULT_PASSWORD || 'AdminPassword2026!';
     const { hash, salt } = hashPassword(defaultPassword);
     admins = [
       {
@@ -1274,7 +1336,7 @@ export const db = {
     );
   },
   async createOrder(orderPayload) {
-    return withLock('products', async () => {
+    return withLocks(['products', 'orders', 'inventoryLedger'], async () => {
       // 1. Concurrency safety: check stock for every item before deducting
       const products = readJsonSafe(filePaths.products, []);
 
@@ -1343,8 +1405,8 @@ export const db = {
         status: 'pending',
         fulfillmentStatus: 'pending',
         paymentMethod: orderPayload.paymentMethod || 'cod',
-        paymentStatus: orderPayload.paymentMethod === 'cod' ? 'pending' : (orderPayload.trxId ? 'paid' : 'pending'),
-        paymentDetails: orderPayload.trxId ? { trxId: orderPayload.trxId, paymentChannel: orderPayload.paymentMethod } : {},
+        paymentStatus: orderPayload.paymentMethod === 'cod' ? 'pending' : (orderPayload.trxId ? 'pending_verification' : 'pending'),
+        paymentDetails: orderPayload.trxId ? { trxId: orderPayload.trxId, paymentChannel: orderPayload.paymentMethod, verificationStatus: 'pending_accounts_check' } : {},
         courier: orderPayload.courier || (deliveryZone === 'inside_dhaka' ? 'Steadfast Courier' : 'Pathao Courier'),
         deliveryZone,
         estimatedDelivery: deliveryZone === 'inside_dhaka' ? '24–48 Hours' : '2–4 Business Days',
@@ -1490,32 +1552,51 @@ export const db = {
     });
   },
   async cancelOrder(orderId, { restock = true, reason = '', actor = 'admin' }) {
-    const orders = readJsonSafe(filePaths.orders, []);
-    const order = orders.find((o) => o.orderId === orderId || o.id === orderId);
-    if (!order) throw new Error('Order not found');
+    return withLocks(['orders', 'products', 'inventoryLedger'], async () => {
+      const orders = readJsonSafe(filePaths.orders, []);
+      const order = orders.find((o) => o.orderId === orderId || o.id === orderId);
+      if (!order) throw new Error('Order not found');
 
-    if (order.fulfillmentStatus === 'cancelled') {
-      throw new Error('Order is already cancelled');
-    }
-
-    // Restore stock if requested
-    if (restock && order.items && order.items.length > 0) {
-      for (const item of order.items) {
-        await db.adjustStock(item.productId, {
-          quantityDelta: item.quantity,
-          type: 'cancellation_restock',
-          referenceType: 'order_cancellation',
-          referenceId: order.orderId || orderId,
-          reason: `Restock due to order cancellation: ${reason || 'Customer request'}`,
-          actor,
-        });
+      if (order.fulfillmentStatus === 'cancelled' || order.status === 'cancelled') {
+        throw new Error('Order is already cancelled');
       }
-    }
 
-    return await db.updateOrderStatus(orderId, {
-      fulfillmentStatus: 'cancelled',
-      note: `Order cancelled by ${actor}. ${restock ? 'Inventory restored to Dhaka warehouse.' : 'Inventory not restored.'} Reason: ${reason}`,
-      actor,
+      // Restore stock if requested
+      if (restock && order.items && order.items.length > 0) {
+        for (const item of order.items) {
+          await db.adjustStock(item.productId, {
+            quantityDelta: item.quantity,
+            type: 'cancellation_restock',
+            referenceType: 'order_cancellation',
+            referenceId: order.orderId || orderId,
+            reason: `Restock due to order cancellation: ${reason || 'Customer request'}`,
+            actor,
+          });
+        }
+      }
+
+      return await db.updateOrderStatus(orderId, {
+        fulfillmentStatus: 'cancelled',
+        note: `Order cancelled by ${actor}. ${restock ? 'Inventory restored to Dhaka warehouse.' : 'Inventory not restored.'} Reason: ${reason}`,
+        actor,
+      });
+    });
+  },
+  async deleteOrder(id, actor = 'admin') {
+    return withLock('orders', async () => {
+      const orders = readJsonSafe(filePaths.orders, []);
+      const index = orders.findIndex((o) => o.id === id || o.orderId === id);
+      if (index === -1) throw new Error('Order not found');
+      const [deleted] = orders.splice(index, 1);
+      writeAtomicJson(filePaths.orders, orders);
+      await db.addAuditLog({
+        actor,
+        action: 'ORDER_DELETED',
+        entity: 'order',
+        entityId: deleted.orderId || id,
+        details: { total: deleted.financials?.total },
+      });
+      return deleted;
     });
   },
 
@@ -1553,6 +1634,23 @@ export const db = {
         details: { name: saved.name },
       });
       return saved;
+    });
+  },
+  async deleteSupplier(id, actor = 'admin') {
+    return withLock('suppliers', async () => {
+      const suppliers = readJsonSafe(filePaths.suppliers, []);
+      const index = suppliers.findIndex((s) => s.id === id);
+      if (index === -1) throw new Error('Supplier not found');
+      const [deleted] = suppliers.splice(index, 1);
+      writeAtomicJson(filePaths.suppliers, suppliers);
+      await db.addAuditLog({
+        actor,
+        action: 'SUPPLIER_DELETED',
+        entity: 'supplier',
+        entityId: id,
+        details: { name: deleted.name },
+      });
+      return deleted;
     });
   },
   getPurchases() {
@@ -1671,7 +1769,7 @@ export const db = {
     });
   },
   async receivePurchaseOrder(poId, actor = 'admin') {
-    return withLock('purchases', async () => {
+    return withLocks(['purchases', 'products', 'inventoryLedger'], async () => {
       const purchases = readJsonSafe(filePaths.purchases, []);
       const po = purchases.find((p) => p.id === poId || p.poNumber === poId || p.referenceNo === poId);
       if (!po) throw new Error('Purchase order not found');
@@ -1730,6 +1828,23 @@ export const db = {
       return po;
     });
   },
+  async deletePurchase(id, actor = 'admin') {
+    return withLock('purchases', async () => {
+      const purchases = readJsonSafe(filePaths.purchases, []);
+      const index = purchases.findIndex((p) => p.id === id);
+      if (index === -1) throw new Error('Purchase order not found');
+      const [deleted] = purchases.splice(index, 1);
+      writeAtomicJson(filePaths.purchases, purchases);
+      await db.addAuditLog({
+        actor,
+        action: 'PURCHASE_DELETED',
+        entity: 'purchase',
+        entityId: id,
+        details: { poNumber: deleted.poNumber },
+      });
+      return deleted;
+    });
+  },
 
   // --- Expenses ---
   getExpenses() {
@@ -1761,6 +1876,23 @@ export const db = {
       });
 
       return newExpense;
+    });
+  },
+  async deleteExpense(id, actor = 'admin') {
+    return withLock('expenses', async () => {
+      const expenses = readJsonSafe(filePaths.expenses, []);
+      const index = expenses.findIndex((e) => e.id === id);
+      if (index === -1) throw new Error('Expense not found');
+      const [deleted] = expenses.splice(index, 1);
+      writeAtomicJson(filePaths.expenses, expenses);
+      await db.addAuditLog({
+        actor,
+        action: 'EXPENSE_DELETED',
+        entity: 'expense',
+        entityId: id,
+        details: { category: deleted.category, amount: deleted.amount },
+      });
+      return deleted;
     });
   },
 
@@ -1795,5 +1927,29 @@ export const db = {
     const admins = readJsonSafe(filePaths.admins, []);
     const lower = identifier.toLowerCase().trim();
     return admins.find((a) => a.username.toLowerCase() === lower || a.email.toLowerCase() === lower);
+  },
+  async changeAdminPassword(username, currentPassword, newPassword) {
+    return withLock('admins', async () => {
+      const admins = readJsonSafe(filePaths.admins, []);
+      const lower = username.toLowerCase().trim();
+      const admin = admins.find((a) => a.username.toLowerCase() === lower || a.email.toLowerCase() === lower);
+      if (!admin) return false;
+      const isValid = verifyPassword(currentPassword, admin.salt, admin.passwordHash);
+      if (!isValid) return false;
+      const { hash, salt } = hashPassword(newPassword);
+      admin.passwordHash = hash;
+      admin.salt = salt;
+      admin.updatedAt = new Date().toISOString();
+      writeAtomicJson(filePaths.admins, admins);
+      await db.addAuditLog({
+        actor: admin.username,
+        role: admin.role,
+        action: 'PASSWORD_CHANGED',
+        entity: 'admin',
+        entityId: admin.id,
+        details: { message: 'Administrative password updated successfully' },
+      });
+      return true;
+    });
   },
 };

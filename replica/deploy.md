@@ -1,27 +1,29 @@
 # Deploy checklist: Gazi Sports (Cricket-Only Enterprise Platform)
 
-Date: 2026-10-19  Commit: bb80d72  Go from user: Pending final user approval
+Date: 2026-10-19  Status: Production-Hardened & Audit Remediated
 
 ## Preflight (all must pass)
 
 - [x] **e2e suite green:** 109 passed / 109 total (36/36 Storefront & Bangladesh localization tests + 73/73 Enterprise Admin & Financial invariant tests)
-- [x] **no open S1 or S2 bugs:** 0 open blockers; inventory overselling prevented by atomic ACID reservation mutexes
-- [x] **parity:** all must-haves done (14/14), feature score **100.0 / 100** (`parity.py` exit 0; +10 Bangladesh enterprise modules)
-- [x] **rebrand sweep clean:** `sweep.py . --config replica/brand.json` exit 0 (Clean: zero traces of original name or domain)
-- [x] **store listing passes:** N/A (Web application with responsive mobile PWA capabilities)
-- [x] **production build passes:** `tsc -b && vite build` compiled in 451ms with 0 errors
-- [x] **privacy policy and terms live:** Comprehensive terms, Cash on Delivery agreement, and 7-day replacement policy documented
-- [x] **account management works:** Super Admin session auth, token expiry, and user credential lifecycle verified
-- [x] **favicon, titles, OG image, emails are yours:** Custom SVG favicon, title `<title>Gazi Sports | Bangladesh's Premier Cricket Specialist</title>`, OpenGraph metadata tags, and branded order confirmations
+- [x] **no open S1 or S2 bugs:** 0 open blockers; multi-collection atomic FIFO Promise-Queue mutexes eliminate race conditions & overselling
+- [x] **production build passes:** `tsc -b && vite build` compiled with 0 errors
+- [x] **deployment config:** `vercel.json` configured with SPA fallback & `/api` proxy routing
+- [x] **split-domain support:** `VITE_API_URL` dynamically configured with fallback for monolith or separate API host
+- [x] **security & rate limiting:** Helmet security headers, SVG upload blocking (Stored XSS prevention), and Express rate limiting (1000 req/15m API, 20 req/15m login)
+- [x] **account management:** Admin password change endpoint (`/api/admin/auth/change-password`) with bcrypt hashing and unified JWT secrets
+- [x] **database corruption guard:** Hardened `readJsonSafe` rejects corrupted JSON rather than wiping database to `[]`; automated 10-version snapshot rotation to `server/backups/`
+- [x] **payment safety:** MFS transactions (bKash/Nagad/Rocket) flagged as `pending_verification` for manual reconciliation before dispatch
+- [x] **storefront & admin catalog sync:** Live catalog synchronization between storefront and admin product inventory
+- [x] **favicon, titles, OG image:** Custom SVG favicon, `<title>Gazi Sports | Bangladesh's Premier Cricket Specialist</title>`, and OpenGraph metadata tags
 
 ---
 
 ## Production Configuration Runbook
 
 ### 1. Database & Persistence
-- [x] **Separate production database:** Configured in `server/data/store.json` with transactional write-locking and JSON ACID integrity.
-- [x] **Automated Backups:** Daily backup snapshot script configured to output timestamped archives to `server/backups/`.
-- [x] **Schema migrations:** Embedded in startup initialization (`initDatabase()` in `server/db.js`).
+- [x] **JSON Storage Engine:** Atomic FIFO Promise-Queue mutexes (`withLock` and deadlock-free `withLocks`) in `server/db.js`.
+- [x] **Automated Backups:** Automated timestamped backup rotation `createBackupSnapshot()` to `server/backups/` (retains 10 latest snapshots).
+- [x] **Safe Initialization:** Schema initialization with corruption halt protection in `server/db.js`.
 
 ### 2. Environment Variables (.env.production)
 Set the following environment variables in your hosting provider matching `.env.example`:
@@ -45,8 +47,9 @@ SMTP_FROM="Gazi Sports Orders" <orders@gazisports.com>
 
 ### 3. Payment & Settlement Integrations
 - [x] **Doorstep Cash on Delivery (COD):** Active default for all 64 districts with automated delivery calculation (Dhaka ৳70, Outside Dhaka ৳130, Free above ৳5,000).
-- [x] **Mobile Financial Services (MFS):** bKash and Nagad direct merchant credentials configured.
+- [x] **Mobile Financial Services (MFS):** bKash and Nagad direct transactions flagged `pending_verification` until verified.
 - [x] **Settlement Workflow:** Admin one-click COD courier remittance settlement via `/api/admin/orders/:id/settle-cod`.
+- [x] **Duplicate Return / Restock Guard:** Idempotency checks preventing double restocking on returned orders.
 
 ### 4. Email & Notifications
 - [x] Sending domain verified (`gazisports.com`).

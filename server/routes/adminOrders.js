@@ -246,6 +246,9 @@ router.post('/:id/return', authenticateAdmin, requireRole(['super_admin', 'inven
     const { restock = true, itemsCondition = 'good', returnReason } = req.body;
     const order = db.getOrderById(req.params.id);
     if (!order) return res.status(404).json({ error: 'Order not found' });
+    if (order.fulfillmentStatus === 'returned' || order.status === 'returned') {
+      return res.status(400).json({ error: 'Order return has already been processed and finalized' });
+    }
 
     if (restock && order.items) {
       for (const item of order.items) {
@@ -270,6 +273,20 @@ router.post('/:id/return', authenticateAdmin, requireRole(['super_admin', 'inven
       success: true,
       message: `Order #${order.orderId} return processed successfully.`,
       order: updated,
+    });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+// 7. DELETE ORDER (Restricted to super_admin)
+router.delete('/:id', authenticateAdmin, requireRole(['super_admin']), async (req, res) => {
+  try {
+    const deleted = await db.deleteOrder(req.params.id, req.admin.username);
+    res.json({
+      success: true,
+      message: `Order #${deleted.orderId || req.params.id} permanently deleted`,
+      order: deleted,
     });
   } catch (err) {
     res.status(400).json({ error: err.message });

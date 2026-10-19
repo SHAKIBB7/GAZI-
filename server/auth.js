@@ -1,7 +1,10 @@
 import crypto from 'crypto';
 import { db } from './db.js';
 
-const JWT_SECRET = process.env.ADMIN_JWT_SECRET || 'gazi_sports_admin_secure_vault_2026_dhaka';
+const JWT_SECRET = process.env.JWT_SECRET || process.env.ADMIN_JWT_SECRET || 'gazi_sports_admin_secure_vault_2026_dhaka';
+if (process.env.NODE_ENV === 'production' && JWT_SECRET === 'gazi_sports_admin_secure_vault_2026_dhaka') {
+  console.warn('⚠️ WARNING: Using fallback hardcoded JWT secret in production! Please configure JWT_SECRET in environment variables.');
+}
 
 export function createToken(payload, expiresInHours = 24) {
   const header = { alg: 'HS256', typ: 'JWT' };
