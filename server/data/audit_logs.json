@@ -1,5 +1,387 @@
 [
   {
+    "id": "LOG-1792419470101-676",
+    "timestamp": "2026-10-19T14:17:50.101Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "EXPENSE_DELETED",
+    "entity": "expense",
+    "entityId": "EXP-1792419470071",
+    "details": {
+      "category": "Packaging",
+      "amount": 3500
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792419470098-300",
+    "timestamp": "2026-10-19T14:17:50.098Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "SUPPLIER_DELETED",
+    "entity": "supplier",
+    "entityId": "sup-0056",
+    "details": {
+      "name": "Sialkot Master Bats Ltd"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792419470094-281",
+    "timestamp": "2026-10-19T14:17:50.094Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "PURCHASE_DELETED",
+    "entity": "purchase",
+    "entityId": "po-1792419470060",
+    "details": {
+      "poNumber": "PO-BD-1792419470057"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792419470091-162",
+    "timestamp": "2026-10-19T14:17:50.091Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "ORDER_DELETED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792419470026",
+    "details": {
+      "total": 28000
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792419470087-425",
+    "timestamp": "2026-10-19T14:17:50.087Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "PRODUCT_DELETED",
+    "entity": "product",
+    "entityId": "PRD-1792419469994",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792419469952",
+      "title": "Gazi Test Special English Willow Bat"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792419470072-728",
+    "timestamp": "2026-10-19T14:17:50.072Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "EXPENSE_RECORDED",
+    "entity": "expense",
+    "entityId": "EXP-1792419470071",
+    "details": {
+      "category": "Packaging",
+      "amount": 3500,
+      "description": "Custom padded cricket bat carrying covers"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792419470067-147",
+    "timestamp": "2026-10-19T14:17:50.067Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "PURCHASE_ORDER_RECEIVED",
+    "entity": "purchase",
+    "entityId": "PO-BD-1792419470057",
+    "details": {
+      "supplier": "Sialkot Master Bats Ltd",
+      "total": 92000
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792419470061-551",
+    "timestamp": "2026-10-19T14:17:50.061Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "PURCHASE_ORDER_CREATED",
+    "entity": "purchase",
+    "entityId": "PO-BD-1792419470057",
+    "details": {
+      "supplier": "Sialkot Master Bats Ltd",
+      "total": 92000,
+      "itemsCount": 1
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792419470057-847",
+    "timestamp": "2026-10-19T14:17:50.057Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "SUPPLIER_CREATED",
+    "entity": "supplier",
+    "entityId": "sup-0056",
+    "details": {
+      "name": "Sialkot Master Bats Ltd"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792419470050-271",
+    "timestamp": "2026-10-19T14:17:50.050Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "ORDER_STATUS_UPDATED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792419470026",
+    "details": {
+      "oldStatus": "shipped",
+      "newStatus": "cancelled",
+      "note": "Order cancelled by admin. Inventory restored to Dhaka warehouse. Reason: Customer requested cancellation prior to handover"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792419470048-773",
+    "timestamp": "2026-10-19T14:17:50.048Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "STOCK_ADJUSTED",
+    "entity": "inventory",
+    "entityId": "PRD-1792419469994",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792419469952",
+      "delta": 2,
+      "oldStock": 20,
+      "newStock": 22,
+      "reason": "Restock due to order cancellation: Customer requested cancellation prior to handover"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792419470042-730",
+    "timestamp": "2026-10-19T14:17:50.042Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "ORDER_PAYMENT_UPDATED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792419470026",
+    "details": {
+      "oldStatus": "pending",
+      "newStatus": "paid",
+      "amount": 28000
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792419470038-783",
+    "timestamp": "2026-10-19T14:17:50.038Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "ORDER_STATUS_UPDATED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792419470026",
+    "details": {
+      "oldStatus": "pending",
+      "newStatus": "shipped"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792419470030-676",
+    "timestamp": "2026-10-19T14:17:50.030Z",
+    "actor": "Customer Checkout",
+    "role": "admin",
+    "action": "ORDER_PLACED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792419470026",
+    "details": {
+      "total": 28000,
+      "itemsCount": 1,
+      "paymentMethod": "COD"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792419470021-673",
+    "timestamp": "2026-10-19T14:17:50.021Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "STOCK_ADJUSTED",
+    "entity": "inventory",
+    "entityId": "PRD-1792419469994",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792419469952",
+      "delta": -1,
+      "oldStock": 23,
+      "newStock": 22,
+      "reason": "Physical count reconciliation. Recorded: 23, Counted: 22. Reason: End-of-month physical warehouse count discrepancy"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792419470015-401",
+    "timestamp": "2026-10-19T14:17:50.015Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "STOCK_ADJUSTED",
+    "entity": "inventory",
+    "entityId": "PRD-1792419469994",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792419469952",
+      "delta": -2,
+      "oldStock": 25,
+      "newStock": 23,
+      "reason": "Cracked handle during moisture testing"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792419470010-195",
+    "timestamp": "2026-10-19T14:17:50.010Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "STOCK_ADJUSTED",
+    "entity": "inventory",
+    "entityId": "PRD-1792419469994",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792419469952",
+      "delta": 5,
+      "oldStock": 20,
+      "newStock": 25,
+      "reason": "Urgent warehouse batch intake (Received from Sialkot emergency flight)"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792419470002-377",
+    "timestamp": "2026-10-19T14:17:50.002Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "PRODUCT_UPDATED",
+    "entity": "product",
+    "entityId": "PRD-1792419469994",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792419469952",
+      "title": "Gazi Test Special English Willow Bat",
+      "price": 14000
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792419469996-924",
+    "timestamp": "2026-10-19T14:17:49.996Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "PRODUCT_CREATED",
+    "entity": "product",
+    "entityId": "PRD-1792419469994",
+    "details": {
+      "sku": "GZ-TEST-BAT-1792419469952",
+      "title": "Gazi Test Special English Willow Bat",
+      "price": 13500,
+      "stock": 20
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792419469990-274",
+    "timestamp": "2026-10-19T14:17:49.990Z",
+    "actor": "admin",
+    "role": "super_admin",
+    "action": "LOGIN_SUCCESS",
+    "entity": "auth",
+    "entityId": "adm-001",
+    "details": {
+      "message": "Successful admin login from web console"
+    },
+    "ip": "::1"
+  },
+  {
+    "id": "LOG-1792419469983-441",
+    "timestamp": "2026-10-19T14:17:49.983Z",
+    "actor": "admin",
+    "role": "super_admin",
+    "action": "LOGIN_FAILED",
+    "entity": "auth",
+    "entityId": "adm-001",
+    "details": {
+      "reason": "Incorrect password",
+      "ip": "::1"
+    },
+    "ip": "::1"
+  },
+  {
+    "id": "LOG-1792419469907-449",
+    "timestamp": "2026-10-19T14:17:49.907Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "ORDER_DELETED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792419469883",
+    "details": {
+      "total": 12960
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792419469903-257",
+    "timestamp": "2026-10-19T14:17:49.903Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "ORDER_STATUS_UPDATED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792419469883",
+    "details": {
+      "oldStatus": "pending",
+      "newStatus": "cancelled",
+      "note": "Order cancelled by admin. Inventory restored to Dhaka warehouse. Reason: Automated test suite cleanup"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792419469900-138",
+    "timestamp": "2026-10-19T14:17:49.900Z",
+    "actor": "admin",
+    "role": "admin",
+    "action": "STOCK_ADJUSTED",
+    "entity": "inventory",
+    "entityId": "1055203",
+    "details": {
+      "sku": "CRK-SHOE-AD-22YDS",
+      "delta": 1,
+      "oldStock": 23,
+      "newStock": 24,
+      "reason": "Restock due to order cancellation: Automated test suite cleanup"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "LOG-1792419469894-349",
+    "timestamp": "2026-10-19T14:17:49.894Z",
+    "actor": "admin",
+    "role": "super_admin",
+    "action": "LOGIN_SUCCESS",
+    "entity": "auth",
+    "entityId": "adm-001",
+    "details": {
+      "message": "Successful admin login from web console"
+    },
+    "ip": "::1"
+  },
+  {
+    "id": "LOG-1792419469886-879",
+    "timestamp": "2026-10-19T14:17:49.886Z",
+    "actor": "Customer Checkout",
+    "role": "admin",
+    "action": "ORDER_PLACED",
+    "entity": "order",
+    "entityId": "GZ-BD-1792419469883",
+    "details": {
+      "total": 12960,
+      "itemsCount": 1,
+      "paymentMethod": "cod"
+    },
+    "ip": "127.0.0.1"
+  },
+  {
     "id": "LOG-1792417231946-376",
     "timestamp": "2026-10-19T13:40:31.946Z",
     "actor": "admin",

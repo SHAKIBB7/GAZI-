@@ -1,7 +1,30 @@
 {
-  "name": "gazi-web",
+  "name": "gazi-cricket-platform",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.1.0",
+  "description": "Enterprise Cricket Equipment E-Commerce & Retail Management Platform",
+  "author": "SHAKIBB7 <taimurshakib7@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SHAKIBB7/GAZI-.git"
+  },
+  "homepage": "https://github.com/SHAKIBB7/GAZI-#readme",
+  "bugs": {
+    "url": "https://github.com/SHAKIBB7/GAZI-/issues"
+  },
+  "keywords": [
+    "cricket",
+    "cricket-equipment",
+    "ecommerce",
+    "react19",
+    "typescript",
+    "vite",
+    "tailwindcss",
+    "express",
+    "inventory-ledger",
+    "bangladesh-mfs"
+  ],
   "type": "module",
   "scripts": {
     "dev": "vite",
