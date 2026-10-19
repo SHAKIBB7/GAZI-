@@ -14,6 +14,7 @@
  */
 
 const http = require('http');
+const { startServerIfNeeded, stopServer } = require('./test-server.cjs');
 
 const API_BASE = 'http://localhost:4000';
 let authToken = '';
@@ -83,6 +84,8 @@ async function runSuite() {
   console.log('================================================================\n');
 
   try {
+    await startServerIfNeeded(4000);
+
     // -------------------------------------------------------------
     // MODULE 1: Security & RBAC Auth
     // -------------------------------------------------------------
@@ -491,9 +494,11 @@ async function runSuite() {
   console.log('================================================================\n');
 
   if (failedTests > 0) {
+    stopServer();
     process.exit(1);
   } else {
     console.log('🏆 All 10 Enterprise Admin & Financial Invariants 100% Verified!\n');
+    stopServer();
     process.exit(0);
   }
 }
