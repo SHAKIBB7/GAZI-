@@ -1,32 +1,51 @@
-# React + TypeScript + Vite
+# GAZI - Premium Cricket Equipment & Apparel Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A modern, high-performance cricket e-commerce and retail management platform built with React, TypeScript, Tailwind CSS, Vite, and Node.js/Express.
 
-Currently, two official plugins are available:
+## 🏏 Key Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Storefront & Catalog**: Comprehensive cricket bat, equipment, and apparel catalog with category, brand, and willow grade filtering.
+- **Admin Management Portal**: Real-time management for orders, products, inventory movements, customer records, and system settings.
+- **Auditing & Ledger**: Concurrency-safe inventory ledger, transactional movement tracking, and audit logging.
+- **Responsive UI**: Fully mobile-responsive interface with dark mode and tailored cricket equipment specifications.
 
-## React Compiler
+## 🛠 Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Frontend**: React 19, TypeScript, Vite, Tailwind CSS, Lucide Icons
+- **Backend**: Express.js, Node.js REST API
+- **Persistence**: File-based transactional JSON datastore with atomic file writes and audit logs
 
-## Expanding the Oxlint configuration
+## 🚀 Getting Started
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+### Prerequisites
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+- Node.js (v18+ recommended)
+- npm or yarn
+
+### Installation
+
+```bash
+# Install dependencies
+npm install
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+### Development
+
+```bash
+# Start frontend development server
+npm run dev
+
+# Start backend server
+npm run server
+```
+
+### Production Build
+
+```bash
+# Build frontend for production
+npm run build
+```
+
+## 📄 License
+
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
