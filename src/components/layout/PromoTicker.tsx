@@ -42,12 +42,12 @@ export const PromoTicker: React.FC = () => {
           <ChevronLeft size={16} />
         </button>
 
-        <div className="flex items-center justify-center space-x-2 text-center transition-all duration-300">
-          {getIcon(current.icon)}
-          <span className="tracking-wider uppercase text-[11px] sm:text-xs">
+        <div className="flex items-center justify-center space-x-2 text-center transition-all duration-300 min-w-0 mx-1.5 overflow-hidden">
+          <span className="shrink-0">{getIcon(current.icon)}</span>
+          <span className="tracking-wider uppercase text-[10px] sm:text-xs truncate">
             {current.text}
           </span>
-          <span className="bg-[#ccff00] text-black text-[9px] font-black px-1.5 py-0.5 rounded ml-2 hidden sm:inline-block">
+          <span className="bg-[#ccff00] text-black text-[9px] font-black px-1.5 py-0.5 rounded ml-2 hidden sm:inline-block shrink-0">
             USE CODE: CRICKET10 FOR 10% OFF
           </span>
         </div>

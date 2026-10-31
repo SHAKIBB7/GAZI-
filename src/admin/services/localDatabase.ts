@@ -819,6 +819,39 @@ export const localDb = {
     return { success: true, message: 'Order marked as cancelled', order: orders[idx] };
   },
 
+  addCustomerOrder(order: OrderAdmin): { success: boolean; message: string; order: OrderAdmin } {
+    let orders = getStorage<OrderAdmin[]>(STORAGE_KEYS.ORDERS, []);
+    if (!orders || orders.length === 0) {
+      orders = initSeedOrders();
+    }
+    const existingIdx = orders.findIndex((o) => o.orderId === order.orderId);
+    if (existingIdx !== -1) {
+      orders[existingIdx] = order;
+    } else {
+      orders.unshift(order);
+    }
+    setStorage(STORAGE_KEYS.ORDERS, orders);
+
+    // Deduct stock in local product inventory if available
+    const products = getStorage<ProductAdmin[]>(STORAGE_KEYS.PRODUCTS, []);
+    if (products && products.length > 0) {
+      order.items.forEach((item) => {
+        const pIdx = products.findIndex((p) => p.id === item.productId || p.sku === item.sku);
+        if (pIdx !== -1) {
+          products[pIdx].stock = Math.max(0, products[pIdx].stock - item.quantity);
+        }
+      });
+      setStorage(STORAGE_KEYS.PRODUCTS, products);
+    }
+
+    recordLocalAuditLog('guest_customer', 'customer', 'ORDER_CREATED', 'order', order.orderId, {
+      total: order.financials.total,
+      paymentMethod: order.paymentMethod,
+    });
+
+    return { success: true, message: 'Order created successfully', order };
+  },
+
   // 5. Suppliers & Procurement
   getSuppliers(): { total: number; suppliers: Supplier[] } {
     let suppliers = getStorage<Supplier[]>(STORAGE_KEYS.SUPPLIERS, []);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, ChevronRight, ChevronDown, Heart, ShoppingBag, ShieldCheck, PhoneCall, MapPin, MessageCircle } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 import { useWishlist } from '../../context/WishlistContext';
@@ -19,6 +19,17 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
   const { totalItems, setIsCartOpen } = useCart();
   const { totalWishlistItems, setIsWishlistOpen } = useWishlist();
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 

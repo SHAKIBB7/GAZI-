@@ -50,8 +50,23 @@ const MainApp: React.FC<MainAppProps> = ({ onOpenAdmin }) => {
     }
   };
 
+  useEffect(() => {
+    const handleGlobalKeyDown = (e: KeyboardEvent) => {
+      if (e.key === '/' && !searchModalOpen) {
+        const target = e.target as HTMLElement;
+        if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable)) {
+          return;
+        }
+        e.preventDefault();
+        setSearchModalOpen(true);
+      }
+    };
+    window.addEventListener('keydown', handleGlobalKeyDown);
+    return () => window.removeEventListener('keydown', handleGlobalKeyDown);
+  }, [searchModalOpen]);
+
   return (
-    <div className="min-h-screen bg-white flex flex-col font-sans text-neutral-900 selection:bg-[#ccff00] selection:text-black">
+    <div className="min-h-screen bg-white flex flex-col font-sans text-neutral-900 selection:bg-[#ccff00] selection:text-black overflow-x-clip">
       {/* 1. Global Navigation Tiers */}
       <TopSportsBar onSelectCategory={handleSelectCategory} />
       <UtilityBar onOpenAdmin={onOpenAdmin} />
@@ -63,7 +78,7 @@ const MainApp: React.FC<MainAppProps> = ({ onOpenAdmin }) => {
       />
 
       {/* 2. Hero Carousel */}
-      <main className="flex-1">
+      <main className="flex-1 overflow-x-clip">
         <HeroCarousel onSelectCategory={handleSelectCategory} />
 
         {/* 3. Official Brands Quick Bar */}

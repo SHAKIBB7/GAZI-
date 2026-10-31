@@ -155,3 +155,34 @@ export function calculateDeliveryFee(subtotalBdt: number, zone: DeliveryZone): n
   if (subtotalBdt >= FREE_SHIPPING_THRESHOLD_BDT) return 0;
   return SHIPPING_CONFIG[zone].fee;
 }
+
+/**
+ * Calculates dynamic estimated delivery dates based on current date
+ */
+export function getEstimatedDeliveryText(zone: DeliveryZone = 'inside_dhaka'): {
+  rangeEn: string;
+  rangeBn: string;
+  dateRange: string;
+} {
+  const now = new Date();
+  const minDays = zone === 'inside_dhaka' ? 1 : 2;
+  const maxDays = zone === 'inside_dhaka' ? 2 : 4;
+
+  const minDate = new Date(now);
+  minDate.setDate(now.getDate() + minDays);
+
+  const maxDate = new Date(now);
+  maxDate.setDate(now.getDate() + maxDays);
+
+  const options: Intl.DateTimeFormatOptions = { month: 'short', day: 'numeric' };
+  const minStr = minDate.toLocaleDateString('en-US', options);
+  const maxStr = maxDate.toLocaleDateString('en-US', options);
+
+  const dateRange = `${minStr} – ${maxStr}`;
+  return {
+    rangeEn: zone === 'inside_dhaka' ? `Tomorrow – ${maxStr} (24–48h Express)` : `${dateRange} (2–4 Days)`,
+    rangeBn: zone === 'inside_dhaka' ? `আগামীকাল – ${maxStr} (২৪–৪৮ ঘণ্টা)` : `${dateRange} (২–৪ কার্যদিবস)`,
+    dateRange,
+  };
+}
+

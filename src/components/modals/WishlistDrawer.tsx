@@ -8,9 +8,21 @@ export const WishlistDrawer: React.FC = () => {
   const { wishlist, isWishlistOpen, setIsWishlistOpen, toggleWishlist, clearWishlist } = useWishlist();
   const { addToCart, formatPrice } = useCart();
 
+  React.useEffect(() => {
+    if (!isWishlistOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsWishlistOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isWishlistOpen, setIsWishlistOpen]);
+
   if (!isWishlistOpen) return null;
 
   const handleMoveToBag = (product: Product) => {
+    setIsWishlistOpen(false);
     addToCart(product, product.sizes[0]);
     toggleWishlist(product);
   };

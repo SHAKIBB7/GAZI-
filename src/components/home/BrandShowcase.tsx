@@ -11,8 +11,8 @@ export const BrandShowcase: React.FC<BrandShowcaseProps> = ({
   onSelectBrand,
 }) => {
   return (
-    <section className="bg-neutral-100 py-6 border-b border-neutral-200">
-      <div className="max-w-7xl mx-auto px-4">
+    <section className="bg-neutral-100 py-6 border-b border-neutral-200 overflow-x-clip">
+      <div className="max-w-7xl mx-auto px-4 w-full min-w-0">
         <div className="flex items-center justify-between mb-3">
           <span className="text-[11px] font-black text-neutral-500 uppercase tracking-wider">
             OFFICIAL BRAND PARTNERS
@@ -27,7 +27,7 @@ export const BrandShowcase: React.FC<BrandShowcaseProps> = ({
           )}
         </div>
 
-        <div className="flex items-center space-x-2 overflow-x-auto pb-2 scrollbar-none">
+        <div className="flex items-center space-x-2 overflow-x-auto pb-2 scrollbar-none w-full">
           <button
             onClick={() => onSelectBrand('All')}
             className={`px-4 py-2 rounded-full text-xs font-black uppercase tracking-wider whitespace-nowrap transition-all cursor-pointer ${

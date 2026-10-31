@@ -35,6 +35,14 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   useEffect(() => {
     if (isOpen) {
       setTimeout(() => inputRef.current?.focus(), 50);
+
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+          handleClose();
+        }
+      };
+      window.addEventListener('keydown', handleKeyDown);
+      return () => window.removeEventListener('keydown', handleKeyDown);
     }
   }, [isOpen]);
 

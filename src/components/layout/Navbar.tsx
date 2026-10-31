@@ -104,36 +104,36 @@ export const Navbar: React.FC<NavbarProps> = ({
   ];
 
   return (
-    <header className="sticky top-0 z-40 bg-black text-white shadow-md">
-      <div className="max-w-7xl mx-auto px-4 h-16 sm:h-20 flex items-center justify-between">
+    <header className="sticky top-0 z-40 bg-black text-white shadow-md overflow-x-clip">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 h-16 sm:h-20 flex items-center justify-between">
         {/* Left: Mobile Hamburger & Logo */}
-        <div className="flex items-center space-x-3 sm:space-x-4">
+        <div className="flex items-center space-x-2 sm:space-x-4 min-w-0">
           <button
             onClick={onOpenMobileMenu}
-            className="lg:hidden text-white p-1.5 hover:bg-neutral-800 rounded transition-colors"
+            className="lg:hidden text-white p-1.5 hover:bg-neutral-800 rounded transition-colors shrink-0 cursor-pointer"
             aria-label="Toggle mobile menu"
           >
-            <Menu size={24} />
+            <Menu size={22} />
           </button>
 
-          <a href="#" className="flex items-center space-x-2.5 sm:space-x-3 group">
+          <a href="#" className="flex items-center space-x-2 sm:space-x-3 group min-w-0">
             {/* Gazi Sports 99 Brand Logo & Mark */}
             <div className="relative shrink-0 flex items-center justify-center">
               <img
                 src="/logo-crest.png"
                 alt="Gazi Sports 99 Logo"
-                className="h-9 sm:h-11 w-auto object-contain filter drop-shadow-[0_2px_8px_rgba(255,140,0,0.35)] group-hover:scale-105 transition-transform duration-200"
+                className="h-8 sm:h-11 w-auto object-contain filter drop-shadow-[0_2px_8px_rgba(255,140,0,0.35)] group-hover:scale-105 transition-transform duration-200"
               />
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col min-w-0">
               <div className="flex items-center space-x-1 sm:space-x-1.5">
-                <span className="font-extrabold text-lg sm:text-2xl tracking-tighter uppercase font-mono leading-none">
+                <span className="font-extrabold text-base sm:text-2xl tracking-tighter uppercase font-mono leading-none truncate">
                   GAZI<span className="text-[#ccff00]">.</span>SPORTS
                 </span>
-                <span className="bg-[#ccff00] text-black text-xs sm:text-sm font-black px-1.5 py-0.5 rounded uppercase tracking-wider font-mono shadow-sm">
+                <span className="bg-[#ccff00] text-black text-[10px] sm:text-sm font-black px-1.5 py-0.5 rounded uppercase tracking-wider font-mono shadow-sm shrink-0">
                   99
                 </span>
-                <span className="bg-neutral-800 text-neutral-300 text-[9px] sm:text-[10px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider">
+                <span className="hidden sm:inline-block bg-neutral-800 text-neutral-300 text-[9px] sm:text-[10px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider shrink-0">
                   CRICKET BD
                 </span>
               </div>
@@ -191,15 +191,15 @@ export const Navbar: React.FC<NavbarProps> = ({
         </nav>
 
         {/* Right: Actions (Search, Wishlist, Bag) */}
-        <div className="flex items-center space-x-1 sm:space-x-3">
+        <div className="flex items-center space-x-1.5 sm:space-x-3 shrink-0">
           {/* Search Trigger */}
           <button
             onClick={onOpenSearch}
-            className="flex items-center space-x-2 bg-neutral-900 hover:bg-neutral-800 text-neutral-300 px-3 py-2 rounded-full border border-neutral-700 transition-colors text-xs cursor-pointer"
+            className="flex items-center space-x-2 bg-neutral-900 hover:bg-neutral-800 text-neutral-300 p-2 sm:px-3 sm:py-2 rounded-full border border-neutral-700 transition-colors text-xs cursor-pointer"
             aria-label="Search equipment"
           >
             <Search size={16} className="text-[#ccff00]" />
-            <span className="hidden sm:inline font-medium text-neutral-300 text-xs">
+            <span className="hidden md:inline font-medium text-neutral-300 text-xs">
               Search bats, shoes, gear...
             </span>
             <kbd className="hidden md:inline-block bg-neutral-800 text-neutral-400 text-[9px] px-1.5 py-0.5 rounded border border-neutral-700">
@@ -210,12 +210,12 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Wishlist Button */}
           <button
             onClick={() => setIsWishlistOpen(true)}
-            className="relative p-2.5 text-neutral-300 hover:text-white hover:bg-neutral-900 rounded-full transition-colors cursor-pointer"
+            className="relative p-2 sm:p-2.5 text-neutral-300 hover:text-white hover:bg-neutral-900 rounded-full transition-colors cursor-pointer"
             aria-label="View Wishlist"
           >
-            <Heart size={20} />
+            <Heart size={18} />
             {totalWishlistItems > 0 && (
-              <span className="absolute -top-1 -right-1 bg-[#ccff00] text-black font-black text-[10px] w-5 h-5 rounded-full flex items-center justify-center animate-bounce">
+              <span className="absolute -top-1 -right-1 bg-[#ccff00] text-black font-black text-[10px] w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center animate-bounce">
                 {totalWishlistItems}
               </span>
             )}
@@ -224,12 +224,12 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Cart Bag Button */}
           <button
             onClick={() => setIsCartOpen(true)}
-            className="relative flex items-center space-x-2 bg-white text-black hover:bg-neutral-200 px-3.5 py-2 rounded-full font-bold transition-transform active:scale-95 cursor-pointer"
+            className="relative flex items-center space-x-1.5 sm:space-x-2 bg-white text-black hover:bg-neutral-200 px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-full font-bold transition-transform active:scale-95 cursor-pointer"
             aria-label="View Shopping Bag"
           >
-            <ShoppingBag size={18} />
+            <ShoppingBag size={16} />
             <span className="text-xs font-black hidden sm:inline">BAG</span>
-            <span className="bg-black text-white text-[11px] font-black w-5 h-5 rounded-full flex items-center justify-center">
+            <span className="bg-black text-white text-[10px] sm:text-[11px] font-black w-4.5 h-4.5 sm:w-5 sm:h-5 rounded-full flex items-center justify-center">
               {totalItems}
             </span>
           </button>

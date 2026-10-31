@@ -31,6 +31,19 @@ export const CartDrawer: React.FC = () => {
   const [confirmedOrder, setConfirmedOrder] = useState<CheckoutResult['order'] | null>(null);
   const [isCheckoutModalOpen, setIsCheckoutModalOpen] = useState(false);
 
+  React.useEffect(() => {
+    if (!isCartOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Only close cart if child checkout modal is not currently open
+      if (e.key === 'Escape' && !isCheckoutModalOpen) {
+        setIsCartOpen(false);
+        setConfirmedOrder(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isCartOpen, isCheckoutModalOpen, setIsCartOpen]);
+
   if (!isCartOpen) return null;
 
   const progressPercent = Math.min(

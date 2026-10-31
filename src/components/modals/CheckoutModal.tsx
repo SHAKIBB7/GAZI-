@@ -7,6 +7,7 @@ import {
   normalizeBdPhone,
   calculateDeliveryFee,
   formatBDT,
+  getEstimatedDeliveryText,
 } from '../../utils/bangladesh';
 import { DeliveryZone, PaymentMethod } from '../../types/cricket';
 import {
@@ -24,6 +25,8 @@ import {
   ArrowRight,
   Lock,
   ShoppingBag,
+  Copy,
+  Check,
 } from 'lucide-react';
 
 interface CheckoutModalProps {
@@ -58,10 +61,30 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
   const [deliveryZone, setDeliveryZone] = useState<DeliveryZone>('inside_dhaka');
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('cod');
   const [trxId, setTrxId] = useState('');
+  const [copiedNumber, setCopiedNumber] = useState(false);
 
   // UI state
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleCopyNumber = (num: string = '01837805877') => {
+    if (navigator?.clipboard?.writeText) {
+      navigator.clipboard.writeText(num);
+      setCopiedNumber(true);
+      setTimeout(() => setCopiedNumber(false), 2200);
+    }
+  };
+
+  React.useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -114,6 +137,137 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
+  };
+
+  const renderMfsInstructions = (method: 'bkash' | 'nagad' | 'rocket') => {
+    const brand = {
+      bkash: {
+        name: 'bKash',
+        nameBn: 'বিকাশ',
+        color: '#e2136e',
+        bgColor: 'bg-pink-50',
+        borderColor: 'border-[#e2136e]',
+        number: '01837805877',
+        type: 'Personal / Send Money (পার্সোনাল ওয়ালেট)',
+        placeholder: 'e.g. BK892JX01',
+      },
+      nagad: {
+        name: 'Nagad',
+        nameBn: 'নগদ',
+        color: '#f7941d',
+        bgColor: 'bg-amber-50',
+        borderColor: 'border-[#f7941d]',
+        number: '01837805877',
+        type: 'Personal / Send Money (পার্সোনাল ওয়ালেট)',
+        placeholder: 'e.g. NGD7184K9',
+      },
+      rocket: {
+        name: 'Rocket',
+        nameBn: 'রকেট',
+        color: '#8c3494',
+        bgColor: 'bg-purple-50',
+        borderColor: 'border-[#8c3494]',
+        number: '01837805877',
+        type: 'Personal / Send Money (পার্সোনাল ওয়ালেট)',
+        placeholder: 'e.g. RCK8291X0',
+      },
+    }[method];
+
+    return (
+      <div className={`mt-3 p-3.5 rounded-xl border ${brand.borderColor} ${brand.bgColor} space-y-3`}>
+        {/* Wallet Number with 1-Click Copy */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between bg-white p-2.5 rounded-lg border border-neutral-200 gap-2 shadow-xs">
+          <div className="flex items-center space-x-2.5">
+            <span
+              className="text-white text-[10px] font-black px-2 py-0.5 rounded uppercase"
+              style={{ backgroundColor: brand.color }}
+            >
+              {brand.name} Wallet
+            </span>
+            <div>
+              <span className="font-mono font-black text-sm text-neutral-900 block tracking-wider">
+                {brand.number}
+              </span>
+              <span className="text-[10px] text-neutral-500 font-medium">
+                {brand.type}
+              </span>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            onClick={(e) => {
+              e.preventDefault();
+              handleCopyNumber(brand.number);
+            }}
+            className="flex items-center justify-center space-x-1.5 px-3 py-1.5 rounded-lg bg-neutral-900 hover:bg-black text-white text-[11px] font-bold transition-all cursor-pointer shrink-0"
+          >
+            {copiedNumber ? (
+              <>
+                <Check size={13} className="text-[#ccff00]" />
+                <span className="text-[#ccff00]">কপি হয়েছে (Copied!)</span>
+              </>
+            ) : (
+              <>
+                <Copy size={13} />
+                <span>নম্বর কপি করুন (Copy)</span>
+              </>
+            )}
+          </button>
+        </div>
+
+        {/* 3 Guided Steps */}
+        <div className="space-y-1.5 text-[11px] text-neutral-700 bg-white/70 p-2.5 rounded-lg border border-neutral-200/80">
+          <div className="flex items-start space-x-2">
+            <span className="bg-black text-white font-bold w-4 h-4 rounded-full flex items-center justify-center text-[9px] shrink-0 mt-0.5">
+              ১
+            </span>
+            <span>
+              আপনার <strong>{brand.nameBn}</strong> অ্যাপ থেকে <strong>Send Money</strong> (বা ক্যাশ আউট) অপশনে ট্যাপ করুন।
+            </span>
+          </div>
+          <div className="flex items-start space-x-2">
+            <span className="bg-black text-white font-bold w-4 h-4 rounded-full flex items-center justify-center text-[9px] shrink-0 mt-0.5">
+              ২
+            </span>
+            <span>
+              প্রাপক নম্বরে <strong className="font-mono">{brand.number}</strong> দিন এবং টাকার পরিমাণ দিন <strong className="font-mono text-neutral-900">{formatBDT(grandTotal)}</strong> (রেফারেন্স: <strong className="font-mono">GAZI</strong>)।
+            </span>
+          </div>
+          <div className="flex items-start space-x-2">
+            <span className="bg-black text-white font-bold w-4 h-4 rounded-full flex items-center justify-center text-[9px] shrink-0 mt-0.5">
+              ৩
+            </span>
+            <span>
+              পেমেন্ট কনফার্মেশনের পর প্রাপ্ত <strong>Transaction ID (TrxID)</strong> টি নিচের বক্সে লিখুন বা পেস্ট করুন।
+            </span>
+          </div>
+        </div>
+
+        {/* TrxID Input Box */}
+        <div>
+          <label className="block text-[11px] font-bold text-neutral-800 mb-1">
+            {brand.name} Transaction ID (TrxID) দিন: <span className="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            value={trxId}
+            onChange={(e) => setTrxId(e.target.value.toUpperCase())}
+            placeholder={brand.placeholder}
+            className={`w-full bg-white border ${
+              errors.trxId ? 'border-red-500' : 'border-neutral-300'
+            } px-3 py-2 rounded-lg text-xs font-mono font-bold focus:outline-none uppercase`}
+          />
+          {errors.trxId && (
+            <p className="text-[10px] text-red-600 mt-1 font-medium">{errors.trxId}</p>
+          )}
+        </div>
+
+        <p className="text-[10px] text-neutral-500 italic">
+          ★ অর্ডার নিশ্চিত করার পর আমাদের হেল্পডেস্ক থেকে ভেরিফিকেশন কল করে দ্রুত পার্সেল পাঠানো হবে।
+        </p>
+      </div>
+    );
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -433,6 +587,14 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                   </span>
                 </label>
               </div>
+
+              {/* Dynamic Estimated Delivery Notice */}
+              <div className="mt-2.5 flex items-center space-x-2 bg-white px-3 py-2 rounded-lg border border-neutral-200 text-xs">
+                <Truck size={14} className="text-emerald-600 shrink-0" />
+                <span className="text-neutral-600">
+                  আনুমানিক ডেলিভারি সময়: <strong className="text-neutral-900">{getEstimatedDeliveryText(deliveryZone).rangeBn}</strong>
+                </span>
+              </div>
             </div>
           </div>
 
@@ -455,6 +617,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                 <input
                   type="radio"
                   name="paymentMethod"
+                  value="cod"
                   checked={paymentMethod === 'cod'}
                   onChange={() => setPaymentMethod('cod')}
                   className="accent-black mt-1"
@@ -476,136 +639,106 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
               </label>
 
               {/* bKash */}
-              <label
-                className={`p-3.5 rounded-xl border cursor-pointer flex items-start space-x-3 transition-all ${
+              <div
+                className={`p-3.5 rounded-xl border transition-all ${
                   paymentMethod === 'bkash'
-                    ? 'border-[#e2136e] bg-pink-50/50 ring-1 ring-[#e2136e] shadow-sm'
+                    ? 'border-[#e2136e] bg-pink-50/30 ring-1 ring-[#e2136e] shadow-sm'
                     : 'border-neutral-300 hover:bg-neutral-50'
                 }`}
               >
-                <input
-                  type="radio"
-                  name="paymentMethod"
-                  checked={paymentMethod === 'bkash'}
-                  onChange={() => setPaymentMethod('bkash')}
-                  className="accent-[#e2136e] mt-1"
-                />
-                <div className="flex-1">
-                  <div className="flex items-center space-x-2">
-                    <span className="bg-[#e2136e] text-white text-[10px] font-black px-2 py-0.5 rounded">
-                      bKash
-                    </span>
-                    <span className="font-extrabold text-neutral-900">
-                      বিকাশ পেমেন্ট (bKash Personal / Merchant)
-                    </span>
-                  </div>
-                  <p className="text-[11px] text-neutral-600 mt-1">
-                    বিকাশ ওয়ালেট নম্বর <strong className="text-black font-mono">01837805877</strong> এ Payment অথবা Send Money করুন এবং Transaction ID (TrxID) নিচে দিন।
-                  </p>
-                  {paymentMethod === 'bkash' && (
-                    <div className="mt-2.5">
-                      <input
-                        type="text"
-                        value={trxId}
-                        onChange={(e) => setTrxId(e.target.value.toUpperCase())}
-                        placeholder="Enter bKash TrxID (e.g. BK892JX01)"
-                        className="w-full sm:w-64 bg-white border border-[#e2136e] px-3 py-1.5 rounded-lg text-xs font-mono font-bold focus:outline-none uppercase"
-                      />
-                      {errors.trxId && (
-                        <p className="text-[10px] text-red-600 mt-1">{errors.trxId}</p>
-                      )}
+                <label className="flex items-start space-x-3 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="bkash"
+                    checked={paymentMethod === 'bkash'}
+                    onChange={() => setPaymentMethod('bkash')}
+                    className="accent-[#e2136e] mt-1"
+                  />
+                  <div className="flex-1">
+                    <div className="flex items-center space-x-2">
+                      <span className="bg-[#e2136e] text-white text-[10px] font-black px-2 py-0.5 rounded">
+                        bKash
+                      </span>
+                      <span className="font-extrabold text-neutral-900">
+                        বিকাশ পেমেন্ট (bKash Personal / Send Money)
+                      </span>
                     </div>
-                  )}
-                </div>
-              </label>
+                    <p className="text-[11px] text-neutral-600 mt-1">
+                      বিকাশ ওয়ালেট নম্বর <strong className="text-black font-mono">01837805877</strong> এ Send Money করে TrxID প্রদান করুন।
+                    </p>
+                  </div>
+                </label>
+                {paymentMethod === 'bkash' && renderMfsInstructions('bkash')}
+              </div>
 
               {/* Nagad */}
-              <label
-                className={`p-3.5 rounded-xl border cursor-pointer flex items-start space-x-3 transition-all ${
+              <div
+                className={`p-3.5 rounded-xl border transition-all ${
                   paymentMethod === 'nagad'
-                    ? 'border-[#f7941d] bg-amber-50/50 ring-1 ring-[#f7941d] shadow-sm'
+                    ? 'border-[#f7941d] bg-amber-50/30 ring-1 ring-[#f7941d] shadow-sm'
                     : 'border-neutral-300 hover:bg-neutral-50'
                 }`}
               >
-                <input
-                  type="radio"
-                  name="paymentMethod"
-                  checked={paymentMethod === 'nagad'}
-                  onChange={() => setPaymentMethod('nagad')}
-                  className="accent-[#f7941d] mt-1"
-                />
-                <div className="flex-1">
-                  <div className="flex items-center space-x-2">
-                    <span className="bg-[#f7941d] text-white text-[10px] font-black px-2 py-0.5 rounded">
-                      Nagad
-                    </span>
-                    <span className="font-extrabold text-neutral-900">
-                      নগদ পেমেন্ট (Nagad Personal / Merchant)
-                    </span>
-                  </div>
-                  <p className="text-[11px] text-neutral-600 mt-1">
-                    নগদ ওয়ালেট নম্বর <strong className="text-black font-mono">01837805877</strong> এ পেমেন্ট অথবা সেন্ড মানি করে TrxID প্রদান করুন।
-                  </p>
-                  {paymentMethod === 'nagad' && (
-                    <div className="mt-2.5">
-                      <input
-                        type="text"
-                        value={trxId}
-                        onChange={(e) => setTrxId(e.target.value.toUpperCase())}
-                        placeholder="Enter Nagad TrxID (e.g. NGD7184K9)"
-                        className="w-full sm:w-64 bg-white border border-[#f7941d] px-3 py-1.5 rounded-lg text-xs font-mono font-bold focus:outline-none uppercase"
-                      />
-                      {errors.trxId && (
-                        <p className="text-[10px] text-red-600 mt-1">{errors.trxId}</p>
-                      )}
+                <label className="flex items-start space-x-3 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="nagad"
+                    checked={paymentMethod === 'nagad'}
+                    onChange={() => setPaymentMethod('nagad')}
+                    className="accent-[#f7941d] mt-1"
+                  />
+                  <div className="flex-1">
+                    <div className="flex items-center space-x-2">
+                      <span className="bg-[#f7941d] text-white text-[10px] font-black px-2 py-0.5 rounded">
+                        Nagad
+                      </span>
+                      <span className="font-extrabold text-neutral-900">
+                        নগদ পেমেন্ট (Nagad Personal / Send Money)
+                      </span>
                     </div>
-                  )}
-                </div>
-              </label>
+                    <p className="text-[11px] text-neutral-600 mt-1">
+                      নগদ ওয়ালেট নম্বর <strong className="text-black font-mono">01837805877</strong> এ Send Money করে TrxID প্রদান করুন।
+                    </p>
+                  </div>
+                </label>
+                {paymentMethod === 'nagad' && renderMfsInstructions('nagad')}
+              </div>
 
               {/* Rocket */}
-              <label
-                className={`p-3.5 rounded-xl border cursor-pointer flex items-start space-x-3 transition-all ${
+              <div
+                className={`p-3.5 rounded-xl border transition-all ${
                   paymentMethod === 'rocket'
-                    ? 'border-[#8c3494] bg-purple-50/50 ring-1 ring-[#8c3494] shadow-sm'
+                    ? 'border-[#8c3494] bg-purple-50/30 ring-1 ring-[#8c3494] shadow-sm'
                     : 'border-neutral-300 hover:bg-neutral-50'
                 }`}
               >
-                <input
-                  type="radio"
-                  name="paymentMethod"
-                  checked={paymentMethod === 'rocket'}
-                  onChange={() => setPaymentMethod('rocket')}
-                  className="accent-[#8c3494] mt-1"
-                />
-                <div className="flex-1">
-                  <div className="flex items-center space-x-2">
-                    <span className="bg-[#8c3494] text-white text-[10px] font-black px-2 py-0.5 rounded">
-                      Rocket
-                    </span>
-                    <span className="font-extrabold text-neutral-900">
-                      রকেট পেমেন্ট (DBBL Rocket Personal / Merchant)
-                    </span>
-                  </div>
-                  <p className="text-[11px] text-neutral-600 mt-1">
-                    রকেট ওয়ালেট নম্বর <strong className="text-black font-mono">01837805877</strong> এ পেমেন্ট অথবা সেন্ড মানি করে TrxID প্রদান করুন।
-                  </p>
-                  {paymentMethod === 'rocket' && (
-                    <div className="mt-2.5">
-                      <input
-                        type="text"
-                        value={trxId}
-                        onChange={(e) => setTrxId(e.target.value.toUpperCase())}
-                        placeholder="Enter Rocket TrxID (e.g. RCK8291X0)"
-                        className="w-full sm:w-64 bg-white border border-[#8c3494] px-3 py-1.5 rounded-lg text-xs font-mono font-bold focus:outline-none uppercase"
-                      />
-                      {errors.trxId && (
-                        <p className="text-[10px] text-red-600 mt-1">{errors.trxId}</p>
-                      )}
+                <label className="flex items-start space-x-3 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="rocket"
+                    checked={paymentMethod === 'rocket'}
+                    onChange={() => setPaymentMethod('rocket')}
+                    className="accent-[#8c3494] mt-1"
+                  />
+                  <div className="flex-1">
+                    <div className="flex items-center space-x-2">
+                      <span className="bg-[#8c3494] text-white text-[10px] font-black px-2 py-0.5 rounded">
+                        Rocket
+                      </span>
+                      <span className="font-extrabold text-neutral-900">
+                        রকেট পেমেন্ট (DBBL Rocket Personal / Send Money)
+                      </span>
                     </div>
-                  )}
-                </div>
-              </label>
+                    <p className="text-[11px] text-neutral-600 mt-1">
+                      রকেট ওয়ালেট নম্বর <strong className="text-black font-mono">01837805877</strong> এ Send Money করে TrxID প্রদান করুন।
+                    </p>
+                  </div>
+                </label>
+                {paymentMethod === 'rocket' && renderMfsInstructions('rocket')}
+              </div>
 
               {/* Card / SSLCommerz */}
               <label
@@ -618,6 +751,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                 <input
                   type="radio"
                   name="paymentMethod"
+                  value="card"
                   checked={paymentMethod === 'card'}
                   onChange={() => setPaymentMethod('card')}
                   className="accent-black mt-1"
@@ -669,6 +803,18 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
               <div className="flex justify-between text-sm font-black text-neutral-900 pt-2 border-t border-neutral-200">
                 <span>সর্বমোট প্রদেয় (Total Payable)</span>
                 <span className="text-base text-black font-mono font-black">{formatBDT(grandTotal)}</span>
+              </div>
+            </div>
+
+            {/* Reassurance & Confidence Micro-Strip */}
+            <div className="mt-3 pt-2.5 border-t border-neutral-200 flex flex-wrap items-center justify-between text-[11px] text-neutral-600 gap-2">
+              <div className="flex items-center space-x-1.5">
+                <CheckCircle size={13} className="text-emerald-600" />
+                <span>১০০% অথেনটিক ক্রিকেট সরঞ্জাম</span>
+              </div>
+              <div className="flex items-center space-x-1.5">
+                <Truck size={13} className="text-emerald-600" />
+                <span>ডেলিভারি পার্সেল চেক করে নেওয়ার সুযোগ</span>
               </div>
             </div>
           </div>

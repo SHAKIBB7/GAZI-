@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Product } from '../../types/cricket';
 import { useCart } from '../../context/CartContext';
 import { useWishlist } from '../../context/WishlistContext';
-import { X, Heart, Star, ShoppingBag, Truck, RotateCcw, Check } from 'lucide-react';
+import { X, Heart, Star, ShoppingBag, Truck, RotateCcw, Check, ShieldCheck, Clock } from 'lucide-react';
+import { getEstimatedDeliveryText } from '../../utils/bangladesh';
 
 interface QuickViewModalProps {
   product: Product | null;
@@ -27,12 +28,28 @@ const QuickViewModalContent: React.FC<QuickViewContentProps> = ({ product, onClo
   const savings = product.oldPrice ? product.oldPrice - product.price : 0;
   const currentImg = product.images[activeImageIndex] || product.images[0];
 
+  const deliveryInside = getEstimatedDeliveryText('inside_dhaka');
+  const deliveryOutside = getEstimatedDeliveryText('outside_dhaka');
+
+  React.useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onClose]);
+
   const handleAddToCart = () => {
     for (let i = 0; i < quantity; i++) {
       addToCart(product, selectedSize);
     }
     setAdded(true);
-    setTimeout(() => setAdded(false), 2000);
+    // Gracefully close QuickView so CartDrawer slides in cleanly without double-backdrop collision
+    setTimeout(() => {
+      onClose();
+    }, 250);
   };
 
   return (
@@ -92,12 +109,12 @@ const QuickViewModalContent: React.FC<QuickViewContentProps> = ({ product, onClo
           {/* Guarantees */}
           <div className="mt-4 pt-4 border-t border-neutral-200 grid grid-cols-2 gap-2 text-[11px] text-neutral-600">
             <div className="flex items-center space-x-1.5">
-              <Truck size={14} className="text-black shrink-0" />
-              <span>Dhaka Express Dispatch</span>
+              <ShieldCheck size={14} className="text-emerald-600 shrink-0" />
+              <span>১০০% অফিসিয়াল ক্রিকেট গিয়ার</span>
             </div>
             <div className="flex items-center space-x-1.5">
               <RotateCcw size={14} className="text-black shrink-0" />
-              <span>7-Day Replacement Policy</span>
+              <span>৭-দিনের রিপ্লেসমেন্ট পলিসি</span>
             </div>
           </div>
         </div>
@@ -138,10 +155,27 @@ const QuickViewModalContent: React.FC<QuickViewContentProps> = ({ product, onClo
               </span>
             </div>
 
-            {/* Bangladesh Payment Notice */}
-            <div className="text-[11px] text-neutral-800 mb-4 bg-emerald-50/70 p-2.5 rounded-lg border border-emerald-200 flex items-center justify-between">
-              <span>ক্যাশ অন ডেলিভারি (COD), বিকাশ, নগদ ও রকেট পেমেন্ট প্রযোজ্য</span>
-              <span className="font-bold text-emerald-700">সারা বাংলাদেশ</span>
+            {/* Bangladesh Delivery & Payment Estimates */}
+            <div className="bg-emerald-50/60 p-3 rounded-xl border border-emerald-200/80 text-xs mb-4 space-y-2">
+              <div className="flex items-center justify-between font-bold text-neutral-900 pb-1.5 border-b border-emerald-200/60">
+                <div className="flex items-center space-x-1.5 text-emerald-800">
+                  <Truck size={14} className="text-emerald-700" />
+                  <span>এক্সপ্রেস ডেলিভারি (Estimated Delivery)</span>
+                </div>
+                <span className="text-[10px] bg-emerald-200 text-emerald-900 font-extrabold px-1.5 py-0.5 rounded">
+                  ক্যাশ অন ডেলিভারি
+                </span>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-[11px] text-neutral-700">
+                <div>
+                  <span className="text-neutral-500 block">ঢাকা ও নরসিংদী:</span>
+                  <strong className="text-neutral-900 font-semibold">{deliveryInside.rangeBn}</strong>
+                </div>
+                <div>
+                  <span className="text-neutral-500 block">ঢাকার বাইরে (সারাদেশ):</span>
+                  <strong className="text-neutral-900 font-semibold">{deliveryOutside.rangeBn}</strong>
+                </div>
+              </div>
             </div>
 
             {/* Size Selector */}
