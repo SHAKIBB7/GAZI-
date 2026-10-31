@@ -56,8 +56,16 @@ const corsOptions = {
     // Allow non-browser requests (e.g. mobile apps, curl, same-origin)
     if (!origin) return callback(null, true);
 
-    if (allowedOrigins.includes(origin)) {
-      return callback(null, true);
+    const cleanOrigin = origin.replace(/\/$/, '');
+    try {
+      const parsedUrl = new URL(origin);
+      if (allowedOrigins.includes(cleanOrigin) || /\.vercel\.app$/.test(parsedUrl.hostname)) {
+        return callback(null, true);
+      }
+    } catch (_) {
+      if (allowedOrigins.includes(cleanOrigin)) {
+        return callback(null, true);
+      }
     }
 
     // In non-production environments, allow any localhost/127.0.0.1 port

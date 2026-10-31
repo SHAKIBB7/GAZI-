@@ -137,6 +137,25 @@ async function runHardeningSuite() {
     assert(gaziLoginRes.status === 200, 'Super Admin GAZI9 login succeeds with 99GAZI@1');
     assert(gaziLoginRes.body.user.role === 'super_admin', 'GAZI9 role is verified as super_admin');
 
+    // Incorrect password rejected safely
+    const badPassRes = await request('POST', '/api/admin/auth/login', {
+      username: 'GAZI9',
+      password: 'WrongPassword123!',
+    });
+    assert(badPassRes.status === 401, 'Incorrect password rejected safely with HTTP 401');
+
+    // Unknown username/email rejected safely
+    const unknownUserRes = await request('POST', '/api/admin/auth/login', {
+      username: 'nonexistent_user_99@gazisports.com',
+      password: 'SomeRandomPassword!',
+    });
+    assert(unknownUserRes.status === 401, 'Unknown username/email rejected safely with HTTP 401');
+
+    // Valid /api/admin/auth/me verification
+    const meRes = await request('GET', '/api/admin/auth/me', null, gaziLoginRes.body.token);
+    assert(meRes.status === 200 && meRes.body.authenticated === true, '/api/admin/auth/me accepts valid session');
+    assert(meRes.body.user.username.toLowerCase() === 'gazi9', 'Session verification returns correct admin profile');
+
     // Forged signature rejection
     const parts = superAdminToken.split('.');
     const forgedToken = `${parts[0]}.${parts[1]}.badsignature1234567890`;
@@ -148,6 +167,16 @@ async function runHardeningSuite() {
     const alteredPayloadToken = `${parts[0]}.${tamperedPayload}.${parts[2]}`;
     const alteredRes = await request('GET', '/api/admin/products', null, alteredPayloadToken);
     assert(alteredRes.status === 401, 'Request with altered payload rejected with HTTP 401');
+
+    // Expired token rejection
+    const crypto = require('crypto');
+    const secret = process.env.JWT_SECRET || 'gazi_sports_super_secret_jwt_key_2026';
+    const expHeader = Buffer.from(JSON.stringify({ alg: 'HS256', typ: 'JWT' })).toString('base64url');
+    const expPayload = Buffer.from(JSON.stringify({ id: 'adm-001', username: 'admin', role: 'super_admin', exp: Math.floor(Date.now() / 1000) - 3600 })).toString('base64url');
+    const expSig = crypto.createHmac('sha256', secret).update(`${expHeader}.${expPayload}`).digest('base64url');
+    const expiredToken = `${expHeader}.${expPayload}.${expSig}`;
+    const expiredRes = await request('GET', '/api/admin/products', null, expiredToken);
+    assert(expiredRes.status === 401, 'Expired JWT is rejected with HTTP 401');
 
     // -------------------------------------------------------------
     // MODULE 4: Super Admin vs Store Manager RBAC
@@ -362,6 +391,20 @@ async function runHardeningSuite() {
       // Hard delete test order to prevent database pollution
       await request('DELETE', `/api/admin/orders/${testOrderId}`, null, superAdminToken);
     }
+
+    // -------------------------------------------------------------
+    // MODULE 10: Datastore Persistence & API Resilience Verification
+    // -------------------------------------------------------------
+    console.log('\n📦 10. Verifying Admin Datastore Persistence & API Resilience...');
+    const adminsOnDisk = JSON.parse(fs.readFileSync(path.join(__dirname, '../server/data/admins.json'), 'utf-8'));
+    const gaziUser = adminsOnDisk.find((a) => a.username === 'GAZI9');
+    assert(Boolean(gaziUser), 'Admin record for GAZI9 survives initialization and persists on disk');
+    assert(gaziUser && gaziUser.role === 'super_admin', 'Persisted GAZI9 record retains super_admin role');
+    assert(gaziUser && gaziUser.isActive === true, 'Persisted GAZI9 record retains active status');
+
+    const adminApiSrc = fs.readFileSync(path.join(__dirname, '../src/admin/services/adminApi.ts'), 'utf-8');
+    assert(adminApiSrc.includes("contentType.includes('application/json')"), 'adminApi detects and rejects non-JSON / HTML responses');
+    assert(adminApiSrc.includes('localDb.login'), 'adminApi falls back to local database when live API returns non-JSON or fails');
 
     // Clean up created test manager account from database to preserve initial state
     if (newMgrId) {

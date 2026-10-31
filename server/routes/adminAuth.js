@@ -13,6 +13,7 @@ router.post('/login', async (req, res) => {
 
   const admin = db.getAdminByUsernameOrEmail(username);
   if (!admin) {
+    console.warn(`[AUTH] Login attempt failed: identifier not found from IP ${req.ip}`);
     await db.addAuditLog({
       actor: username,
       role: 'anonymous',
@@ -27,6 +28,7 @@ router.post('/login', async (req, res) => {
 
   // Deactivated/Disabled Account Check
   if (admin.isActive === false || admin.status === 'disabled') {
+    console.warn(`[AUTH] Login blocked: account deactivated for username=${admin.username} from IP ${req.ip}`);
     await db.addAuditLog({
       actor: admin.username,
       role: admin.role,
@@ -43,6 +45,7 @@ router.post('/login', async (req, res) => {
 
   const isValid = verifyPassword(password, admin.salt, admin.passwordHash);
   if (!isValid) {
+    console.warn(`[AUTH] Login attempt failed: incorrect password for username=${admin.username} from IP ${req.ip}`);
     await db.addAuditLog({
       actor: admin.username,
       role: admin.role,
@@ -54,6 +57,8 @@ router.post('/login', async (req, res) => {
     });
     return res.status(401).json({ error: 'Invalid username/email or password' });
   }
+
+  console.log(`[AUTH] Login SUCCESS: username=${admin.username}, role=${admin.role} from IP ${req.ip}`);
 
   // Generate token valid for 24 hours with tokenVersion tracking
   const token = createToken({

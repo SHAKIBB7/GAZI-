@@ -62,6 +62,17 @@ async function request<T>(
       signal: controller.signal,
     }).finally(() => clearTimeout(timeoutId));
 
+    const contentType = res.headers.get('content-type') || '';
+    const isJson = contentType.includes('application/json');
+
+    if (!isJson) {
+      isLiveServerHealthy = false;
+      return {
+        error: `Live backend API unreachable (received non-JSON content-type: ${contentType || 'text/html'}).`,
+        isOffline: true,
+      };
+    }
+
     const json = await res.json().catch(() => ({}));
 
     if (!res.ok) {
@@ -91,7 +102,7 @@ export const adminApi = {
       body: JSON.stringify({ username, password }),
     });
 
-    if (res.data?.success) {
+    if (res.data?.success && res.data.token && res.data.user) {
       if (typeof window !== 'undefined') {
         localStorage.setItem('gazi_admin_token', res.data.token);
         localStorage.setItem('gazi_admin_user', JSON.stringify(res.data.user));
@@ -99,10 +110,18 @@ export const adminApi = {
       return res;
     }
 
-    // Fall back to local database for mobile standalone / offline
-    if (res.isOffline || (res.error && res.error.includes('Network'))) {
+    // Fall back to local standalone database when live server is offline, unreachable, or returned non-JSON
+    if (
+      res.isOffline ||
+      !isLiveServerHealthy ||
+      (res.error && (res.error.includes('unreachable') || res.error.includes('Network') || res.error.includes('HTTP 404') || res.error.includes('HTTP 5')))
+    ) {
       const localResult = localDb.login(username, password);
       if (localResult.success && localResult.token && localResult.user) {
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('gazi_admin_token', localResult.token);
+          localStorage.setItem('gazi_admin_user', JSON.stringify(localResult.user));
+        }
         return {
           data: {
             success: true,
@@ -119,13 +138,15 @@ export const adminApi = {
 
   async getMe(): Promise<ApiResponse<{ authenticated: boolean; user: AdminUser }>> {
     const res = await request<{ authenticated: boolean; user: AdminUser }>('/auth/me');
-    if (res.data?.authenticated) {
+    if (res.data?.authenticated && res.data.user) {
       return res;
     }
 
-    const local = localDb.getMe();
-    if (local.authenticated && local.user) {
-      return { data: { authenticated: true, user: local.user } };
+    if (res.isOffline || !isLiveServerHealthy || !res.data) {
+      const local = localDb.getMe();
+      if (local.authenticated && local.user) {
+        return { data: { authenticated: true, user: local.user } };
+      }
     }
 
     return res;
