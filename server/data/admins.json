@@ -10,6 +10,8 @@
     ],
     "passwordHash": "a16bc772b3026d9a87d5a2fd5fe3d809944dc775f3af604e56f20d81a1dd14ba3d1d8623406f1b4b74d02989a1d7bb373e640a8595ca8ab39cd20b3f1473ca9a",
     "salt": "34bcc9da9d2cf45e2d3cf0896af5e3cd",
+    "isActive": true,
+    "tokenVersion": 1,
     "createdAt": "2026-01-01T00:00:00.000Z"
   },
   {
@@ -25,6 +27,23 @@
     ],
     "passwordHash": "a16bc772b3026d9a87d5a2fd5fe3d809944dc775f3af604e56f20d81a1dd14ba3d1d8623406f1b4b74d02989a1d7bb373e640a8595ca8ab39cd20b3f1473ca9a",
     "salt": "34bcc9da9d2cf45e2d3cf0896af5e3cd",
+    "isActive": true,
+    "tokenVersion": 1,
     "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "adm-003",
+    "username": "GAZI9",
+    "email": "gazi9@gazisports.com",
+    "name": "Super Admin GAZI9",
+    "role": "super_admin",
+    "permissions": [
+      "*"
+    ],
+    "passwordHash": "f5634ef4018e3e3e16454e7bbb86a5d6a1088a8c8796e38e726f0269ba1bec0510742ef93a4ce421571e17601ffb762edbaeb923de0cbb2ee9c8d97ac4994226",
+    "salt": "49fb3e9f8f99e3002d241ae3155aad6b",
+    "isActive": true,
+    "tokenVersion": 1,
+    "createdAt": "2026-10-31T21:46:00.000Z"
   }
 ]

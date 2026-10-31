@@ -1995,8 +1995,8 @@ export const db = {
       if (!cleanEmail || !cleanEmail.includes('@')) {
         throw new Error('A valid email address is required.');
       }
-      if (!password || password.length < 8) {
-        throw new Error('Password must be at least 8 characters long.');
+      if (!password || password.length < 6) {
+        throw new Error('Password must be at least 6 characters long.');
       }
 
       const { hash, salt } = hashPassword(password);
@@ -2051,8 +2051,8 @@ export const db = {
       if (!cleanEmail || !cleanEmail.includes('@')) {
         throw new Error('A valid email address is required.');
       }
-      if (!password || password.length < 8) {
-        throw new Error('Password must be at least 8 characters long.');
+      if (!password || password.length < 6) {
+        throw new Error('Password must be at least 6 characters long.');
       }
 
       if (admins.some((a) => a.username.toLowerCase() === cleanUser)) {
@@ -2190,8 +2190,8 @@ export const db = {
       if (!admin) {
         throw new Error(`Administrator '${id}' not found.`);
       }
-      if (!newPassword || newPassword.length < 8) {
-        throw new Error('New password must be at least 8 characters long.');
+      if (!newPassword || newPassword.length < 6) {
+        throw new Error('New password must be at least 6 characters long.');
       }
 
       const { hash, salt } = hashPassword(newPassword);
