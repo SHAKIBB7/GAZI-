@@ -13,6 +13,10 @@ import {
   ChevronDown,
   MapPin,
   PhoneCall,
+  X,
+  Package,
+  HelpCircle,
+  CheckCircle,
 } from 'lucide-react';
 import { BRANDS } from '../../data/cricketData';
 import { apiService } from '../../services/api';
@@ -21,6 +25,7 @@ export const Footer: React.FC<{ onSelectBrand?: (brand: string) => void; onOpenA
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
   const [isTextExpanded, setIsTextExpanded] = useState(false);
+  const [activePolicy, setActivePolicy] = useState<'shipping' | 'cod' | 'replacement' | 'knocking' | null>(null);
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -185,12 +190,61 @@ export const Footer: React.FC<{ onSelectBrand?: (brand: string) => void; onOpenA
             HELP & INFO
           </h4>
           <ul className="space-y-2.5 text-neutral-400">
-            <li><a href="#" className="hover:text-white transition-colors">Bangladesh Delivery & Shipping</a></li>
-            <li><a href="#" className="hover:text-white transition-colors">Track Your Order (GZ-TRK)</a></li>
-            <li><a href="#" className="hover:text-white transition-colors">Cash on Delivery (COD) Guide</a></li>
-            <li><a href="#" className="hover:text-white transition-colors">7-Day Replacement Policy</a></li>
-            <li><a href="#" className="hover:text-white transition-colors">Bat Knocking-In Service</a></li>
-            <li><a href="#" className="hover:text-white transition-colors">Customer Service & Hotline</a></li>
+            <li>
+              <button
+                type="button"
+                onClick={() => setActivePolicy('shipping')}
+                className="hover:text-white transition-colors cursor-pointer text-left"
+              >
+                Bangladesh Delivery & Shipping
+              </button>
+            </li>
+            <li>
+              <button
+                type="button"
+                onClick={() => window.dispatchEvent(new CustomEvent('open-track-order'))}
+                className="hover:text-[#ccff00] text-neutral-300 font-semibold transition-colors cursor-pointer text-left flex items-center space-x-1"
+              >
+                <span>Track Your Order (GZ-TRK)</span>
+                <span className="text-[10px] text-[#ccff00]">→</span>
+              </button>
+            </li>
+            <li>
+              <button
+                type="button"
+                onClick={() => setActivePolicy('cod')}
+                className="hover:text-white transition-colors cursor-pointer text-left"
+              >
+                Cash on Delivery (COD) Guide
+              </button>
+            </li>
+            <li>
+              <button
+                type="button"
+                onClick={() => setActivePolicy('replacement')}
+                className="hover:text-white transition-colors cursor-pointer text-left"
+              >
+                7-Day Replacement Policy
+              </button>
+            </li>
+            <li>
+              <button
+                type="button"
+                onClick={() => setActivePolicy('knocking')}
+                className="hover:text-white transition-colors cursor-pointer text-left"
+              >
+                Bat Knocking-In Service
+              </button>
+            </li>
+            <li>
+              <button
+                type="button"
+                onClick={() => window.dispatchEvent(new CustomEvent('open-help-modal'))}
+                className="hover:text-white transition-colors cursor-pointer text-left"
+              >
+                Customer Service & Hotline
+              </button>
+            </li>
           </ul>
         </div>
 
@@ -320,10 +374,97 @@ export const Footer: React.FC<{ onSelectBrand?: (brand: string) => void; onOpenA
             <span className="bg-neutral-900 px-2 py-1 rounded border border-neutral-800">MASTERCARD</span>
             <span className="bg-neutral-900 px-2 py-1 rounded border border-neutral-800">DBBL NEXUS</span>
             <span className="bg-neutral-900 text-neutral-300 px-2 py-1 rounded border border-neutral-800">STEADFAST / PATHAO</span>
-            <span className="bg-neutral-900 text-neutral-300 px-2 py-1 rounded border border-neutral-800">STEADFAST / PATHAO</span>
           </div>
         </div>
       </div>
+
+      {/* Interactive Policy Modal */}
+      {activePolicy && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div className="fixed inset-0 bg-black/80 backdrop-blur-sm" onClick={() => setActivePolicy(null)} />
+          <div className="relative w-full max-w-lg bg-neutral-950 text-white rounded-2xl border border-neutral-800 shadow-2xl p-6 z-10 animate-in fade-in zoom-in-95 duration-200">
+            <div className="flex items-center justify-between pb-3 border-b border-neutral-800 mb-4">
+              <h3 className="font-mono font-black text-sm uppercase tracking-wider text-[#ccff00]">
+                {activePolicy === 'shipping' && 'ডেলিভারি ও শিপিং পলিসি (Delivery & Shipping)'}
+                {activePolicy === 'cod' && 'ক্যাশ অন ডেলিভারি নির্দেশিকা (COD Guide)'}
+                {activePolicy === 'replacement' && '৭-দিনের রিপ্লেসমেন্ট গ্যারান্টি (7-Day Replacement)'}
+                {activePolicy === 'knocking' && 'ব্যাট নকিং ও প্রিপারেশন সার্ভিস (Bat Knocking-In)'}
+              </h3>
+              <button
+                onClick={() => setActivePolicy(null)}
+                className="text-neutral-400 hover:text-white p-1 rounded-full bg-neutral-900 transition-colors"
+                aria-label="Close modal"
+              >
+                <X size={16} />
+              </button>
+            </div>
+
+            <div className="text-xs text-neutral-300 space-y-3 leading-relaxed">
+              {activePolicy === 'shipping' && (
+                <>
+                  <p>
+                    গাজী স্পোর্টস ৯৯ সারা বাংলাদেশে বিশ্বস্ত কুরিয়ার সার্ভিস (Steadfast ও Pathao Logistics)-এর মাধ্যমে দ্রুততম ডেলিভারি নিশ্চিত করে।
+                  </p>
+                  <div className="bg-neutral-900 p-3 rounded-xl border border-neutral-800 space-y-1.5 font-medium">
+                    <p className="text-white font-bold">ডেলিভারি চার্জ ও সময়সূচী:</p>
+                    <p>• <strong>ঢাকা ও নরসিংদী জেলা:</strong> ৳৭০ (২৪ থেকে ৪৮ ঘণ্টার মধ্যে ডেলিভারি)</p>
+                    <p>• <strong>ঢাকার বাইরে (সকল জেলা ও উপজেলা):</strong> ৳১৩০ (২ থেকে ৪ কর্মদিবস)</p>
+                    <p className="text-[#ccff00]">★ ৳৫,০০০ বা তার বেশি অর্ডারে সারা দেশে ডেলিভারি সম্পূর্ণ ফ্রি!</p>
+                  </div>
+                </>
+              )}
+
+              {activePolicy === 'cod' && (
+                <>
+                  <p>
+                    বাংলাদেশের ৬৪টি জেলাতেই ১০০% ক্যাশ অন ডেলিভারি (Cash on Delivery) সুবিধা রয়েছে।
+                  </p>
+                  <div className="bg-neutral-900 p-3 rounded-xl border border-neutral-800 space-y-1.5">
+                    <p>• ডেলিভারিম্যানের সামনে পার্সেল যাচাই করার পূর্ণ অধিকার আপনার রয়েছে।</p>
+                    <p>• সাধারণ ক্রিকেট অর্ডারের ক্ষেত্রে কোনো অগ্রিম পেমেন্টের প্রয়োজন নেই।</p>
+                    <p>• পার্সেল পাওয়ার পর নগদ বা bKash/Nagad দিয়ে পেমেন্ট সম্পন্ন করতে পারবেন।</p>
+                  </div>
+                </>
+              )}
+
+              {activePolicy === 'replacement' && (
+                <>
+                  <p>
+                    আমরা চাই প্রতিটি ক্রিকেটার তার উপযুক্ত সাইজের গিয়ার নিয়ে মাঠে নামুক। তাই আমরা দিচ্ছি ৭ দিনের সহজ রিপ্লেসমেন্ট সুবিধা।
+                  </p>
+                  <div className="bg-neutral-900 p-3 rounded-xl border border-neutral-800 space-y-1.5">
+                    <p>• ব্যাটিং প্যাড, গ্লাভস, জুতো বা হেলমেটের সাইজ ম্যাচ না করলে ৭ দিনের মধ্যে এক্সচেঞ্জ করা যাবে।</p>
+                    <p>• প্রডাক্টটি অবশ্যই অক্ষত, অব্যবহৃত এবং মূল ট্যাগসহ থাকতে হবে।</p>
+                    <p>• রিপ্লেসমেন্টের জন্য আমাদের হটলাইন (01837805877) বা WhatsApp-এ যোগাযোগ করলেই আমরা নতুন সাইজ পাঠিয়ে দেব।</p>
+                  </div>
+                </>
+              )}
+
+              {activePolicy === 'knocking' && (
+                <>
+                  <p>
+                    নরসিংদী স্টেডিয়াম হাবের অভিজ্ঞ ক্রিকেট টেকনিশিয়ানদের দ্বারা প্লেয়ার-গ্রেড ইংলিশ উইলো ব্যাট প্রফেশনাল হ্যান্ড-নকিং ও রেডি করার ব্যবস্থা রয়েছে।
+                  </p>
+                  <div className="bg-neutral-900 p-3 rounded-xl border border-neutral-800 space-y-1.5">
+                    <p>• ১৫,০০০+ কাঠের ম্যালট স্ট্রাইক দিয়ে ব্যাটের এজ ও সুইটস্পট কম্প্রেস করা হয়।</p>
+                    <p>• কাঁচা চামড়ার বল ও ফাস্ট বোলিংয়ের বিরুদ্ধে উইলো ফাটল রোধে স্পেশাল বোনিং প্রসেস।</p>
+                    <p>• এক্সট্রাটেক অ্যান্টি-স্কাফ প্রোটেকশন শিট ও রাবার টো-গার্ড ফিটিং সম্পন্ন করা হয়।</p>
+                  </div>
+                </>
+              )}
+            </div>
+
+            <div className="mt-5 pt-3 border-t border-neutral-800 flex justify-end">
+              <button
+                onClick={() => setActivePolicy(null)}
+                className="bg-[#ccff00] hover:bg-[#b5e600] text-black font-extrabold text-xs px-5 py-2 rounded-xl transition-all cursor-pointer"
+              >
+                ঠিক আছে (Close)
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </footer>
   );
 };

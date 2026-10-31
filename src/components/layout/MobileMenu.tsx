@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, ChevronRight, ChevronDown, Heart, ShoppingBag, ShieldCheck, PhoneCall, MapPin, MessageCircle } from 'lucide-react';
+import { X, ChevronRight, ChevronDown, Heart, ShoppingBag, ShieldCheck, PhoneCall, MapPin, MessageCircle, Package, HelpCircle } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 import { useWishlist } from '../../context/WishlistContext';
 
@@ -122,7 +122,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
               onClose();
               setIsWishlistOpen(true);
             }}
-            className="flex items-center justify-center space-x-2 py-3 border-r border-neutral-800 hover:bg-neutral-800 text-neutral-300 font-semibold"
+            className="flex items-center justify-center space-x-2 py-3 border-r border-neutral-800 hover:bg-neutral-800 text-neutral-300 font-semibold cursor-pointer"
           >
             <Heart size={16} className="text-[#ccff00]" />
             <span>Wishlist ({totalWishlistItems})</span>
@@ -132,10 +132,36 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
               onClose();
               setIsCartOpen(true);
             }}
-            className="flex items-center justify-center space-x-2 py-3 hover:bg-neutral-800 text-neutral-300 font-semibold"
+            className="flex items-center justify-center space-x-2 py-3 hover:bg-neutral-800 text-neutral-300 font-semibold cursor-pointer"
           >
             <ShoppingBag size={16} className="text-[#ccff00]" />
             <span>Bag ({totalItems})</span>
+          </button>
+        </div>
+
+        {/* Mobile Dedicated Order Tracking & Help Bar */}
+        <div className="p-2.5 border-b border-neutral-800 bg-neutral-950 grid grid-cols-2 gap-2 text-xs">
+          <button
+            type="button"
+            onClick={() => {
+              onClose();
+              window.dispatchEvent(new CustomEvent('open-track-order'));
+            }}
+            className="flex items-center justify-center space-x-1.5 py-2 px-2 rounded-xl bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 text-[#ccff00] font-bold transition-colors cursor-pointer text-[11px]"
+          >
+            <Package size={14} />
+            <span>Track Order (অর্ডার ট্র্যাক)</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              onClose();
+              window.dispatchEvent(new CustomEvent('open-help-modal'));
+            }}
+            className="flex items-center justify-center space-x-1.5 py-2 px-2 rounded-xl bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 text-neutral-200 font-bold transition-colors cursor-pointer text-[11px]"
+          >
+            <HelpCircle size={14} />
+            <span>Help & FAQ (সহায়তা)</span>
           </button>
         </div>
 

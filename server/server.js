@@ -82,6 +82,14 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json({ limit: '10mb' }));
 
+// URL Normalization: ensure /api routes match even if reverse proxy or serverless strips /api
+app.use((req, res, next) => {
+  if (req.url && !req.url.startsWith('/api') && !req.url.startsWith('/uploads')) {
+    req.url = '/api' + req.url;
+  }
+  next();
+});
+
 // Rate Limiting: General API & Sensitive Endpoints
 const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -125,14 +133,19 @@ app.use('/api/promo/validate', promoLimiter);
 createBackupSnapshot();
 
 // Serve static uploaded media files from public/uploads
-const uploadsDir = path.join(__dirname, '../public/uploads');
+const defaultUploadsDir = process.env.VERCEL ? '/tmp/gazi_uploads' : path.join(__dirname, '../public/uploads');
+const uploadsDir = process.env.UPLOADS_DIR ? path.resolve(process.env.UPLOADS_DIR) : defaultUploadsDir;
 if (!fs.existsSync(uploadsDir)) {
-  fs.mkdirSync(uploadsDir, { recursive: true });
+  try {
+    fs.mkdirSync(uploadsDir, { recursive: true });
+  } catch (_) {}
 }
 app.use('/uploads', express.static(uploadsDir));
 
 // Subscribers persistence file
-const subscribersFilePath = path.join(__dirname, 'data/subscribers.json');
+const subscribersFilePath = process.env.DATA_DIR
+  ? path.join(path.resolve(process.env.DATA_DIR), 'subscribers.json')
+  : (process.env.VERCEL ? '/tmp/gazi_data/subscribers.json' : path.join(__dirname, 'data/subscribers.json'));
 
 // Bangladesh Phone Validation Helper
 function isValidBdPhone(phone) {
@@ -478,27 +491,33 @@ process.on('unhandledRejection', (reason) => {
   console.error('FATAL UNHANDLED REJECTION:', reason);
 });
 
-// Start Server with Graceful Shutdown
-const server = app.listen(PORT, () => {
-  console.log(`\n======================================================`);
-  console.log(`🚀 Gazi Cricket Enterprise Platform API Running on port ${PORT}`);
-  console.log(`📡 URL: http://localhost:${PORT}/api/health`);
-  console.log(`🛡️  Admin API: http://localhost:${PORT}/api/admin/auth/me`);
-  console.log(`======================================================\n`);
-});
-
-process.on('SIGTERM', () => {
-  console.log('SIGTERM signal received: closing HTTP server gracefully');
-  server.close(() => {
-    console.log('HTTP server terminated safely');
-    process.exit(0);
+// Start Server with Graceful Shutdown (active when running as standalone Node process, skipped in Vercel serverless)
+let server = null;
+if (!process.env.VERCEL) {
+  server = app.listen(PORT, () => {
+    console.log(`\n======================================================`);
+    console.log(`🚀 Gazi Cricket Enterprise Platform API Running on port ${PORT}`);
+    console.log(`📡 URL: http://localhost:${PORT}/api/health`);
+    console.log(`🛡️  Admin API: http://localhost:${PORT}/api/admin/auth/me`);
+    console.log(`======================================================\n`);
   });
-});
 
-process.on('SIGINT', () => {
-  console.log('SIGINT signal received: closing HTTP server gracefully');
-  server.close(() => {
-    console.log('HTTP server terminated safely');
-    process.exit(0);
+  process.on('SIGTERM', () => {
+    console.log('SIGTERM signal received: closing HTTP server gracefully');
+    server.close(() => {
+      console.log('HTTP server terminated safely');
+      process.exit(0);
+    });
   });
-});
+
+  process.on('SIGINT', () => {
+    console.log('SIGINT signal received: closing HTTP server gracefully');
+    server.close(() => {
+      console.log('HTTP server terminated safely');
+      process.exit(0);
+    });
+  });
+}
+
+export { app, server };
+export default app;

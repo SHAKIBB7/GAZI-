@@ -29,8 +29,27 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   onApplySearchQuery,
 }) => {
   const [query, setQuery] = useState('');
+  const [searchCatalog, setSearchCatalog] = useState<Product[]>(PRODUCTS);
   const inputRef = useRef<HTMLInputElement>(null);
   const { formatPrice } = useCart();
+
+  useEffect(() => {
+    if (!isOpen) return;
+    try {
+      const local = localStorage.getItem('gazi_local_products');
+      if (local) {
+        const list = JSON.parse(local);
+        if (Array.isArray(list) && list.length > 0) {
+          const activeOnly = list.filter((p: any) => p.status !== 'archived');
+          if (activeOnly.length > 0) {
+            setSearchCatalog(activeOnly);
+            return;
+          }
+        }
+      }
+    } catch {}
+    setSearchCatalog(PRODUCTS);
+  }, [isOpen]);
 
   useEffect(() => {
     if (isOpen) {
@@ -54,7 +73,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   if (!isOpen) return null;
 
   const filtered = query.trim()
-    ? PRODUCTS.filter((p) => {
+    ? searchCatalog.filter((p) => {
         const q = query.toLowerCase();
         return (
           p.title.toLowerCase().includes(q) ||

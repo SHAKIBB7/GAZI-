@@ -20,7 +20,12 @@ import { WishlistDrawer } from './components/modals/WishlistDrawer';
 import { Toast } from './components/ui/Toast';
 import { WhatsAppButton } from './components/ui/WhatsAppButton';
 import { Product } from './types/cricket';
-import { AdminDashboard } from './admin/AdminDashboard';
+import { PRODUCTS } from './data/cricketData';
+
+// Code-split Admin Command Center to reduce initial storefront bundle size
+const AdminDashboard = React.lazy(() =>
+  import('./admin/AdminDashboard').then((m) => ({ default: m.AdminDashboard }))
+);
 
 interface MainAppProps {
   onOpenAdmin: () => void;
@@ -36,6 +41,15 @@ const MainApp: React.FC<MainAppProps> = ({ onOpenAdmin }) => {
 
   const handleSelectCategory = (category: string) => {
     setSelectedCategory(category);
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location.href);
+      if (category === 'All') {
+        url.searchParams.delete('category');
+      } else {
+        url.searchParams.set('category', category);
+      }
+      window.history.pushState(null, '', url.toString());
+    }
     const catalogEl = document.getElementById('catalog');
     if (catalogEl) {
       catalogEl.scrollIntoView({ behavior: 'smooth' });
@@ -49,6 +63,61 @@ const MainApp: React.FC<MainAppProps> = ({ onOpenAdmin }) => {
       catalogEl.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  // 1. Initial Category Sync from URL (?category=Bats)
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const syncFromUrl = () => {
+      const params = new URLSearchParams(window.location.search);
+      const cat = params.get('category');
+      if (cat) {
+        setSelectedCategory(cat);
+      }
+    };
+
+    syncFromUrl();
+    window.addEventListener('popstate', syncFromUrl);
+    return () => window.removeEventListener('popstate', syncFromUrl);
+  }, []);
+
+  // 2. Direct Product Deep-Linking (#product=1055203 or ?product=1055203)
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const syncProductFromUrl = () => {
+      const hash = window.location.hash;
+      let pid: string | null = null;
+      if (hash.startsWith('#product=')) {
+        pid = hash.replace('#product=', '').split('&')[0];
+      } else {
+        const params = new URLSearchParams(window.location.search);
+        pid = params.get('product');
+      }
+
+      if (pid) {
+        let matched: Product | undefined = PRODUCTS.find((p) => p.id === pid || p.handle === pid);
+        if (!matched) {
+          try {
+            const local = localStorage.getItem('gazi_local_products');
+            if (local) {
+              const list = JSON.parse(local);
+              matched = list.find((p: any) => p.id === pid || p.handle === pid);
+            }
+          } catch {}
+        }
+        if (matched) {
+          setQuickViewProduct(matched);
+        }
+      }
+    };
+
+    syncProductFromUrl();
+    window.addEventListener('hashchange', syncProductFromUrl);
+    window.addEventListener('popstate', syncProductFromUrl);
+    return () => {
+      window.removeEventListener('hashchange', syncProductFromUrl);
+      window.removeEventListener('popstate', syncProductFromUrl);
+    };
+  }, []);
 
   useEffect(() => {
     const handleGlobalKeyDown = (e: KeyboardEvent) => {
@@ -74,6 +143,7 @@ const MainApp: React.FC<MainAppProps> = ({ onOpenAdmin }) => {
       <Navbar
         onOpenSearch={() => setSearchModalOpen(true)}
         onSelectCategory={handleSelectCategory}
+        onSelectBrand={handleSelectBrand}
         onOpenMobileMenu={() => setMobileMenuOpen(true)}
       />
 
@@ -128,7 +198,12 @@ const MainApp: React.FC<MainAppProps> = ({ onOpenAdmin }) => {
 
       <QuickViewModal
         product={quickViewProduct}
-        onClose={() => setQuickViewProduct(null)}
+        onClose={() => {
+          setQuickViewProduct(null);
+          if (typeof window !== 'undefined' && window.location.hash.startsWith('#product=')) {
+            window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
+          }
+        }}
       />
 
       <CartDrawer />
@@ -178,7 +253,22 @@ export default function App() {
   };
 
   if (currentView === 'admin') {
-    return <AdminDashboard onReturnToStore={handleReturnToStore} />;
+    return (
+      <React.Suspense
+        fallback={
+          <div className="min-h-screen bg-neutral-950 text-white flex flex-col items-center justify-center font-sans">
+            <div className="w-12 h-12 rounded-2xl bg-[#ccff00] text-black font-black font-mono flex items-center justify-center text-xl animate-pulse mb-4">
+              GZ
+            </div>
+            <div className="text-sm font-bold uppercase tracking-widest text-neutral-400">
+              Loading Administrative Portal...
+            </div>
+          </div>
+        }
+      >
+        <AdminDashboard onReturnToStore={handleReturnToStore} />
+      </React.Suspense>
+    );
   }
 
   return (

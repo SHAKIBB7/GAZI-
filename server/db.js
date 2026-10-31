@@ -6,16 +6,38 @@ import { AsyncLocalStorage } from 'async_hooks';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const dataDir = process.env.DATA_DIR ? path.resolve(process.env.DATA_DIR) : path.join(__dirname, 'data');
+const isVercel = Boolean(process.env.VERCEL);
+const defaultDataDir = isVercel ? '/tmp/gazi_data' : path.join(__dirname, 'data');
+const dataDir = process.env.DATA_DIR ? path.resolve(process.env.DATA_DIR) : defaultDataDir;
 
 if (!fs.existsSync(dataDir)) {
-  fs.mkdirSync(dataDir, { recursive: true });
+  try {
+    fs.mkdirSync(dataDir, { recursive: true });
+  } catch (_) {}
+}
+
+// In Vercel serverless environment, copy seed files into writable /tmp/gazi_data
+if (isVercel) {
+  const sourceSeedDir = path.join(__dirname, 'data');
+  if (fs.existsSync(sourceSeedDir)) {
+    try {
+      for (const f of fs.readdirSync(sourceSeedDir)) {
+        const dest = path.join(dataDir, f);
+        if (!fs.existsSync(dest) && f.endsWith('.json')) {
+          fs.copyFileSync(path.join(sourceSeedDir, f), dest);
+        }
+      }
+    } catch (_) {}
+  }
 }
 
 // Ensure uploads dir
-const uploadsDir = path.join(__dirname, '../public/uploads');
+const defaultUploadsDir = isVercel ? '/tmp/gazi_uploads' : path.join(__dirname, '../public/uploads');
+const uploadsDir = process.env.UPLOADS_DIR ? path.resolve(process.env.UPLOADS_DIR) : defaultUploadsDir;
 if (!fs.existsSync(uploadsDir)) {
-  fs.mkdirSync(uploadsDir, { recursive: true });
+  try {
+    fs.mkdirSync(uploadsDir, { recursive: true });
+  } catch (_) {}
 }
 
 // Re-entrant FIFO Promise Queue Mutex per collection for atomic concurrency
@@ -93,9 +115,11 @@ function readJsonSafe(filePath, defaultValue = []) {
 }
 
 // Automated backup directory and snapshot rotation
-const backupDir = path.join(__dirname, 'backups');
+const backupDir = isVercel ? '/tmp/gazi_backups' : path.join(__dirname, 'backups');
 if (!fs.existsSync(backupDir)) {
-  fs.mkdirSync(backupDir, { recursive: true });
+  try {
+    fs.mkdirSync(backupDir, { recursive: true });
+  } catch (_) {}
 }
 
 export function createBackupSnapshot() {

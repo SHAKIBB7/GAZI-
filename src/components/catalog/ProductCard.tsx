@@ -22,6 +22,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
   const currentImage = isHovered && hasMultipleImages ? product.images[1] : product.images[0];
 
   const savings = product.oldPrice ? product.oldPrice - product.price : 0;
+  const isOutOfStock = typeof product.stock === 'number' && product.stock <= 0;
+  const isLowStock = typeof product.stock === 'number' && product.stock > 0 && product.stock <= 4;
 
   const handleSizeClick = (e: React.MouseEvent, size: string) => {
     e.stopPropagation();
@@ -53,6 +55,16 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
 
         {/* Badges */}
         <div className="absolute top-2.5 left-2.5 flex flex-col gap-1 z-10">
+          {isOutOfStock && (
+            <span className="bg-red-800 text-white text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-wider shadow">
+              OUT OF STOCK
+            </span>
+          )}
+          {isLowStock && (
+            <span className="bg-amber-500 text-black text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-wider shadow">
+              ONLY {product.stock} LEFT
+            </span>
+          )}
           {product.oldPrice && (
             <span className="bg-red-600 text-white text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-wider shadow">
               SALE {savings > 0 && `(SAVE ${formatPrice(savings)})`}
@@ -153,46 +165,70 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
 
         {/* Pricing & CTA */}
         <div className="mt-4 pt-3 border-t border-neutral-100">
-          <div className="flex items-baseline space-x-2 mb-3">
-            <span className="text-base sm:text-lg font-black text-neutral-900">
-              {formatPrice(product.price)}
-            </span>
-            {product.oldPrice && (
-              <span className="text-xs text-neutral-400 line-through">
-                {formatPrice(product.oldPrice)}
+          <div className="flex items-center justify-between mb-3">
+            <div className="flex items-baseline space-x-2">
+              <span className="text-base sm:text-lg font-black text-neutral-900">
+                {formatPrice(product.price)}
+              </span>
+              {product.oldPrice && (
+                <span className="text-xs text-neutral-400 line-through">
+                  {formatPrice(product.oldPrice)}
+                </span>
+              )}
+            </div>
+            {isOutOfStock ? (
+              <span className="text-[10px] font-extrabold text-red-700 bg-red-100 px-1.5 py-0.5 rounded">
+                স্টক নেই
+              </span>
+            ) : isLowStock ? (
+              <span className="text-[10px] font-extrabold text-amber-800 bg-amber-100 px-1.5 py-0.5 rounded animate-pulse">
+                {product.stock} left
+              </span>
+            ) : (
+              <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded">
+                In Stock
               </span>
             )}
           </div>
 
           {/* Quick Add Button */}
-          <button
-            onClick={() => {
-              if (product.sizes.length > 1) {
-                setShowSizes(true);
-              } else {
-                addToCart(product, product.sizes[0]);
-                setJustAdded(true);
-                setTimeout(() => setJustAdded(false), 1500);
-              }
-            }}
-            className={`w-full py-2.5 px-3 rounded-lg text-xs font-black uppercase tracking-wider flex items-center justify-center space-x-1.5 transition-all cursor-pointer ${
-              justAdded
-                ? 'bg-emerald-600 text-white'
-                : 'bg-black text-[#ccff00] hover:bg-neutral-800 active:scale-98'
-            }`}
-          >
-            {justAdded ? (
-              <>
-                <Check size={14} />
-                <span>Added to Bag!</span>
-              </>
-            ) : (
-              <>
-                <ShoppingBag size={14} />
-                <span>Quick Add</span>
-              </>
-            )}
-          </button>
+          {isOutOfStock ? (
+            <button
+              disabled
+              className="w-full py-2.5 px-3 rounded-lg text-xs font-black uppercase tracking-wider flex items-center justify-center space-x-1.5 bg-neutral-200 text-neutral-500 cursor-not-allowed"
+            >
+              <span>Sold Out (স্টক শেষ)</span>
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                if (product.sizes.length > 1) {
+                  setShowSizes(true);
+                } else {
+                  addToCart(product, product.sizes[0]);
+                  setJustAdded(true);
+                  setTimeout(() => setJustAdded(false), 1500);
+                }
+              }}
+              className={`w-full py-2.5 px-3 rounded-lg text-xs font-black uppercase tracking-wider flex items-center justify-center space-x-1.5 transition-all cursor-pointer ${
+                justAdded
+                  ? 'bg-emerald-600 text-white'
+                  : 'bg-black text-[#ccff00] hover:bg-neutral-800 active:scale-98'
+              }`}
+            >
+              {justAdded ? (
+                <>
+                  <Check size={14} />
+                  <span>Added to Bag!</span>
+                </>
+              ) : (
+                <>
+                  <ShoppingBag size={14} />
+                  <span>Quick Add</span>
+                </>
+              )}
+            </button>
+          )}
         </div>
       </div>
     </div>

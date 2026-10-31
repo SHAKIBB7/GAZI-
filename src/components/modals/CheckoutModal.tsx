@@ -358,9 +358,30 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
         {/* Scrollable Form Body */}
         <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6 space-y-6">
           {errors.general && (
-            <div className="p-3.5 bg-red-50 border border-red-200 text-red-700 rounded-xl text-xs flex items-center space-x-2 font-medium">
-              <AlertCircle size={16} className="shrink-0 text-red-500" />
-              <span>{errors.general}</span>
+            <div className="p-4 bg-red-50 border border-red-200 text-red-800 rounded-xl text-xs space-y-2.5 font-medium">
+              <div className="flex items-start space-x-2">
+                <AlertCircle size={16} className="shrink-0 text-red-500 mt-0.5" />
+                <span className="leading-relaxed">{errors.general}</span>
+              </div>
+              {errors.general.includes('01837805877') && (
+                <div className="flex flex-wrap gap-2 pt-1 pl-6">
+                  <a
+                    href="tel:01837805877"
+                    className="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-neutral-900 hover:bg-black text-white rounded-lg text-xs font-bold transition-colors shadow-xs"
+                  >
+                    <Phone size={13} className="text-[#ccff00]" />
+                    <span>সরাসরি কল করুন (01837805877)</span>
+                  </a>
+                  <a
+                    href="https://wa.me/8801837805877?text=Hello%20Gazi%20Sports,%20I%20want%20to%20confirm%20my%20cricket%20equipment%20order"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-bold transition-colors shadow-xs"
+                  >
+                    <span>WhatsApp-এ অর্ডার দিন</span>
+                  </a>
+                </div>
+              )}
             </div>
           )}
 

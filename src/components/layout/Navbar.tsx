@@ -6,17 +6,52 @@ import { useWishlist } from '../../context/WishlistContext';
 interface NavbarProps {
   onOpenSearch: () => void;
   onSelectCategory: (category: string) => void;
+  onSelectBrand?: (brand: string) => void;
   onOpenMobileMenu: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   onOpenSearch,
   onSelectCategory,
+  onSelectBrand,
   onOpenMobileMenu,
 }) => {
   const { totalItems, setIsCartOpen } = useCart();
   const { totalWishlistItems, setIsWishlistOpen } = useWishlist();
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+
+  const handleSubLinkClick = (category: string, sub: string) => {
+    setActiveDropdown(null);
+    onSelectCategory(category);
+    if (!onSelectBrand) return;
+
+    const lower = sub.toLowerCase();
+    if (lower.startsWith('all ')) {
+      onSelectBrand('All');
+    } else if (lower.includes('gunn & moore') || lower.includes('gm ') || lower.includes('ben stokes')) {
+      onSelectBrand('Gunn & Moore');
+    } else if (lower.includes('adidas')) {
+      onSelectBrand('adidas');
+    } else if (lower.includes('dsc')) {
+      onSelectBrand('DSC');
+    } else if (lower.includes('kookaburra')) {
+      onSelectBrand('Kookaburra');
+    } else if (lower.includes('new balance')) {
+      onSelectBrand('New Balance');
+    } else if (lower.includes('puma')) {
+      onSelectBrand('Puma');
+    } else if (lower.includes('payntr')) {
+      onSelectBrand('Payntr');
+    } else if (lower.includes('chase')) {
+      onSelectBrand('Chase');
+    } else if (lower.includes('castore')) {
+      onSelectBrand('Castore');
+    } else if (lower.includes('masuri')) {
+      onSelectBrand('Masuri');
+    } else if (lower.includes('knyx')) {
+      onSelectBrand('KNYX');
+    }
+  };
 
   const navItems = [
     {
@@ -174,11 +209,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                   {item.subLinks.map((sub) => (
                     <button
                       key={sub}
-                      onClick={() => {
-                        onSelectCategory(item.category);
-                        setActiveDropdown(null);
-                      }}
-                      className="w-full text-left px-3 py-2 text-xs text-neutral-300 hover:text-[#ccff00] hover:bg-neutral-900 rounded transition-colors flex items-center justify-between"
+                      onClick={() => handleSubLinkClick(item.category, sub)}
+                      className="w-full text-left px-3 py-2 text-xs text-neutral-300 hover:text-[#ccff00] hover:bg-neutral-900 rounded transition-colors flex items-center justify-between cursor-pointer"
                     >
                       <span>{sub}</span>
                       <span className="text-neutral-500 text-[10px]">→</span>

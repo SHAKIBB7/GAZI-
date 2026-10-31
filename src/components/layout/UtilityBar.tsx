@@ -46,6 +46,25 @@ export const UtilityBar: React.FC<UtilityBarProps> = ({ onOpenAdmin }) => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [activeModal]);
 
+  // Global triggers for mobile drawer and footer links
+  useEffect(() => {
+    const handleOpenTrack = () => {
+      setActiveModal('track');
+      setTrackResult(null);
+      setTrackError(null);
+    };
+    const handleOpenHelp = () => {
+      setActiveModal('help');
+    };
+
+    window.addEventListener('open-track-order', handleOpenTrack);
+    window.addEventListener('open-help-modal', handleOpenHelp);
+    return () => {
+      window.removeEventListener('open-track-order', handleOpenTrack);
+      window.removeEventListener('open-help-modal', handleOpenHelp);
+    };
+  }, []);
+
   const handleCurrencyChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setCurrency(e.target.value as CurrencyCode);
   };

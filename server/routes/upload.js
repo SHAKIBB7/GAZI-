@@ -7,10 +7,13 @@ import { authenticateAdmin } from '../auth.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const uploadDirectory = path.join(__dirname, '../../public/uploads');
+const defaultUploadDirectory = process.env.VERCEL ? '/tmp/gazi_uploads' : path.join(__dirname, '../../public/uploads');
+const uploadDirectory = process.env.UPLOADS_DIR ? path.resolve(process.env.UPLOADS_DIR) : defaultUploadDirectory;
 
 if (!fs.existsSync(uploadDirectory)) {
-  fs.mkdirSync(uploadDirectory, { recursive: true });
+  try {
+    fs.mkdirSync(uploadDirectory, { recursive: true });
+  } catch (_) {}
 }
 
 const storage = multer.diskStorage({

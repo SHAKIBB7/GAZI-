@@ -197,7 +197,7 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
                   : 'bg-white text-neutral-700 hover:bg-neutral-200 border border-neutral-300'
               }`}
             >
-              All Items ({PRODUCTS.length})
+              All Items ({liveProducts.length})
             </button>
             <button
               onClick={() => setActiveTab('trending')}

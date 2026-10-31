@@ -143,7 +143,7 @@ export const apiService = {
     // Attempt remote backend API if configured/available
     try {
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 3500);
+      const timeoutId = setTimeout(() => controller.abort(), 6000);
 
       const res = await fetch(`${API_BASE}/checkout`, {
         method: 'POST',
@@ -161,12 +161,31 @@ export const apiService = {
         if (res.status === 400 && data?.error) {
           return { success: false, error: data.error };
         }
+        if (data?.error) {
+          return { success: false, error: data.error };
+        }
       }
     } catch {
-      // Remote API call failed or timed out — seamlessly activate resilient local processor
+      // Remote API call failed or timed out
     }
 
-    // Resilient Local Order Processor
+    const isLocalhost =
+      typeof window !== 'undefined' &&
+      (window.location.hostname === 'localhost' ||
+        window.location.hostname === '127.0.0.1' ||
+        window.location.hostname === '');
+
+    // In production, NEVER silently fake order success into customer's local browser!
+    // Returning success when order never reached the store owner maroons customer orders.
+    if (!isLocalhost) {
+      return {
+        success: false,
+        error:
+          'অর্ডার সার্ভারের সাথে সংযোগ স্থাপন করা সম্ভব হয়নি। আপনার অর্ডারটি তাৎক্ষণিক নিশ্চিত করতে অনুগ্রহ করে আমাদের অফিসিয়াল নম্বরে সরাসরি কল বা হোয়াটসঅ্যাপ করুন (01837805877)।',
+      };
+    }
+
+    // Resilient Local Order Processor (active only in local developer testing without running backend)
     try {
       const items = bodyData.items || [];
       if (!items.length) {
