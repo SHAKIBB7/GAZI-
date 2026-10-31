@@ -83,7 +83,7 @@ app.get('/api/health', (req, res) => {
   const products = db.getProducts();
   res.json({
     status: 'ok',
-    service: 'Gazi Cricket Enterprise Store & Management API',
+    service: 'Gazi Sports 99 Enterprise Store & Management API',
     version: '2.0.0',
     timestamp: new Date().toISOString(),
     catalogSize: products.length,
@@ -312,7 +312,7 @@ app.post('/api/newsletter', (req, res) => {
 
   res.json({
     success: true,
-    message: 'Welcome to the Gazi Cricket Club! Voucher code: CRICKET10',
+    message: 'Welcome to the Gazi Sports 99 Club! Voucher code: CRICKET10',
     voucherCode: 'CRICKET10',
     discountPercent: 10,
   });

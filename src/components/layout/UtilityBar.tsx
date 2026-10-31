@@ -1,7 +1,7 @@
 import React from 'react';
 import { useCart } from '../../context/CartContext';
 import { CurrencyCode } from '../../types/cricket';
-import { Globe, HelpCircle, Package, Heart, PhoneCall, ShieldCheck } from 'lucide-react';
+import { Globe, HelpCircle, Package, Heart, PhoneCall, ShieldCheck, MessageCircle } from 'lucide-react';
 import { useWishlist } from '../../context/WishlistContext';
 
 interface UtilityBarProps {
@@ -19,21 +19,35 @@ export const UtilityBar: React.FC<UtilityBarProps> = ({ onOpenAdmin }) => {
   return (
     <div className="bg-[#121212] text-neutral-300 text-xs py-1.5 border-b border-neutral-800">
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-2 sm:space-x-4">
           <div className="flex items-center space-x-1.5 text-neutral-300">
-            <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span className="text-[11px] font-medium tracking-wide">
-              Dhaka Express: 24-48h | Nationwide: 48-72h | Cash on Delivery Available
+            <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
+            <span className="text-[11px] font-medium tracking-wide hidden sm:inline">
+              Narsingdi & Dhaka Express: 24h | Nationwide: 48-72h | Cash on Delivery Available
+            </span>
+            <span className="text-[11px] font-medium tracking-wide sm:hidden truncate max-w-[140px]">
+              Express Delivery BD
             </span>
           </div>
         </div>
 
-        <div className="flex items-center space-x-4 sm:space-x-6 text-[11px]">
-          {/* Hotline */}
+        <div className="flex items-center space-x-3 sm:space-x-5 text-[11px]">
+          {/* Hotline / MFS */}
           <div className="hidden lg:flex items-center space-x-1 text-neutral-300">
             <PhoneCall size={12} className="text-[#ccff00]" />
-            <span className="font-semibold text-[11px]">Hotline: +880 1700-000000</span>
+            <span className="font-semibold text-[11px]">Phone/MFS: 01837805877</span>
           </div>
+
+          {/* WhatsApp Direct Chat */}
+          <a
+            href="https://wa.me/8801647294474?text=Hello%20Gazi%20Sports%2099"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center space-x-1 text-emerald-400 hover:text-emerald-300 font-semibold transition-colors"
+          >
+            <MessageCircle size={12} className="text-emerald-400" />
+            <span>WhatsApp: 01647294474</span>
+          </a>
 
           {/* Wishlist Link on Desktop */}
           <button
@@ -50,7 +64,7 @@ export const UtilityBar: React.FC<UtilityBarProps> = ({ onOpenAdmin }) => {
             onClick={(e) => {
               e.preventDefault();
               alert(
-                'Gazi Cricket Order Tracking: Enter your GZ-TRK-XXXXXX reference number sent via SMS upon order confirmation. For live updates call +880 1700-000000.'
+                'Gazi Sports 99 Order Tracking: Enter your GZ-TRK-XXXXXX reference number sent via SMS upon order confirmation. For live updates call 01837805877 or WhatsApp 01647294474.'
               );
             }}
             className="hidden sm:flex items-center space-x-1 hover:text-white transition-colors"
@@ -65,7 +79,7 @@ export const UtilityBar: React.FC<UtilityBarProps> = ({ onOpenAdmin }) => {
             onClick={(e) => {
               e.preventDefault();
               alert(
-                'Gazi Cricket Bangladesh Support: Mirpur-2 National Cricket Stadium Hub, Dhaka. Hours: 9am-10pm Daily. Hotline: +880 1700-000000 | Email: support@gazicricket.com.bd'
+                'Gazi Sports 99 Support: Narsingdi Stadium, Narsingdi. Hours: 9am-10pm Daily. Hotline / bKash / Nagad / Rocket: 01837805877 | WhatsApp: 01647294474'
               );
             }}
             className="hidden sm:flex items-center space-x-1 hover:text-white transition-colors"

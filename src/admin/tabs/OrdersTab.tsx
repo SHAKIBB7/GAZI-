@@ -255,6 +255,7 @@ export const OrdersTab: React.FC = () => {
             <option value="cod">Cash on Delivery (COD)</option>
             <option value="bkash">bKash</option>
             <option value="nagad">Nagad</option>
+            <option value="rocket">Rocket</option>
             <option value="card">Cards / Online</option>
           </select>
         </div>
@@ -754,13 +755,20 @@ export const OrdersTab: React.FC = () => {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm print:p-0 print:bg-white">
           <div className="relative w-full max-w-2xl bg-white text-neutral-900 rounded-2xl shadow-2xl p-6 sm:p-8 flex flex-col max-h-[90vh] overflow-y-auto print:max-h-none print:shadow-none print:border-none print:p-0">
             <div className="flex justify-between items-start pb-6 border-b border-neutral-200">
-              <div>
-                <div className="text-2xl font-black font-mono tracking-tight text-black">GAZI SPORTS</div>
-                <div className="text-xs text-neutral-600 uppercase tracking-widest font-bold">
-                  Premier Cricket Equipment Specialist • Bangladesh
-                </div>
-                <div className="text-[11px] text-neutral-500 mt-1">
-                  Dhaka Hub, Mirpur-12, Dhaka 1216 • Phone: +880 1700-000000
+              <div className="flex items-start space-x-3.5">
+                <img
+                  src="/logo-crest.png"
+                  alt="Gazi Sports 99"
+                  className="h-14 w-auto object-contain shrink-0"
+                />
+                <div>
+                  <div className="text-2xl font-black font-mono tracking-tight text-black">GAZI SPORTS 99</div>
+                  <div className="text-xs text-neutral-600 uppercase tracking-widest font-bold">
+                    Premier Cricket Equipment Specialist • Bangladesh
+                  </div>
+                  <div className="text-[11px] text-neutral-500 mt-1">
+                    Narsingdi Stadium, Narsingdi • Phone / MFS: 01837805877 • WhatsApp: 01647294474
+                  </div>
                 </div>
               </div>
               <div className="text-right">

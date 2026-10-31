@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, ChevronRight, ChevronDown, Heart, ShoppingBag, ShieldCheck, PhoneCall } from 'lucide-react';
+import { X, ChevronRight, ChevronDown, Heart, ShoppingBag, ShieldCheck, PhoneCall, MapPin, MessageCircle } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 import { useWishlist } from '../../context/WishlistContext';
 
@@ -7,12 +7,14 @@ interface MobileMenuProps {
   isOpen: boolean;
   onClose: () => void;
   onSelectCategory: (category: string) => void;
+  onOpenAdmin?: () => void;
 }
 
 export const MobileMenu: React.FC<MobileMenuProps> = ({
   isOpen,
   onClose,
   onSelectCategory,
+  onOpenAdmin,
 }) => {
   const { totalItems, setIsCartOpen } = useCart();
   const { totalWishlistItems, setIsWishlistOpen } = useWishlist();
@@ -75,13 +77,23 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
       <div className="relative w-full max-w-xs sm:max-w-sm bg-neutral-950 text-white h-full shadow-2xl flex flex-col z-10 border-r border-neutral-800">
         {/* Header */}
         <div className="p-4 border-b border-neutral-800 flex items-center justify-between bg-black">
-          <div className="flex items-center space-x-2">
-            <span className="font-extrabold text-xl tracking-tighter uppercase font-mono">
-              GAZI<span className="text-[#ccff00]">.</span>SPORTS
-            </span>
-            <span className="bg-[#ccff00] text-black text-[9px] font-black px-1.5 py-0.5 rounded uppercase">
-              CRICKET BD
-            </span>
+          <div className="flex items-center space-x-2.5">
+            <img
+              src="/logo-crest.png"
+              alt="Gazi Sports 99"
+              className="h-8 w-auto object-contain drop-shadow-[0_2px_6px_rgba(255,140,0,0.35)]"
+            />
+            <div className="flex items-center space-x-1.5">
+              <span className="font-extrabold text-xl tracking-tighter uppercase font-mono">
+                GAZI<span className="text-[#ccff00]">.</span>SPORTS
+              </span>
+              <span className="bg-[#ccff00] text-black text-xs font-black px-1.5 py-0.5 rounded uppercase font-mono">
+                99
+              </span>
+              <span className="bg-neutral-800 text-neutral-300 text-[9px] font-black px-1.5 py-0.5 rounded uppercase">
+                BD
+              </span>
+            </div>
           </div>
           <button
             onClick={onClose}
@@ -163,16 +175,44 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
           ))}
         </div>
 
+        {/* Admin Portal Direct Mobile Access */}
+        {onOpenAdmin && (
+          <div className="p-3 border-t border-neutral-800 bg-neutral-950">
+            <button
+              onClick={() => {
+                onClose();
+                onOpenAdmin();
+              }}
+              className="w-full flex items-center justify-between p-2.5 rounded-xl bg-neutral-900 border border-[#ccff00]/40 text-[#ccff00] hover:bg-[#ccff00] hover:text-black font-bold text-xs transition-all shadow-md cursor-pointer"
+            >
+              <div className="flex items-center space-x-2">
+                <ShieldCheck size={16} />
+                <span>Admin Portal (ম্যানেজমেন্ট প্যানেল)</span>
+              </div>
+              <ChevronRight size={14} className="text-neutral-400" />
+            </button>
+          </div>
+        )}
+
         {/* Footer info */}
-        <div className="p-4 border-t border-neutral-800 bg-neutral-900/40 text-xs text-neutral-400 space-y-2">
-          <div className="flex items-center space-x-2 text-neutral-300 text-[11px]">
-            <ShieldCheck size={14} className="text-[#ccff00]" />
-            <span>Official Authorized Cricket Retailer • Bangladesh</span>
+        <div className="p-4 border-t border-neutral-800 bg-neutral-900/60 text-xs text-neutral-400 space-y-2.5">
+          <div className="flex items-start space-x-2 text-neutral-300 text-[11px]">
+            <MapPin size={14} className="text-[#ccff00] shrink-0 mt-0.5" />
+            <span>Narsingdi Stadium, Narsingdi</span>
           </div>
           <div className="flex items-center space-x-2 text-neutral-300 text-[11px]">
-            <PhoneCall size={14} className="text-[#ccff00]" />
-            <span>Expert Advice (Dhaka Hub): +880 1700-000000</span>
+            <PhoneCall size={14} className="text-[#ccff00] shrink-0" />
+            <span>bKash/Nagad/Rocket: <strong className="text-white font-mono">01837805877</strong></span>
           </div>
+          <a
+            href="https://wa.me/8801647294474?text=Hello%20Gazi%20Sports%2099"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center space-x-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2 px-3 rounded-lg text-xs transition-colors"
+          >
+            <MessageCircle size={15} />
+            <span>WhatsApp: 01647294474</span>
+          </a>
         </div>
       </div>
     </div>

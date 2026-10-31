@@ -37,7 +37,7 @@ export interface CartItem {
 }
 
 export type DeliveryZone = 'inside_dhaka' | 'outside_dhaka';
-export type PaymentMethod = 'cod' | 'bkash' | 'nagad' | 'card';
+export type PaymentMethod = 'cod' | 'bkash' | 'nagad' | 'rocket' | 'card';
 
 export interface CustomerAddress {
   fullName: string;

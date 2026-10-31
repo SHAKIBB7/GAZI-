@@ -265,7 +265,7 @@ export const ExpensesTab: React.FC = () => {
                   rows={2}
                   value={descInput}
                   onChange={(e) => setDescInput(e.target.value)}
-                  placeholder="e.g. Monthly rent for Mirpur cricket gear storage facility..."
+                  placeholder="e.g. Monthly rent for Narsingdi Stadium cricket gear storage facility..."
                   className="w-full bg-neutral-950 border border-neutral-800 rounded-xl p-2.5 text-white focus:outline-none focus:border-[#ccff00]"
                 />
               </div>
@@ -279,6 +279,8 @@ export const ExpensesTab: React.FC = () => {
                     className="w-full bg-neutral-950 border border-neutral-800 rounded-xl p-2.5 text-white focus:outline-none"
                   >
                     <option value="bkash">bKash</option>
+                    <option value="nagad">Nagad</option>
+                    <option value="rocket">Rocket</option>
                     <option value="bank_transfer">Bank Wire / Transfer</option>
                     <option value="cash">Cash</option>
                     <option value="card">Card</option>

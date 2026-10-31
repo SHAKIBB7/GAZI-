@@ -1,8 +1,9 @@
 <div align="center">
 
-# 🏏 GAZI Sports — Enterprise Cricket Platform
+# 🏏 GAZI Sports 99 — Enterprise Cricket Platform
 
 **Next-Generation Cricket E-Commerce, Multi-Channel Catalog & Retail Management Suite**
+**Location**: Narsingdi Stadium, Narsingdi • **bKash/Nagad/Rocket**: 01837805877 • **WhatsApp**: 01647294474
 
 [![CI Pipeline](https://github.com/SHAKIBB7/GAZI-/actions/workflows/ci.yml/badge.svg)](https://github.com/SHAKIBB7/GAZI-/actions/workflows/ci.yml)
 [![Tests Passing](https://img.shields.io/badge/Tests-109%20Passed-22c55e.svg?style=flat-square&logo=jest)](tests/)
@@ -30,7 +31,7 @@
 
 ## 📖 Overview
 
-**GAZI Sports** is a specialized, production-grade cricket e-commerce and retail operations management platform built for cricket gear distributors, professional cricket players, and sports retail enterprises. 
+**GAZI Sports 99** is a specialized, production-grade cricket e-commerce and retail operations management platform based at Narsingdi Stadium, Narsingdi, built for cricket gear distributors, professional cricket players, and sports retail enterprises across Bangladesh. 
 
 Unlike generic e-commerce templates, GAZI is tailored specifically to the nuanced physics and equipment demands of cricket:
 - **Cricket Bat Specifics**: Filter and inspect by **Willow Grade** (*Limited Edition Grade 1+ English Willow, Grade 1, Grade 2, Grade 3, Kashmir Willow*), grain counts, handle types, balance points, and edge profiles.

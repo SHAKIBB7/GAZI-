@@ -376,9 +376,104 @@ export const ProductsTab: React.FC = () => {
         </span>
       </div>
 
-      {/* 3. Products Table */}
+      {/* 3. Products Table & Mobile Cards */}
       <div className="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-xl">
-        <div className="overflow-x-auto">
+        {/* Mobile View Cards */}
+        <div className="block md:hidden divide-y divide-neutral-800">
+          {isLoading ? (
+            <div className="py-12 text-center text-neutral-500 text-xs">
+              Loading cricket equipment catalog...
+            </div>
+          ) : products.length === 0 ? (
+            <div className="py-12 text-center text-neutral-500 text-xs">
+              No products found matching filter criteria.
+            </div>
+          ) : (
+            products.map((p) => {
+              const marginBdt = p.price - (p.costPrice || 0);
+              const marginPct = p.price > 0 ? Math.round((marginBdt / p.price) * 100) : 0;
+              const isLow = (p.stock || 0) > 0 && (p.stock || 0) <= (p.lowStockThreshold || 5);
+              const isOut = (p.stock || 0) <= 0;
+
+              return (
+                <div key={p.id} className="p-3.5 space-y-2.5">
+                  <div className="flex items-start space-x-3">
+                    <img
+                      src={p.images?.[0] || 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=100&q=80'}
+                      alt={p.title}
+                      className="w-14 h-14 object-contain bg-neutral-950 rounded-xl p-1 border border-neutral-800 shrink-0"
+                    />
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center justify-between gap-1 mb-0.5">
+                        <span className="font-mono text-[10px] text-neutral-400 bg-neutral-950 px-1.5 py-0.5 rounded border border-neutral-800">
+                          {p.sku}
+                        </span>
+                        <span
+                          className={`inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider ${
+                            p.status === 'archived'
+                              ? 'bg-neutral-800 text-neutral-400'
+                              : p.status === 'draft'
+                              ? 'bg-amber-950 text-amber-400'
+                              : 'bg-emerald-950 text-emerald-400'
+                          }`}
+                        >
+                          {p.status || 'active'}
+                        </span>
+                      </div>
+                      <h4 className="font-bold text-white text-xs leading-snug line-clamp-2">{p.title}</h4>
+                      <div className="text-[10px] text-neutral-400 mt-0.5">
+                        <span>{p.category}</span> • <span className="text-[#ccff00] font-bold">{p.vendor}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between pt-1 text-xs">
+                    <div>
+                      <div className="font-mono font-black text-white text-sm">{formatBDT(p.price)}</div>
+                      <div className="text-[10px] text-neutral-400">
+                        Cost: {formatBDT(p.costPrice || 0)} ({marginPct}% margin)
+                      </div>
+                    </div>
+
+                    <div className="text-right">
+                      <span
+                        className={`inline-flex items-center space-x-1 px-2 py-0.5 rounded font-mono text-[11px] font-bold ${
+                          isOut
+                            ? 'bg-red-950/80 text-red-400 border border-red-800'
+                            : isLow
+                            ? 'bg-amber-950/80 text-amber-300 border border-amber-800'
+                            : 'bg-emerald-950/60 text-emerald-400'
+                        }`}
+                      >
+                        <span>{p.stock || 0} in stock</span>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center space-x-2 pt-1 border-t border-neutral-800/60">
+                    <button
+                      onClick={() => handleOpenEdit(p)}
+                      className="flex-1 py-1.5 px-3 bg-neutral-800 hover:bg-neutral-700 text-white rounded-lg text-xs font-bold transition-colors flex items-center justify-center space-x-1.5 cursor-pointer"
+                    >
+                      <Edit2 size={13} className="text-[#ccff00]" />
+                      <span>Edit Product</span>
+                    </button>
+                    <button
+                      onClick={() => handleArchiveToggle(p.id, p.status || 'active')}
+                      className="py-1.5 px-3 bg-neutral-850 hover:bg-neutral-800 text-neutral-300 rounded-lg text-xs font-semibold transition-colors flex items-center justify-center space-x-1 cursor-pointer"
+                    >
+                      {p.status === 'archived' ? <RotateCcw size={13} /> : <Archive size={13} />}
+                      <span>{p.status === 'archived' ? 'Restore' : 'Archive'}</span>
+                    </button>
+                  </div>
+                </div>
+              );
+            })
+          )}
+        </div>
+
+        {/* Desktop View Table */}
+        <div className="hidden md:block overflow-x-auto">
           <table className="w-full text-left text-xs">
             <thead className="bg-neutral-950/80 text-neutral-400 font-mono text-[10px] uppercase tracking-wider border-b border-neutral-800">
               <tr>
@@ -557,34 +652,38 @@ export const ProductsTab: React.FC = () => {
             </div>
 
             {/* Modal Tabs */}
-            <div className="flex border-b border-neutral-800 bg-neutral-950/60 px-4 text-xs font-bold uppercase tracking-wider">
+            <div className="flex border-b border-neutral-800 bg-neutral-950/60 px-4 text-xs font-bold uppercase tracking-wider overflow-x-auto whitespace-nowrap scrollbar-none">
               <button
+                type="button"
                 onClick={() => setActiveTab('general')}
-                className={`py-2.5 px-3 border-b-2 transition-colors cursor-pointer ${
+                className={`py-2.5 px-3 border-b-2 transition-colors cursor-pointer shrink-0 ${
                   activeTab === 'general' ? 'border-[#ccff00] text-[#ccff00]' : 'border-transparent text-neutral-400 hover:text-white'
                 }`}
               >
                 1. General Info
               </button>
               <button
+                type="button"
                 onClick={() => setActiveTab('pricing')}
-                className={`py-2.5 px-3 border-b-2 transition-colors cursor-pointer ${
+                className={`py-2.5 px-3 border-b-2 transition-colors cursor-pointer shrink-0 ${
                   activeTab === 'pricing' ? 'border-[#ccff00] text-[#ccff00]' : 'border-transparent text-neutral-400 hover:text-white'
                 }`}
               >
                 2. Pricing & Stock
               </button>
               <button
+                type="button"
                 onClick={() => setActiveTab('specs')}
-                className={`py-2.5 px-3 border-b-2 transition-colors cursor-pointer ${
+                className={`py-2.5 px-3 border-b-2 transition-colors cursor-pointer shrink-0 ${
                   activeTab === 'specs' ? 'border-[#ccff00] text-[#ccff00]' : 'border-transparent text-neutral-400 hover:text-white'
                 }`}
               >
                 3. Cricket Specs
               </button>
               <button
+                type="button"
                 onClick={() => setActiveTab('images')}
-                className={`py-2.5 px-3 border-b-2 transition-colors cursor-pointer ${
+                className={`py-2.5 px-3 border-b-2 transition-colors cursor-pointer shrink-0 ${
                   activeTab === 'images' ? 'border-[#ccff00] text-[#ccff00]' : 'border-transparent text-neutral-400 hover:text-white'
                 }`}
               >
@@ -593,7 +692,7 @@ export const ProductsTab: React.FC = () => {
             </div>
 
             {/* Modal Body */}
-            <form onSubmit={handleSaveProduct} className="flex-1 overflow-y-auto p-5 space-y-4">
+            <form onSubmit={handleSaveProduct} className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4">
               {formError && (
                 <div className="p-3 bg-red-950/80 border border-red-800 text-red-200 text-xs rounded-xl flex items-center space-x-2">
                   <AlertCircle size={15} />
@@ -622,7 +721,7 @@ export const ProductsTab: React.FC = () => {
                     />
                   </div>
 
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <label className="block text-neutral-400 font-bold uppercase mb-1">Cricket Category *</label>
                       <select
@@ -660,7 +759,7 @@ export const ProductsTab: React.FC = () => {
                     />
                   </div>
 
-                  <div className="grid grid-cols-3 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     <div>
                       <label className="block text-neutral-400 font-bold uppercase mb-1">Status</label>
                       <select
@@ -683,7 +782,7 @@ export const ProductsTab: React.FC = () => {
                         className="w-full bg-neutral-950 border border-neutral-800 rounded-xl p-2.5 text-white focus:outline-none"
                       />
                     </div>
-                    <div className="flex items-center space-x-4 pt-6">
+                    <div className="flex items-center space-x-4 pt-2 sm:pt-6">
                       <label className="flex items-center space-x-1.5 cursor-pointer">
                         <input
                           type="checkbox"
@@ -710,7 +809,7 @@ export const ProductsTab: React.FC = () => {
               {/* TAB 2: PRICING & STOCK */}
               {activeTab === 'pricing' && (
                 <div className="space-y-4 text-xs">
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <label className="block text-neutral-400 font-bold uppercase mb-1">
                         Unique SKU (Stock Keeping Unit) *
@@ -746,7 +845,7 @@ export const ProductsTab: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <label className="block text-neutral-400 font-bold uppercase mb-1">
                         Selling Price (BDT ৳) *
@@ -776,7 +875,7 @@ export const ProductsTab: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <label className="block text-neutral-400 font-bold uppercase mb-1">
                         Initial Stock Quantity in Warehouse
@@ -847,7 +946,7 @@ export const ProductsTab: React.FC = () => {
                     </label>
                     <div className="space-y-2">
                       {['Willow Grade', 'Weight', 'Profile', 'Handle', 'Spike Configuration', 'Cushioning'].map((specKey) => (
-                        <div key={specKey} className="grid grid-cols-3 gap-2">
+                        <div key={specKey} className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                           <span className="p-2 bg-neutral-950 border border-neutral-800 rounded-lg text-neutral-400 font-bold">
                             {specKey}
                           </span>
@@ -862,7 +961,7 @@ export const ProductsTab: React.FC = () => {
                               })
                             }
                             placeholder={specKey === 'Willow Grade' ? 'Grade 1+ English Willow' : 'e.g. 2lb 9oz'}
-                            className="col-span-2 bg-neutral-950 border border-neutral-800 rounded-lg p-2 text-white focus:outline-none"
+                            className="sm:col-span-2 bg-neutral-950 border border-neutral-800 rounded-lg p-2 text-white focus:outline-none"
                           />
                         </div>
                       ))}
@@ -899,7 +998,7 @@ export const ProductsTab: React.FC = () => {
                     >
                       <ImageIcon size={24} className="text-[#ccff00]" />
                       <span className="font-bold text-neutral-300">
-                        {isUploadingImage ? 'Uploading to persistent disk...' : 'Click to Upload Images from Device (JPG, PNG, WebP)'}
+                        {isUploadingImage ? 'Uploading image...' : 'Click to Upload Images / Take Photo (JPG, PNG, WebP)'}
                       </span>
                     </button>
                   </div>
@@ -936,7 +1035,7 @@ export const ProductsTab: React.FC = () => {
                                 setFormData({
                                   ...formData,
                                   images: formData.images?.filter((_, idx) => idx !== i),
-                                })
+                                 })
                               }
                               className="absolute -top-1 -right-1 bg-red-600 text-white rounded-full w-4 h-4 flex items-center justify-center text-[10px] opacity-0 group-hover:opacity-100 transition-opacity"
                             >
@@ -951,11 +1050,11 @@ export const ProductsTab: React.FC = () => {
               )}
 
               {/* Modal Footer Buttons */}
-              <div className="pt-4 border-t border-neutral-800 flex items-center justify-between">
+              <div className="pt-4 border-t border-neutral-800 flex items-center justify-between sticky bottom-0 bg-neutral-900 pb-1">
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="px-4 py-2 bg-neutral-800 hover:bg-neutral-700 text-neutral-300 rounded-xl transition-colors cursor-pointer"
+                  className="px-4 py-2 bg-neutral-800 hover:bg-neutral-700 text-neutral-300 rounded-xl transition-colors cursor-pointer text-xs"
                 >
                   Cancel
                 </button>
@@ -963,9 +1062,9 @@ export const ProductsTab: React.FC = () => {
                 <button
                   type="submit"
                   disabled={isSaving}
-                  className="px-6 py-2 bg-[#ccff00] hover:bg-[#b5e600] text-black font-black uppercase tracking-wider rounded-xl transition-all shadow-lg shadow-[#ccff00]/10 cursor-pointer disabled:opacity-50"
+                  className="px-6 py-2 bg-[#ccff00] hover:bg-[#b5e600] text-black font-black uppercase tracking-wider rounded-xl transition-all shadow-lg shadow-[#ccff00]/10 cursor-pointer disabled:opacity-50 text-xs"
                 >
-                  {isSaving ? 'Saving Product...' : modalMode === 'create' ? 'Create Product' : 'Update Product'}
+                  {isSaving ? 'Saving...' : modalMode === 'create' ? 'Create Product' : 'Update Product'}
                 </button>
               </div>
             </form>

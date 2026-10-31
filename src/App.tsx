@@ -18,6 +18,7 @@ import { QuickViewModal } from './components/modals/QuickViewModal';
 import { CartDrawer } from './components/modals/CartDrawer';
 import { WishlistDrawer } from './components/modals/WishlistDrawer';
 import { Toast } from './components/ui/Toast';
+import { WhatsAppButton } from './components/ui/WhatsAppButton';
 import { Product } from './types/cricket';
 import { AdminDashboard } from './admin/AdminDashboard';
 
@@ -96,7 +97,7 @@ const MainApp: React.FC<MainAppProps> = ({ onOpenAdmin }) => {
       </main>
 
       {/* 7. Comprehensive E-Commerce Footer */}
-      <Footer onSelectBrand={handleSelectBrand} />
+      <Footer onSelectBrand={handleSelectBrand} onOpenAdmin={onOpenAdmin} />
 
       {/* 8. Modals, Drawers & Overlays */}
       <SearchModal
@@ -121,8 +122,10 @@ const MainApp: React.FC<MainAppProps> = ({ onOpenAdmin }) => {
         isOpen={mobileMenuOpen}
         onClose={() => setMobileMenuOpen(false)}
         onSelectCategory={handleSelectCategory}
+        onOpenAdmin={onOpenAdmin}
       />
       <Toast />
+      <WhatsAppButton />
     </div>
   );
 };

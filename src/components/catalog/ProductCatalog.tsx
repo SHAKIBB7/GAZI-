@@ -41,9 +41,31 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
         const data = await apiService.getProducts();
         if (isMounted && data && Array.isArray(data.products) && data.products.length > 0) {
           setLiveProducts(data.products);
+          return;
         }
       } catch (e) {
-        console.warn('Using static cricket catalog fallback:', e);
+        console.warn('Using local/static cricket catalog fallback:', e);
+      }
+
+      // Check local storage for any admin created/edited products
+      try {
+        if (typeof window !== 'undefined') {
+          const local = localStorage.getItem('gazi_local_products');
+          if (local) {
+            const list = JSON.parse(local);
+            if (Array.isArray(list) && list.length > 0) {
+              const activeOnly = list.filter((p: any) => p.status !== 'archived');
+              if (isMounted && activeOnly.length > 0) {
+                setLiveProducts(activeOnly);
+                return;
+              }
+            }
+          }
+        }
+      } catch {}
+
+      if (isMounted) {
+        setLiveProducts(PRODUCTS);
       }
     }
     loadProducts();
@@ -148,7 +170,7 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 pb-6 border-b border-neutral-200">
           <div>
             <div className="flex items-center space-x-2 text-xs font-black uppercase text-neutral-500 tracking-wider mb-1">
-              <span>GAZI SPORTS BANGLADESH</span>
+              <span>GAZI SPORTS 99 BANGLADESH</span>
               <span>/</span>
               <span>CRICKET CATALOG</span>
               {selectedCategory !== 'All' && (

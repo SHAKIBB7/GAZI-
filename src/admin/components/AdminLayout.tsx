@@ -52,22 +52,35 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ onReturnToStore }) => 
   return (
     <div className="min-h-screen bg-neutral-950 text-white flex flex-col md:flex-row font-sans selection:bg-[#ccff00] selection:text-black">
       {/* Mobile Header Bar */}
-      <div className="md:hidden flex items-center justify-between p-4 bg-black border-b border-neutral-800">
-        <div className="flex items-center space-x-2.5">
-          <div className="w-8 h-8 rounded-lg bg-[#ccff00] text-black font-mono font-black flex items-center justify-center text-sm">
-            GZ
-          </div>
-          <span className="font-mono font-black text-sm uppercase tracking-tight text-white">
-            Gazi Admin Portal
+      <div className="md:hidden flex items-center justify-between p-3.5 bg-black border-b border-neutral-800">
+        <div className="flex items-center space-x-2">
+          <img
+            src="/logo-crest.png"
+            alt="Gazi Sports 99"
+            className="h-7 w-auto object-contain"
+          />
+          <span className="font-mono font-black text-xs uppercase tracking-tight text-white">
+            Gazi Sports Admin
           </span>
         </div>
 
-        <button
-          onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
-          className="p-2 bg-neutral-900 text-neutral-300 rounded-xl"
-        >
-          {isMobileNavOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        <div className="flex items-center space-x-2">
+          <button
+            onClick={onReturnToStore}
+            className="px-2.5 py-1.5 bg-neutral-900 border border-neutral-800 text-[#ccff00] rounded-xl text-[11px] font-bold flex items-center space-x-1 cursor-pointer"
+            title="Return to Customer Store"
+          >
+            <ExternalLink size={13} />
+            <span>Store</span>
+          </button>
+          <button
+            onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
+            className="p-1.5 bg-neutral-900 text-neutral-300 rounded-xl cursor-pointer"
+            aria-label={isMobileNavOpen ? 'Close navigation' : 'Open navigation'}
+          >
+            {isMobileNavOpen ? <X size={18} /> : <Menu size={18} />}
+          </button>
+        </div>
       </div>
 
       {/* Sidebar Navigation */}
@@ -78,15 +91,19 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ onReturnToStore }) => 
       >
         {/* Brand identity */}
         <div className="hidden md:flex items-center space-x-3 pb-6 mb-4 border-b border-neutral-800">
-          <div className="w-10 h-10 rounded-xl bg-[#ccff00] text-black font-mono font-black flex items-center justify-center text-lg shadow-lg shadow-[#ccff00]/10">
-            GZ
+          <div className="w-10 h-10 rounded-xl bg-neutral-900 border border-neutral-800 flex items-center justify-center p-1 shadow-lg shadow-amber-500/10">
+            <img
+              src="/logo-crest.png"
+              alt="Gazi Sports 99"
+              className="h-full w-auto object-contain"
+            />
           </div>
           <div>
             <h1 className="font-mono font-black text-sm uppercase tracking-tight text-white leading-tight">
-              GAZI ENTERPRISE
+              GAZI SPORTS 99
             </h1>
             <span className="text-[10px] text-neutral-400 uppercase tracking-widest font-semibold block">
-              Cricket Management
+              Enterprise Management
             </span>
           </div>
         </div>

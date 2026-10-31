@@ -116,19 +116,29 @@ export const Navbar: React.FC<NavbarProps> = ({
             <Menu size={24} />
           </button>
 
-          <a href="#" className="flex items-center space-x-2 group">
-            {/* Gazi Sports Brand Mark */}
+          <a href="#" className="flex items-center space-x-2.5 sm:space-x-3 group">
+            {/* Gazi Sports 99 Brand Logo & Mark */}
+            <div className="relative shrink-0 flex items-center justify-center">
+              <img
+                src="/logo-crest.png"
+                alt="Gazi Sports 99 Logo"
+                className="h-9 sm:h-11 w-auto object-contain filter drop-shadow-[0_2px_8px_rgba(255,140,0,0.35)] group-hover:scale-105 transition-transform duration-200"
+              />
+            </div>
             <div className="flex flex-col">
-              <div className="flex items-center space-x-1">
+              <div className="flex items-center space-x-1 sm:space-x-1.5">
                 <span className="font-extrabold text-lg sm:text-2xl tracking-tighter uppercase font-mono leading-none">
                   GAZI<span className="text-[#ccff00]">.</span>SPORTS
                 </span>
-                <span className="bg-[#ccff00] text-black text-[9px] sm:text-[10px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider">
+                <span className="bg-[#ccff00] text-black text-xs sm:text-sm font-black px-1.5 py-0.5 rounded uppercase tracking-wider font-mono shadow-sm">
+                  99
+                </span>
+                <span className="bg-neutral-800 text-neutral-300 text-[9px] sm:text-[10px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider">
                   CRICKET BD
                 </span>
               </div>
               <span className="text-[9px] text-neutral-400 uppercase tracking-widest -mt-0.5 font-sans hidden sm:block">
-                Bangladesh's Cricket Specialist
+                Narsingdi Stadium • Cricket Specialist
               </span>
             </div>
           </a>

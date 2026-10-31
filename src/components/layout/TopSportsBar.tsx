@@ -43,7 +43,9 @@ export const TopSportsBar: React.FC<TopSportsBarProps> = ({ onSelectCategory }) 
           ))}
         </div>
         <div className="text-[10px] text-neutral-400 uppercase tracking-widest hidden lg:flex items-center space-x-3">
-          <span className="text-[#ccff00] font-bold">★ GAZI CRICKET BANGLADESH</span>
+          <span className="text-[#ccff00] font-bold">★ GAZI SPORTS 99</span>
+          <span>•</span>
+          <span>NARSINGDI STADIUM</span>
           <span>•</span>
           <span>100% GENUINE GEAR</span>
           <span>•</span>

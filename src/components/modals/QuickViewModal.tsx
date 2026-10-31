@@ -134,13 +134,13 @@ const QuickViewModalContent: React.FC<QuickViewContentProps> = ({ product, onClo
                 </span>
               )}
               <span className="text-[11px] text-emerald-700 bg-emerald-100 font-bold px-2 py-0.5 rounded ml-auto">
-                In Stock (Dhaka Hub)
+                In Stock (Narsingdi Stadium Hub)
               </span>
             </div>
 
             {/* Bangladesh Payment Notice */}
             <div className="text-[11px] text-neutral-800 mb-4 bg-emerald-50/70 p-2.5 rounded-lg border border-emerald-200 flex items-center justify-between">
-              <span>ক্যাশ অন ডেলিভারি (COD), বিকাশ ও নগদ পেমেন্ট প্রযোজ্য</span>
+              <span>ক্যাশ অন ডেলিভারি (COD), বিকাশ, নগদ ও রকেট পেমেন্ট প্রযোজ্য</span>
               <span className="font-bold text-emerald-700">সারা বাংলাদেশ</span>
             </div>
 

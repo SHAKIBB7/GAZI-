@@ -90,8 +90,12 @@ export const CartDrawer: React.FC = () => {
         {/* If Order Confirmed View */}
         {confirmedOrder ? (
           <div className="flex-1 overflow-y-auto p-6 flex flex-col items-center justify-center text-center">
-            <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mb-4">
-              <CheckCircle size={36} />
+            <div className="relative mb-3 flex items-center justify-center">
+              <img
+                src="/logo-crest.png"
+                alt="Gazi Sports 99"
+                className="h-16 w-auto object-contain filter drop-shadow-[0_2px_8px_rgba(255,140,0,0.35)]"
+              />
             </div>
 
             <span className="text-[10px] font-black uppercase text-[#88b800] bg-neutral-950 px-2.5 py-1 rounded tracking-widest mb-2">
@@ -102,7 +106,7 @@ export const CartDrawer: React.FC = () => {
               ORDER CONFIRMED! (অর্ডার নিশ্চিত হয়েছে)
             </h3>
             <p className="text-xs text-neutral-500 max-w-xs mb-6">
-              Thank you for ordering with Gazi Cricket. Your equipment is being prepared for immediate dispatch from our Dhaka Mirpur-2 Fulfillment Hub.
+              Thank you for ordering with Gazi Sports 99. Your equipment is being prepared for immediate dispatch from our Narsingdi Stadium Fulfillment Hub.
             </p>
 
             {/* Tracking Reference Box */}

@@ -56,7 +56,7 @@ export const CricketEssentials: React.FC<CricketEssentialsProps> = ({ onSelectCa
           <div className="flex items-end justify-between mb-6">
             <div>
               <span className="text-xs font-black uppercase tracking-widest text-neutral-500">
-                GAZI SPORTS CURATED
+                GAZI SPORTS 99 CURATED
               </span>
               <h2 className="text-2xl sm:text-4xl font-black uppercase tracking-tight text-neutral-900 font-mono mt-0.5">
                 CRICKET ESSENTIALS
