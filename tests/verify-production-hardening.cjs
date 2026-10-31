@@ -129,12 +129,12 @@ async function runHardeningSuite() {
     assert(smLoginRes.status === 200, 'Store manager login succeeds');
     storeManagerToken = smLoginRes.body.token;
 
-    // Login as Super Admin GAZI9 with 99GAZI@
+    // Login as Super Admin GAZI9 with 99GAZI@1
     const gaziLoginRes = await request('POST', '/api/admin/auth/login', {
       username: 'GAZI9',
-      password: '99GAZI@',
+      password: '99GAZI@1',
     });
-    assert(gaziLoginRes.status === 200, 'Super Admin GAZI9 login succeeds with 99GAZI@');
+    assert(gaziLoginRes.status === 200, 'Super Admin GAZI9 login succeeds with 99GAZI@1');
     assert(gaziLoginRes.body.user.role === 'super_admin', 'GAZI9 role is verified as super_admin');
 
     // Forged signature rejection

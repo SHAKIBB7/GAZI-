@@ -40,8 +40,8 @@
     "permissions": [
       "*"
     ],
-    "passwordHash": "f5634ef4018e3e3e16454e7bbb86a5d6a1088a8c8796e38e726f0269ba1bec0510742ef93a4ce421571e17601ffb762edbaeb923de0cbb2ee9c8d97ac4994226",
-    "salt": "49fb3e9f8f99e3002d241ae3155aad6b",
+    "passwordHash": "ef877a61a291a11be0299f7ba7e6de9b46860245a4c682a4c3031fe85f43c0bff994de4384deb1cac94156a6b7acbbb2696c09d90d4e2f84092fe3afc5313220",
+    "salt": "9f4e1d218f9e2ecd02a22ee439930805",
     "isActive": true,
     "tokenVersion": 1,
     "createdAt": "2026-10-31T21:46:00.000Z"
