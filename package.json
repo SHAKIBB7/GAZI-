@@ -31,9 +31,10 @@
     "server": "node server/server.js",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
-    "test": "node tests/verify-replica.cjs && node tests/verify-enterprise-admin.cjs",
+    "test": "node tests/verify-replica.cjs && node tests/verify-enterprise-admin.cjs && node tests/verify-production-hardening.cjs",
     "test:replica": "node tests/verify-replica.cjs",
     "test:admin": "node tests/verify-enterprise-admin.cjs",
+    "test:security": "node tests/verify-production-hardening.cjs",
     "preview": "vite preview"
   },
   "dependencies": {

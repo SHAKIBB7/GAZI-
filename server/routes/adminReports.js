@@ -1,6 +1,6 @@
 import express from 'express';
 import { db } from '../db.js';
-import { authenticateAdmin } from '../auth.js';
+import { authenticateAdmin, requireRole } from '../auth.js';
 
 const router = express.Router();
 
@@ -254,12 +254,12 @@ const handleGetFinancials = (req, res) => {
   });
 };
 
-router.get('/financials', authenticateAdmin, handleGetFinancials);
-router.get('/summary', authenticateAdmin, handleGetFinancials);
-router.get('/', authenticateAdmin, handleGetFinancials);
+router.get('/financials', authenticateAdmin, requireRole(['super_admin']), handleGetFinancials);
+router.get('/summary', authenticateAdmin, requireRole(['super_admin']), handleGetFinancials);
+router.get('/', authenticateAdmin, requireRole(['super_admin']), handleGetFinancials);
 
 // 2. EXPORT FINANCIAL REPORT AS CSV
-router.get('/export/csv', authenticateAdmin, (req, res) => {
+router.get('/export/csv', authenticateAdmin, requireRole(['super_admin']), (req, res) => {
   const { period = 'thisMonth', startDate, endDate } = req.query;
   const { startTime, endTime, startDateStr, endDateStr } = getDateRangeBounds(period, startDate, endDate);
 

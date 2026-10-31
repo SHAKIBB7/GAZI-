@@ -37,17 +37,21 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ onReturnToStore }) => 
   const [activeTab, setActiveTab] = useState<string>('overview');
   const [isMobileNavOpen, setIsMobileNavOpen] = useState<boolean>(false);
 
-  const navigationItems = [
-    { id: 'overview', label: 'Overview', icon: LayoutDashboard },
-    { id: 'products', label: 'Products', icon: Package },
-    { id: 'inventory', label: 'Inventory & Ledger', icon: Layers },
-    { id: 'orders', label: 'Orders', icon: ShoppingBag },
-    { id: 'purchases', label: 'Purchases & Suppliers', icon: Building2 },
-    { id: 'customers', label: 'Customers', icon: Users },
-    { id: 'reports', label: 'Financial & Sales Reports', icon: FileText },
-    { id: 'expenses', label: 'Operating Expenses', icon: DollarSign },
-    { id: 'auditLogs', label: 'Security & Audit Logs', icon: ShieldCheck },
+  const isSuperAdmin = user?.role === 'super_admin';
+
+  const allNavigationItems = [
+    { id: 'overview', label: 'Overview', icon: LayoutDashboard, superAdminOnly: false },
+    { id: 'products', label: 'Products', icon: Package, superAdminOnly: false },
+    { id: 'inventory', label: 'Inventory & Ledger', icon: Layers, superAdminOnly: false },
+    { id: 'orders', label: 'Orders', icon: ShoppingBag, superAdminOnly: false },
+    { id: 'purchases', label: 'Purchases & Suppliers', icon: Building2, superAdminOnly: false },
+    { id: 'customers', label: 'Customers', icon: Users, superAdminOnly: false },
+    { id: 'reports', label: 'Financial & Sales Reports', icon: FileText, superAdminOnly: true },
+    { id: 'expenses', label: 'Operating Expenses', icon: DollarSign, superAdminOnly: true },
+    { id: 'auditLogs', label: 'Security & Audit Logs', icon: ShieldCheck, superAdminOnly: true },
   ];
+
+  const navigationItems = allNavigationItems.filter((item) => !item.superAdminOnly || isSuperAdmin);
 
   return (
     <div className="min-h-screen bg-neutral-950 text-white flex flex-col md:flex-row font-sans selection:bg-[#ccff00] selection:text-black">
@@ -202,9 +206,9 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ onReturnToStore }) => 
           {activeTab === 'orders' && <OrdersTab />}
           {activeTab === 'purchases' && <PurchasesTab />}
           {activeTab === 'customers' && <CustomersTab />}
-          {activeTab === 'reports' && <ReportsTab />}
-          {activeTab === 'expenses' && <ExpensesTab />}
-          {activeTab === 'auditLogs' && <AuditLogsTab />}
+          {activeTab === 'reports' && isSuperAdmin && <ReportsTab />}
+          {activeTab === 'expenses' && isSuperAdmin && <ExpensesTab />}
+          {activeTab === 'auditLogs' && isSuperAdmin && <AuditLogsTab />}
         </div>
       </main>
     </div>

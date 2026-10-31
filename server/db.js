@@ -6,7 +6,7 @@ import { AsyncLocalStorage } from 'async_hooks';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const dataDir = path.join(__dirname, 'data');
+const dataDir = process.env.DATA_DIR ? path.resolve(process.env.DATA_DIR) : path.join(__dirname, 'data');
 
 if (!fs.existsSync(dataDir)) {
   fs.mkdirSync(dataDir, { recursive: true });
@@ -153,33 +153,46 @@ function initializeSeeds() {
   // 1. Admins
   let admins = readJsonSafe(filePaths.admins, []);
   if (admins.length === 0) {
-    const defaultPassword = process.env.ADMIN_DEFAULT_PASSWORD || 'AdminPassword2026!';
-    const { hash, salt } = hashPassword(defaultPassword);
-    admins = [
-      {
-        id: 'adm-001',
-        username: 'admin',
-        email: 'admin@gazisports.com',
-        name: 'Chief Cricket Administrator',
-        role: 'super_admin',
-        permissions: ['*'],
-        passwordHash: hash,
-        salt,
-        createdAt: '2026-01-01T00:00:00.000Z',
-      },
-      {
-        id: 'adm-002',
-        username: 'inventory',
-        email: 'inventory@gazisports.com',
-        name: 'Dhaka Warehouse Manager',
-        role: 'inventory_manager',
-        permissions: ['inventory:*', 'products:read', 'orders:read'],
-        passwordHash: hash,
-        salt,
-        createdAt: '2026-01-01T00:00:00.000Z',
-      },
-    ];
-    writeAtomicJson(filePaths.admins, admins);
+    const isProd = process.env.NODE_ENV === 'production';
+    // In production, do not create default credentials unless explicitly supplied via environment
+    if (!isProd || process.env.ADMIN_DEFAULT_PASSWORD) {
+      const defaultPassword = process.env.ADMIN_DEFAULT_PASSWORD || (isProd ? null : 'AdminPassword2026!');
+      if (defaultPassword) {
+        const adminSalt = crypto.randomBytes(16).toString('hex');
+        const adminHash = hashPassword(defaultPassword, adminSalt);
+        const invSalt = crypto.randomBytes(16).toString('hex');
+        const invHash = hashPassword(defaultPassword, invSalt);
+        admins = [
+          {
+            id: 'adm-001',
+            username: 'admin',
+            email: 'admin@gazisports.com',
+            name: 'Chief Cricket Administrator',
+            role: 'super_admin',
+            permissions: ['*'],
+            passwordHash: adminHash.hash,
+            salt: adminSalt,
+            isActive: true,
+            tokenVersion: 1,
+            createdAt: '2026-01-01T00:00:00.000Z',
+          },
+          {
+            id: 'adm-002',
+            username: 'inventory',
+            email: 'inventory@gazisports.com',
+            name: 'Dhaka Warehouse Manager',
+            role: 'inventory_manager',
+            permissions: ['inventory:*', 'products:read', 'orders:read'],
+            passwordHash: invHash.hash,
+            salt: invSalt,
+            isActive: true,
+            tokenVersion: 1,
+            createdAt: '2026-01-01T00:00:00.000Z',
+          },
+        ];
+        writeAtomicJson(filePaths.admins, admins);
+      }
+    }
   }
 
   // 2. Suppliers
@@ -1337,21 +1350,36 @@ export const db = {
   },
   async createOrder(orderPayload) {
     return withLocks(['products', 'orders', 'inventoryLedger'], async () => {
-      // 1. Concurrency safety: check stock for every item before deducting
+      if (!orderPayload.items || !Array.isArray(orderPayload.items) || orderPayload.items.length === 0) {
+        throw new Error('Order items array cannot be empty.');
+      }
+
+      // 1. Concurrency safety: check product existence and stock for every item before deducting
       const products = readJsonSafe(filePaths.products, []);
 
       for (const item of orderPayload.items) {
         const pid = item.productId || item.id;
+        const reqQty = Number(item.quantity);
+        if (!Number.isInteger(reqQty) || reqQty <= 0) {
+          throw new Error(`Invalid item quantity for product reference "${pid}". Quantity must be a positive integer.`);
+        }
+        if (reqQty > 100) {
+          throw new Error(`Maximum purchase quantity per item is 100 units.`);
+        }
+
         const prod = products.find((p) => p.id === pid || p.sku === pid);
-        if (prod) {
-          const reqQty = Number(item.quantity || 1);
-          if (prod.stock < reqQty) {
-            throw new Error(`Insufficient stock for "${prod.title}". Only ${prod.stock} unit(s) available.`);
-          }
+        if (!prod) {
+          throw new Error(`Product "${pid}" does not exist in the authorized store catalog.`);
+        }
+        if (prod.status === 'archived') {
+          throw new Error(`Product "${prod.title}" is no longer available for purchase.`);
+        }
+        if (prod.stock < reqQty) {
+          throw new Error(`Insufficient stock for "${prod.title}". Only ${prod.stock} unit(s) available.`);
         }
       }
 
-      // 2. Decrement stock atomically and prepare item snapshots
+      // 2. Decrement stock atomically and prepare authoritative item snapshots
       let calculatedSubtotal = 0;
       let calculatedCogs = 0;
       const orderItems = [];
@@ -1359,28 +1387,26 @@ export const db = {
       for (const item of orderPayload.items) {
         const pid = item.productId || item.id;
         const prod = products.find((p) => p.id === pid || p.sku === pid);
-        const qty = Number(item.quantity || 1);
-        const unitPrice = prod ? Number(prod.price) : Number(item.price || 0);
-        const unitCost = prod ? Number(prod.costPrice || 0) : Math.round(unitPrice * 0.65);
+        const qty = Number(item.quantity);
+        const unitPrice = Number(prod.price);
+        const unitCost = Number(prod.costPrice || 0);
         calculatedSubtotal += unitPrice * qty;
         calculatedCogs += unitCost * qty;
 
-        if (prod) {
-          prod.stock -= qty;
-          prod.updatedAt = new Date().toISOString();
-        }
+        prod.stock -= qty;
+        prod.updatedAt = new Date().toISOString();
 
         orderItems.push({
-          productId: prod ? prod.id : pid,
-          sku: prod ? prod.sku : `CRK-${pid}`,
-          title: prod ? prod.title : item.name || item.title || 'Cricket Product',
-          name: prod ? prod.title : item.name || item.title || 'Cricket Product',
+          productId: prod.id,
+          sku: prod.sku,
+          title: prod.title,
+          name: prod.title,
           selectedSize: item.selectedSize || 'Standard',
           quantity: qty,
           unitPrice,
           unitCost,
           totalPrice: unitPrice * qty,
-          image: prod?.images?.[0] || item.image || '',
+          image: prod.images?.[0] || '',
         });
       }
 
@@ -1948,6 +1974,262 @@ export const db = {
         entity: 'admin',
         entityId: admin.id,
         details: { message: 'Administrative password updated successfully' },
+      });
+      return true;
+    });
+  },
+
+  async bootstrapSuperAdmin({ username, email, name, password }) {
+    return withLock('admins', async () => {
+      const admins = readJsonSafe(filePaths.admins, []);
+      const existingSuperAdmin = admins.find((a) => a.role === 'super_admin' && a.isActive !== false);
+      if (existingSuperAdmin) {
+        throw new Error('System already initialized: an active Super Admin account is present.');
+      }
+
+      const cleanUser = (username || '').toLowerCase().trim();
+      const cleanEmail = (email || '').toLowerCase().trim();
+      if (!cleanUser || cleanUser.length < 3) {
+        throw new Error('Username must be at least 3 characters long.');
+      }
+      if (!cleanEmail || !cleanEmail.includes('@')) {
+        throw new Error('A valid email address is required.');
+      }
+      if (!password || password.length < 8) {
+        throw new Error('Password must be at least 8 characters long.');
+      }
+
+      const { hash, salt } = hashPassword(password);
+      const newAdmin = {
+        id: `adm-${Date.now()}`,
+        username: cleanUser,
+        email: cleanEmail,
+        name: (name || 'Primary Super Administrator').trim(),
+        role: 'super_admin',
+        permissions: ['*'],
+        passwordHash: hash,
+        salt,
+        isActive: true,
+        tokenVersion: 1,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      };
+
+      admins.push(newAdmin);
+      writeAtomicJson(filePaths.admins, admins);
+
+      await db.addAuditLog({
+        actor: cleanUser,
+        role: 'super_admin',
+        action: 'SUPER_ADMIN_BOOTSTRAP',
+        entity: 'admin',
+        entityId: newAdmin.id,
+        details: { message: 'Initial Super Admin account bootstrapped successfully' },
+      });
+
+      return {
+        id: newAdmin.id,
+        username: newAdmin.username,
+        email: newAdmin.email,
+        name: newAdmin.name,
+        role: newAdmin.role,
+        permissions: newAdmin.permissions,
+        isActive: newAdmin.isActive,
+      };
+    });
+  },
+
+  async createAdminUser({ username, email, name, role = 'inventory_manager', permissions, password }, actor = 'admin') {
+    return withLock('admins', async () => {
+      const admins = readJsonSafe(filePaths.admins, []);
+      const cleanUser = (username || '').toLowerCase().trim();
+      const cleanEmail = (email || '').toLowerCase().trim();
+
+      if (!cleanUser || cleanUser.length < 3) {
+        throw new Error('Username must be at least 3 characters long.');
+      }
+      if (!cleanEmail || !cleanEmail.includes('@')) {
+        throw new Error('A valid email address is required.');
+      }
+      if (!password || password.length < 8) {
+        throw new Error('Password must be at least 8 characters long.');
+      }
+
+      if (admins.some((a) => a.username.toLowerCase() === cleanUser)) {
+        throw new Error(`Username '${cleanUser}' is already in use.`);
+      }
+      if (admins.some((a) => a.email.toLowerCase() === cleanEmail)) {
+        throw new Error(`Email '${cleanEmail}' is already registered to another account.`);
+      }
+
+      const validRoles = ['super_admin', 'inventory_manager'];
+      if (!validRoles.includes(role)) {
+        throw new Error(`Invalid role '${role}'. Permitted roles: ${validRoles.join(', ')}.`);
+      }
+
+      const defaultPerms = role === 'super_admin'
+        ? ['*']
+        : ['inventory:*', 'products:read', 'products:write', 'orders:read', 'orders:write', 'purchases:read', 'purchases:write'];
+
+      const { hash, salt } = hashPassword(password);
+      const newAdmin = {
+        id: `adm-${Date.now()}`,
+        username: cleanUser,
+        email: cleanEmail,
+        name: (name || cleanUser).trim(),
+        role,
+        permissions: Array.isArray(permissions) && permissions.length > 0 ? permissions : defaultPerms,
+        passwordHash: hash,
+        salt,
+        isActive: true,
+        tokenVersion: 1,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      };
+
+      admins.push(newAdmin);
+      writeAtomicJson(filePaths.admins, admins);
+
+      await db.addAuditLog({
+        actor,
+        role: 'super_admin',
+        action: 'ADMIN_USER_CREATED',
+        entity: 'admin',
+        entityId: newAdmin.id,
+        details: { username: newAdmin.username, role: newAdmin.role },
+      });
+
+      return {
+        id: newAdmin.id,
+        username: newAdmin.username,
+        email: newAdmin.email,
+        name: newAdmin.name,
+        role: newAdmin.role,
+        permissions: newAdmin.permissions,
+        isActive: newAdmin.isActive,
+      };
+    });
+  },
+
+  async updateAdminUser(id, updates, actor = 'admin') {
+    return withLock('admins', async () => {
+      const admins = readJsonSafe(filePaths.admins, []);
+      const admin = admins.find((a) => a.id === id || a.username.toLowerCase() === id.toLowerCase());
+      if (!admin) {
+        throw new Error(`Administrator with identifier '${id}' was not found.`);
+      }
+
+      // Safeguard: Prevent disabling or demoting the last active Super Admin
+      if (admin.role === 'super_admin') {
+        const willBeDemoted = updates.role && updates.role !== 'super_admin';
+        const willBeDisabled = updates.isActive === false;
+        if (willBeDemoted || willBeDisabled) {
+          const otherSuperAdmins = admins.filter(
+            (a) => a.id !== admin.id && a.role === 'super_admin' && a.isActive !== false
+          );
+          if (otherSuperAdmins.length === 0) {
+            throw new Error('Safety constraint violation: Cannot deactivate or demote the last remaining active Super Admin.');
+          }
+        }
+      }
+
+      if (updates.name !== undefined) admin.name = updates.name.trim();
+      if (updates.email !== undefined) {
+        const cleanEmail = updates.email.toLowerCase().trim();
+        if (admins.some((a) => a.id !== admin.id && a.email.toLowerCase() === cleanEmail)) {
+          throw new Error(`Email '${cleanEmail}' is already in use by another user.`);
+        }
+        admin.email = cleanEmail;
+      }
+      if (updates.role !== undefined) {
+        if (!['super_admin', 'inventory_manager'].includes(updates.role)) {
+          throw new Error('Invalid role specified.');
+        }
+        if (admin.role !== updates.role) {
+          admin.role = updates.role;
+          admin.permissions = updates.role === 'super_admin' ? ['*'] : ['inventory:*', 'products:read', 'orders:read'];
+          admin.tokenVersion = (admin.tokenVersion || 1) + 1; // Invalidate sessions on role change
+        }
+      }
+      if (updates.isActive !== undefined) {
+        const newActive = Boolean(updates.isActive);
+        if (admin.isActive !== newActive) {
+          admin.isActive = newActive;
+          admin.tokenVersion = (admin.tokenVersion || 1) + 1; // Invalidate sessions on deactivation
+        }
+      }
+
+      admin.updatedAt = new Date().toISOString();
+      writeAtomicJson(filePaths.admins, admins);
+
+      await db.addAuditLog({
+        actor,
+        role: 'super_admin',
+        action: 'ADMIN_USER_UPDATED',
+        entity: 'admin',
+        entityId: admin.id,
+        details: { updates },
+      });
+
+      return {
+        id: admin.id,
+        username: admin.username,
+        email: admin.email,
+        name: admin.name,
+        role: admin.role,
+        permissions: admin.permissions,
+        isActive: admin.isActive !== false,
+      };
+    });
+  },
+
+  async resetAdminPassword(id, newPassword, actor = 'admin') {
+    return withLock('admins', async () => {
+      const admins = readJsonSafe(filePaths.admins, []);
+      const admin = admins.find((a) => a.id === id || a.username.toLowerCase() === id.toLowerCase());
+      if (!admin) {
+        throw new Error(`Administrator '${id}' not found.`);
+      }
+      if (!newPassword || newPassword.length < 8) {
+        throw new Error('New password must be at least 8 characters long.');
+      }
+
+      const { hash, salt } = hashPassword(newPassword);
+      admin.passwordHash = hash;
+      admin.salt = salt;
+      admin.tokenVersion = (admin.tokenVersion || 1) + 1; // Invalidate all prior tokens
+      admin.updatedAt = new Date().toISOString();
+      writeAtomicJson(filePaths.admins, admins);
+
+      await db.addAuditLog({
+        actor,
+        role: 'super_admin',
+        action: 'ADMIN_PASSWORD_RESET',
+        entity: 'admin',
+        entityId: admin.id,
+        details: { message: `Password reset by ${actor}. Existing sessions revoked.` },
+      });
+
+      return true;
+    });
+  },
+
+  async invalidateAdminSession(username, actor = 'admin') {
+    return withLock('admins', async () => {
+      const admins = readJsonSafe(filePaths.admins, []);
+      const admin = admins.find((a) => a.username.toLowerCase() === username.toLowerCase());
+      if (!admin) return false;
+      admin.tokenVersion = (admin.tokenVersion || 1) + 1;
+      admin.updatedAt = new Date().toISOString();
+      writeAtomicJson(filePaths.admins, admins);
+
+      await db.addAuditLog({
+        actor: actor || admin.username,
+        role: admin.role,
+        action: 'ADMIN_SESSION_INVALIDATED',
+        entity: 'admin',
+        entityId: admin.id,
+        details: { message: 'Administrative sessions invalidated successfully' },
       });
       return true;
     });

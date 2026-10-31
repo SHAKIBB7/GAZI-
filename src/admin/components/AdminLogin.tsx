@@ -6,11 +6,8 @@ import {
   User,
   ArrowRight,
   AlertCircle,
-  CheckCircle,
   Eye,
   EyeOff,
-  Smartphone,
-  Sparkles,
 } from 'lucide-react';
 
 interface AdminLoginProps {
@@ -19,24 +16,22 @@ interface AdminLoginProps {
 
 export const AdminLogin: React.FC<AdminLoginProps> = ({ onBackToStore }) => {
   const { login, isLoading } = useAdminAuth();
-  const [username, setUsername] = useState('admin');
-  const [password, setPassword] = useState('AdminPassword2026!');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
+    if (!username.trim() || !password.trim()) {
+      setError('Please provide both username/email and password.');
+      return;
+    }
     const res = await login(username.trim(), password.trim());
     if (!res.success) {
       setError(res.error || 'Authentication failed. Please check credentials.');
     }
-  };
-
-  const fillCredentials = (u: string, p: string) => {
-    setUsername(u);
-    setPassword(p);
-    setError(null);
   };
 
   return (
@@ -125,47 +120,6 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onBackToStore }) => {
               >
                 {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
               </button>
-            </div>
-          </div>
-
-          {/* Mobile 1-Tap Quick Fill Bar */}
-          <div className="space-y-1.5">
-            <span className="text-[10px] text-neutral-400 uppercase tracking-wider font-bold flex items-center space-x-1">
-              <Smartphone size={12} className="text-[#ccff00]" />
-              <span>Mobile Quick Fill:</span>
-            </span>
-            <div className="grid grid-cols-2 gap-2">
-              <button
-                type="button"
-                onClick={() => fillCredentials('admin', 'AdminPassword2026!')}
-                className="py-1.5 px-2 bg-neutral-950 hover:bg-neutral-800 border border-neutral-800 hover:border-[#ccff00]/50 rounded-lg text-[11px] font-semibold text-neutral-300 hover:text-white transition-all flex items-center justify-center space-x-1 cursor-pointer"
-              >
-                <Sparkles size={11} className="text-[#ccff00]" />
-                <span>Super Admin</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => fillCredentials('inventory', 'AdminPassword2026!')}
-                className="py-1.5 px-2 bg-neutral-950 hover:bg-neutral-800 border border-neutral-800 hover:border-neutral-700 rounded-lg text-[11px] font-semibold text-neutral-300 hover:text-white transition-all flex items-center justify-center space-x-1 cursor-pointer"
-              >
-                <span>Warehouse Mgr</span>
-              </button>
-            </div>
-          </div>
-
-          {/* Preset Credentials Box */}
-          <div className="p-3 bg-neutral-950/80 rounded-xl border border-neutral-800 text-[11px] text-neutral-400 space-y-1">
-            <div className="font-bold text-neutral-300 flex items-center space-x-1">
-              <CheckCircle size={12} className="text-[#ccff00]" />
-              <span>Configured System Credentials:</span>
-            </div>
-            <div className="flex justify-between items-center text-[10px] sm:text-[11px]">
-              <span>Super Admin:</span>
-              <code className="text-[#ccff00] font-mono">admin / AdminPassword2026!</code>
-            </div>
-            <div className="flex justify-between items-center text-[10px] sm:text-[11px]">
-              <span>Warehouse:</span>
-              <code className="text-neutral-300 font-mono">inventory / AdminPassword2026!</code>
             </div>
           </div>
 

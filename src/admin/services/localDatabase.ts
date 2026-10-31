@@ -24,25 +24,6 @@ const STORAGE_KEYS = {
   AUDIT_LOGS: 'gazi_local_audit_logs',
 };
 
-const DEFAULT_ADMINS: AdminUser[] = [
-  {
-    id: 'adm-001',
-    username: 'admin',
-    email: 'admin@gazisports.com',
-    name: 'Chief Cricket Administrator',
-    role: 'super_admin',
-    permissions: ['*'],
-  },
-  {
-    id: 'adm-002',
-    username: 'inventory',
-    email: 'inventory@gazisports.com',
-    name: 'Dhaka Warehouse Manager',
-    role: 'inventory_manager',
-    permissions: ['inventory:*', 'products:read', 'orders:read'],
-  },
-];
-
 function getStorage<T>(key: string, defaultValue: T): T {
   if (typeof window === 'undefined') return defaultValue;
   try {
@@ -295,24 +276,14 @@ export const localDb = {
     const cleanUser = (username || '').toLowerCase().trim();
     const cleanPass = (password || '').trim();
 
-    const matched = DEFAULT_ADMINS.find(
-      (a) => a.username.toLowerCase() === cleanUser || a.email.toLowerCase() === cleanUser
-    );
-
-    if (matched && cleanPass === 'AdminPassword2026!') {
-      const token = `gazi_local_token_${Date.now()}`;
-      setStorage(STORAGE_KEYS.TOKEN, token);
-      setStorage(STORAGE_KEYS.USER, matched);
-      recordLocalAuditLog(matched.username, matched.role, 'LOGIN_SUCCESS', 'auth', matched.id, {
-        source: 'Mobile Local Database Engine',
-      });
-      return { success: true, token, user: matched };
-    }
-
-    recordLocalAuditLog(username, 'anonymous', 'LOGIN_FAILED', 'auth', username, {
-      reason: 'Invalid local credentials',
+    // Client-side offline login bypass with hardcoded credentials has been removed for production security.
+    recordLocalAuditLog(username, 'anonymous', 'LOGIN_BLOCKED_OFFLINE', 'auth', username, {
+      reason: 'Live backend authentication required for security compliance',
     });
-    return { success: false, error: 'Invalid username/email or password' };
+    return {
+      success: false,
+      error: 'Authentication requires connection to the live administrative backend. Offline login is disabled for security.',
+    };
   },
 
   getMe(): { authenticated: boolean; user: AdminUser | null } {

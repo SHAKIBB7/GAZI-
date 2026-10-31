@@ -1,6 +1,7 @@
 const http = require('http');
 const { spawn } = require('child_process');
 const path = require('path');
+const fs = require('fs');
 
 let spawnedServer = null;
 
@@ -32,10 +33,33 @@ async function startServerIfNeeded(port = 4000) {
     return null; // Already running externally
   }
 
-  console.log(`📡 Test server not detected on port ${port}. Spawning background instance...`);
+  // Setup isolated test data directory so main server/data is never mutated
+  const testDataDir = path.join(__dirname, 'test-data');
+  const sourceDataDir = path.join(__dirname, '../server/data');
+  if (fs.existsSync(testDataDir)) {
+    fs.rmSync(testDataDir, { recursive: true, force: true });
+  }
+  fs.mkdirSync(testDataDir, { recursive: true });
+  if (fs.existsSync(sourceDataDir)) {
+    for (const file of fs.readdirSync(sourceDataDir)) {
+      if (file.endsWith('.json')) {
+        fs.copyFileSync(path.join(sourceDataDir, file), path.join(testDataDir, file));
+      }
+    }
+  }
+
+  console.log(`📡 Test server not detected on port ${port}. Spawning background instance with isolated test data...`);
   const serverScript = path.join(__dirname, '../server/server.js');
   spawnedServer = spawn(process.execPath, [serverScript], {
-    env: { ...process.env, PORT: String(port), NODE_ENV: 'test' },
+    env: {
+      ...process.env,
+      PORT: String(port),
+      NODE_ENV: 'test',
+      DATA_DIR: testDataDir,
+      JWT_SECRET: 'test_jwt_secret_for_automated_testing_purposes_only_32_bytes_min',
+      ADMIN_SETUP_TOKEN: 'test_setup_token_enterprise_cricket_2026',
+      ADMIN_DEFAULT_PASSWORD: 'AdminPassword2026!',
+    },
     stdio: 'ignore',
   });
 
@@ -59,6 +83,12 @@ function stopServer() {
       spawnedServer.kill('SIGTERM');
     } catch (_) {}
     spawnedServer = null;
+  }
+  const testDataDir = path.join(__dirname, 'test-data');
+  if (fs.existsSync(testDataDir)) {
+    try {
+      fs.rmSync(testDataDir, { recursive: true, force: true });
+    } catch (_) {}
   }
 }
 

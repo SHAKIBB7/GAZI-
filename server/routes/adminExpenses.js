@@ -16,7 +16,7 @@ export const EXPENSE_CATEGORIES = [
 ];
 
 // 1. GET ALL EXPENSES WITH FILTERS & SUMMARY
-router.get('/', authenticateAdmin, (req, res) => {
+router.get('/', authenticateAdmin, requireRole(['super_admin']), (req, res) => {
   const { category, startDate, endDate, search, page = 1, limit = 25 } = req.query;
 
   let expenses = db.getExpenses();

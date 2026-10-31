@@ -24,19 +24,57 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-// Security Middleware: Helmet headers
+// Security Middleware: Helmet headers with enhanced security policies
 app.use(
   helmet({
-    contentSecurityPolicy: false,
+    contentSecurityPolicy: false, // Vite frontend uses inline assets & CDNs
     crossOriginEmbedderPolicy: false,
+    frameguard: { action: 'deny' },
+    noSniff: true,
+    xssFilter: true,
+    referrerPolicy: { policy: 'strict-origin-when-cross-origin' },
   })
 );
 
-// CORS configuration: allow any origin in dev or configured frontend URL
-app.use(cors());
-app.use(express.json({ limit: '20mb' }));
+// CORS configuration: restrict origins in production, support development & same-origin
+const allowedOrigins = process.env.ALLOWED_ORIGINS
+  ? process.env.ALLOWED_ORIGINS.split(',').map((o) => o.trim().replace(/\/$/, ''))
+  : [
+      'https://gazisports.com',
+      'https://www.gazisports.com',
+      'https://gazi-cricket.vercel.app',
+      'http://localhost:3000',
+      'http://localhost:4000',
+      'http://localhost:5173',
+      'http://127.0.0.1:3000',
+      'http://127.0.0.1:4000',
+      'http://127.0.0.1:5173',
+    ];
 
-// Rate Limiting: General API & Administrative Brute-force protection
+const corsOptions = {
+  origin: (origin, callback) => {
+    // Allow non-browser requests (e.g. mobile apps, curl, same-origin)
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    // In non-production environments, allow any localhost/127.0.0.1 port
+    if (process.env.NODE_ENV !== 'production' && /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)) {
+      return callback(null, true);
+    }
+
+    return callback(new Error(`CORS policy violation: Access from origin '${origin}' is not permitted.`));
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Admin-Setup-Token', 'X-Requested-With', 'Idempotency-Key'],
+};
+app.use(cors(corsOptions));
+app.use(express.json({ limit: '10mb' }));
+
+// Rate Limiting: General API & Sensitive Endpoints
 const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 1000,
@@ -51,9 +89,29 @@ const authLimiter = rateLimit({
   max: 20,
   standardHeaders: true,
   legacyHeaders: false,
-  message: { error: 'Too many administrative login attempts, please try again in 15 minutes.' },
+  message: { error: 'Too many administrative attempts, please try again in 15 minutes.' },
 });
 app.use('/api/admin/auth/login', authLimiter);
+app.use('/api/admin/auth/bootstrap', authLimiter);
+app.use('/api/admin/auth/change-password', authLimiter);
+
+const checkoutLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 30,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Too many checkout requests from this IP, please try again in 15 minutes.' },
+});
+app.use('/api/checkout', checkoutLimiter);
+
+const promoLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 60,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Too many promo validation attempts, please try again in 15 minutes.' },
+});
+app.use('/api/promo/validate', promoLimiter);
 
 // Initial automatic database backup snapshot
 createBackupSnapshot();
@@ -187,10 +245,10 @@ app.post('/api/promo/validate', (req, res) => {
   }
 
   const clean = code.trim().toUpperCase();
-  if (clean === 'CRICKET10') {
+  if (clean === 'CRICKET10' || clean === 'TIGERS10') {
     return res.json({
       valid: true,
-      code: 'CRICKET10',
+      code: clean,
       discountPercent: 10,
       discountAmount: Number((subtotal * 0.10).toFixed(2)),
       description: '10% Off Your Entire Cricket Order',
@@ -208,7 +266,7 @@ app.post('/api/promo/validate', (req, res) => {
 
   res.status(404).json({
     valid: false,
-    message: 'Invalid or expired promotional code. Try CRICKET10.',
+    message: 'Invalid or expired promotional code. Try CRICKET10 or TIGERS10.',
   });
 });
 
@@ -226,29 +284,50 @@ app.post('/api/checkout', async (req, res) => {
       promoCode,
     } = req.body;
 
-    if (!items || !items.length) {
-      return res.status(400).json({ error: 'Shopping bag is empty' });
+    if (!items || !Array.isArray(items) || items.length === 0) {
+      return res.status(400).json({ error: 'Shopping bag is empty. Please select equipment before checkout.' });
+    }
+
+    // Validate item quantities and structure
+    for (const item of items) {
+      const pid = item.productId || item.id;
+      if (!pid) {
+        return res.status(400).json({ error: 'Every item in the order must specify a valid productId.' });
+      }
+      const qty = Number(item.quantity);
+      if (!Number.isInteger(qty) || qty <= 0 || qty > 100) {
+        return res.status(400).json({
+          error: `Invalid quantity for item '${pid}'. Quantity must be a positive integer between 1 and 100.`,
+        });
+      }
     }
 
     // Customer validation for Bangladesh orders
-    if (customer?.phone && !isValidBdPhone(customer.phone)) {
+    if (!customer || typeof customer !== 'object') {
+      return res.status(400).json({ error: 'Customer contact details are required for order dispatch.' });
+    }
+    if (customer.phone && !isValidBdPhone(customer.phone)) {
       return res.status(400).json({
         error: 'Please enter a valid 11-digit Bangladeshi mobile number (e.g., 017XXXXXXXX, 018XXXXXXXX).',
       });
     }
 
-    // Calculate discount if promoCode given
+    // Calculate discount strictly from authoritative database catalog prices
     let discount = 0;
-    if (promoCode && promoCode.toUpperCase() === 'CRICKET10') {
-      const products = db.getProducts();
-      let calculatedSubtotal = 0;
-      for (const item of items) {
-        const pid = item.productId || item.id;
-        const prod = products.find((p) => p.id === pid || p.sku === pid);
-        const price = prod ? prod.price : (item.price || 0);
-        calculatedSubtotal += price * (item.quantity || 1);
+    if (promoCode) {
+      const cleanPromo = String(promoCode).trim().toUpperCase();
+      if (cleanPromo === 'CRICKET10' || cleanPromo === 'TIGERS10') {
+        const products = db.getProducts();
+        let calculatedSubtotal = 0;
+        for (const item of items) {
+          const pid = item.productId || item.id;
+          const prod = products.find((p) => p.id === pid || p.sku === pid);
+          if (prod) {
+            calculatedSubtotal += prod.price * Number(item.quantity);
+          }
+        }
+        discount = Number((calculatedSubtotal * 0.10).toFixed(2));
       }
-      discount = Number((calculatedSubtotal * 0.10).toFixed(2));
     }
 
     const order = await db.createOrder({
@@ -258,6 +337,7 @@ app.post('/api/checkout', async (req, res) => {
       paymentMethod,
       trxId,
       discount,
+      promoCode,
     });
 
     res.status(201).json({
@@ -272,7 +352,7 @@ app.post('/api/checkout', async (req, res) => {
 });
 
 // ==============================================================
-// 7. ORDER TRACKING LOOKUP
+// 7. ORDER TRACKING LOOKUP (PUBLIC, SANITIZED)
 // ==============================================================
 app.get('/api/orders/:tracking', (req, res) => {
   const { tracking } = req.params;
@@ -281,7 +361,44 @@ app.get('/api/orders/:tracking', (req, res) => {
     if (!order) {
       return res.status(404).json({ error: 'Order reference not found' });
     }
-    res.json(order);
+
+    // Sanitize order for public tracking (hide COGS, supplier info, internal notes)
+    const sanitizedOrder = {
+      id: order.id || order.orderId,
+      orderId: order.orderId,
+      trackingNumber: order.trackingNumber,
+      date: order.date,
+      status: order.status,
+      fulfillmentStatus: order.fulfillmentStatus || order.status,
+      courier: order.courier,
+      estimatedDelivery: order.estimatedDelivery,
+      deliveryZone: order.deliveryZone,
+      customer: {
+        fullName: order.customer?.fullName ? order.customer.fullName.split(' ')[0] + ' ***' : 'Customer',
+        district: order.customer?.district || 'Bangladesh',
+        division: order.customer?.division || '',
+      },
+      items: (order.items || []).map((it) => ({
+        productId: it.productId,
+        sku: it.sku,
+        title: it.title || it.name,
+        selectedSize: it.selectedSize,
+        quantity: it.quantity,
+        unitPrice: it.unitPrice,
+        totalPrice: it.totalPrice,
+        image: it.image,
+      })),
+      financials: {
+        currency: order.financials?.currency || 'BDT',
+        subtotal: order.financials?.subtotal || 0,
+        discount: order.financials?.discount || 0,
+        shipping: order.financials?.shipping || 0,
+        total: order.financials?.total || 0,
+      },
+      history: (order.history || []).filter((h) => !h.note?.includes('COGS') && !h.actor?.includes('system_internal')),
+    };
+
+    res.json(sanitizedOrder);
   } catch (err) {
     console.error('Could not load orders database:', err);
     res.status(500).json({ error: 'Could not load orders database' });
